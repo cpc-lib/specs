@@ -1,0 +1,50 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "Technician Login"
+      }
+    },
+    {
+      "path": "pages/work-orders/index",
+      "style": {
+        "navigationBarTitleText": "Work Orders"
+      }
+    },
+    {
+      "path": "pages/work-orders/detail",
+      "style": {
+        "navigationBarTitleText": "Work Order"
+      }
+    },
+    {
+      "path": "pages/inspections/index",
+      "style": {
+        "navigationBarTitleText": "Inspections"
+      }
+    },
+    {
+      "path": "pages/spare/index",
+      "style": {
+        "navigationBarTitleText": "Spare Stock"
+      }
+    }
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/work-orders/index",
+        "text": "Work Orders"
+      },
+      {
+        "pagePath": "pages/inspections/index",
+        "text": "Inspections"
+      },
+      {
+        "pagePath": "pages/spare/index",
+        "text": "Spare"
+      }
+    ]
+  }
+}

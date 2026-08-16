@@ -1,0 +1,89 @@
+version: '3.0'
+physicalShardCounts: CAPACITY_DRIVEN_NOT_FROZEN
+families:
+  trade:
+    service: marketplace-trade
+    routeKey: buyer_id
+    bindingTables:
+    - trade
+    - merchant_order
+    - order_item
+    - order_address_snapshot
+    - trade_idempotency
+    - discount_allocation
+    - order_item_economics_snapshot
+    - funding_allocation
+    alternateReadModels:
+    - merchant_order_index(routeKey=merchant_id)
+  payment:
+    service: marketplace-payment
+    routeKey: payment_no
+    bindingTables:
+    - payment_order
+    - payment_attempt
+    - payment_transaction
+    - refund_order
+    - refund_quota_reservation
+    - trade_payment_allocation
+    - payment_callback_log
+    - refund_transaction
+  finance_clearing:
+    service: marketplace-finance
+    routeKey: payment_no
+    bindingTables:
+    - payment_clearing_record
+    - payment_clearing_allocation
+  inventory:
+    service: marketplace-inventory
+    routeKey: sku_id + warehouse_id
+    bindingTables:
+    - inventory_stock
+    - inventory_reservation
+    - inventory_ledger
+  settlement:
+    service: marketplace-settlement
+    routeKey: merchant_id
+    bindingTables:
+    - merchant_balance_account
+    - settlement_batch
+    - settlement_item
+    - merchant_payable
+    - payout_reservation
+    - payout_order
+    - payout_transaction
+    - merchant_withdrawal_request
+    - merchant_funds_hold
+    - settlement_eligibility
+    - settlement_adjustment
+    - merchant_balance_ledger
+  review:
+    service: marketplace-review
+    routeKey: offer_id
+    bindingTables:
+    - review
+    - additional_review
+    - seller_review_reply
+    - review_moderation_record
+  cart:
+    service: marketplace-cart
+    routeKey: user_id
+    bindingTables:
+    - cart_item
+  favorite_follow:
+    service: marketplace-user
+    routeKey: user_id
+    bindingTables:
+    - user_favorite_offer
+    - user_shop_follow
+  im:
+    service: marketplace-customer-service
+    routeKey: buyer_id
+    bindingTables:
+    - im_conversation
+    - im_message
+    - im_read_cursor
+rules:
+- all ordinary binding-table writes must carry route key
+- no broadcast write for a hot-family command
+- alternate dimensions use read index/CQRS rather than cross-shard full scan
+- physical shard count changes require online migration plan

@@ -1,0 +1,395 @@
+openapi: 3.0.3
+info:
+  title: Buyer Trade API
+  version: '3.0'
+paths:
+  /api/buyer/v1/checkout/preview:
+    post:
+      operationId: previewCheckout
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutPreviewRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutPreviewResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-trade
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/buyer/v1/trades:
+    post:
+      operationId: submitTrade
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          maxLength: 128
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitTradeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitTradeResponse'
+        '409':
+          description: Conflict
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-trade
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+  /api/buyer/v1/trades/{tradeNo}:
+    get:
+      operationId: getTrade
+      parameters:
+      - name: tradeNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TradeDetailResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-trade
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+  /api/buyer/v1/trades/{tradeNo}/cancel:
+    post:
+      operationId: cancelTrade
+      parameters:
+      - name: tradeNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelTradeRequest'
+      responses:
+        '200':
+          description: Cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-trade
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+components:
+  schemas:
+    ApiError:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Money:
+      type: object
+      required:
+      - currency
+      - amount
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        amount:
+          type: string
+          pattern: ^-?\d+(\.\d{1,2})?$
+    CheckoutItemRequest:
+      type: object
+      required:
+      - offerId
+      - skuId
+      - quantity
+      properties:
+        offerId:
+          type: integer
+          format: int64
+        skuId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          minimum: 1
+    CheckoutPreviewRequest:
+      type: object
+      required:
+      - addressId
+      - items
+      properties:
+        addressId:
+          type: integer
+          format: int64
+        items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/CheckoutItemRequest'
+        couponCodes:
+          type: array
+          items:
+            type: string
+    CheckoutMerchantGroup:
+      type: object
+      properties:
+        merchantId:
+          type: integer
+          format: int64
+        shopId:
+          type: integer
+          format: int64
+        goodsAmount:
+          type: string
+        discountAmount:
+          type: string
+        shippingAmount:
+          type: string
+        payableAmount:
+          type: string
+    CheckoutPreviewResponse:
+      type: object
+      required:
+      - checkoutToken
+      - currency
+      - payableAmount
+      - merchantGroups
+      - expireAt
+      properties:
+        checkoutToken:
+          type: string
+        currency:
+          type: string
+        goodsAmount:
+          type: string
+        discountAmount:
+          type: string
+        shippingAmount:
+          type: string
+        taxAmount:
+          type: string
+        payableAmount:
+          type: string
+        merchantGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/CheckoutMerchantGroup'
+        expireAt:
+          type: string
+          format: date-time
+    SubmitTradeRequest:
+      type: object
+      required:
+      - checkoutToken
+      properties:
+        checkoutToken:
+          type: string
+        buyerRemark:
+          type: string
+          maxLength: 500
+    SubmitTradeResponse:
+      type: object
+      required:
+      - tradeNo
+      - status
+      - payableAmount
+      - merchantOrders
+      properties:
+        tradeNo:
+          type: string
+        status:
+          type: string
+        payableAmount:
+          type: string
+        merchantOrders:
+          type: array
+          items:
+            type: object
+            properties:
+              orderNo:
+                type: string
+              merchantId:
+                type: integer
+                format: int64
+              shopId:
+                type: integer
+                format: int64
+              payableAmount:
+                type: string
+    TradeDetailResponse:
+      type: object
+      properties:
+        tradeNo:
+          type: string
+        status:
+          type: string
+        currency:
+          type: string
+        payableAmount:
+          type: string
+        paidAmount:
+          type: string
+        merchantOrders:
+          type: array
+          items:
+            type: object
+    CancelTradeRequest:
+      type: object
+      required:
+      - reasonCode
+      properties:
+        reasonCode:
+          type: string
+        reason:
+          type: string
+          maxLength: 500
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

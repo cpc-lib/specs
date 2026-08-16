@@ -1,0 +1,33 @@
+candidateSources:
+- TRENDING
+- COLLABORATIVE
+- CONTENT_SIMILAR
+- SESSION
+- USER_INTEREST
+- SIMILAR_ITEM
+- COMPLEMENTARY
+- SHOP
+- RECENTLY_VIEWED
+pipeline:
+- request context
+- experiment assignment
+- candidate recall
+- hard filters
+- feature fetch
+- rank
+- business constraints
+- diversity
+- return result
+hardFilters:
+- offline/blocked
+- region unavailable
+- prohibited/restricted policy
+- user hidden
+output:
+- offerId
+- rank
+- score
+- reasonCode
+- modelVersion
+- policyVersion
+- experimentVariant

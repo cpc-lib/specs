@@ -1,0 +1,44 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - alert-rules.yml
+
+scrape_configs:
+  - job_name: ev-gateway
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8080"]
+  - job_name: ev-system
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8081"]
+  - job_name: ev-asset
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8082"]
+  - job_name: ev-core
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8083"]
+  - job_name: ev-payment
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8084"]
+  - job_name: ev-finance
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8085"]
+  - job_name: ev-operation
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8086"]
+  - job_name: ev-iot
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8087"]
+  - job_name: ev-open
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:8088"]

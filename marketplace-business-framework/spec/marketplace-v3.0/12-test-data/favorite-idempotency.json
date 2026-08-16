@@ -1,0 +1,6 @@
+{
+  "userId": 1001,
+  "offerId": 4001,
+  "concurrentAdds": 100,
+  "expectedRows": 1
+}

@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Recommendation API
+  version: '3.0'
+paths:
+  /api/buyer/v1/recommendations:
+    get:
+      operationId: getRecommendations
+      summary: Get ranked recommendations
+      parameters:
+      - name: scene
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-recommendation
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+  /api/buyer/v1/recommendations/{requestId}/hide:
+    post:
+      operationId: hideRecommendation
+      summary: Hide/dislike one recommended offer
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-recommendation
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+components:
+  schemas:
+    RecommendationItem:
+      type: object
+      properties:
+        offerId:
+          type: integer
+          format: int64
+        rank:
+          type: integer
+        score:
+          type: number
+        reasonCode:
+          type: string
+        modelVersion:
+          type: string
+        experimentVariant:
+          type: string
+    RecommendationResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecommendationItem'
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

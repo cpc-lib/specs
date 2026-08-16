@@ -1,0 +1,25 @@
+PAYMENT_CHANNEL:
+- provider_statement_item
+- payment_transaction
+PAYMENT_CLEARING:
+- payment_transaction
+- payment_clearing_record
+- payment_clearing_allocation
+TRADE_FUNDING:
+- payment_clearing_allocation
+- trade_payment_allocation
+- funding_allocation
+MERCHANT_PENDING:
+- funding/allocation facts
+- merchant_balance_ledger
+SETTLEMENT:
+- settlement_eligibility
+- settlement_item
+- merchant_payable
+PAYOUT:
+- payout_order
+- payout_transaction
+- provider_statement_item
+LEDGER:
+- all financial source facts
+- marketplace_ledger_entry/line

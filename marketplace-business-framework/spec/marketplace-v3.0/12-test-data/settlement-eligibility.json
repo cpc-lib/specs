@@ -1,0 +1,8 @@
+{
+  "merchantOrder": "ORD-1",
+  "completedAt": "2026-08-01T10:00:00Z",
+  "holdUntil": "2026-08-08T10:00:00Z",
+  "blockingAfterSale": false,
+  "riskFrozen": false,
+  "expectedAfterHold": "ELIGIBLE"
+}

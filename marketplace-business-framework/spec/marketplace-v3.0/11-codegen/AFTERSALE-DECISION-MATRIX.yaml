@@ -1,0 +1,33 @@
+REFUND_ONLY:
+  reverse_logistics: normally none
+  allowed_when:
+  - unshipped
+  - policy no-return
+  - digital/service policy
+  - platform arbitration
+  money: Payment refund after quota reservation
+RETURN_REFUND:
+  reverse_logistics: required unless exceptional policy
+  sequence:
+  - ReturnOrder
+  - ReverseShipment
+  - Receive
+  - Inspection
+  - Refund
+  inventory: inspection-driven disposition
+EXCHANGE:
+  sequence:
+  - return/inspection if required
+  - reserve replacement
+  - ExchangeOrder
+  - replacement fulfillment
+  money: only price-difference/compensation if policy requires
+REPAIR:
+  sequence:
+  - ReturnOrder
+  - Receive
+  - Inspection
+  - RepairOrder
+  - QC
+  - ReturnShipment
+  money: warranty/cost-responsibility policy

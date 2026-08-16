@@ -1,0 +1,13 @@
+{
+  "name": "Marketplace Buyer",
+  "appid": "__UNI__MARKETPLACE",
+  "description": "Marketplace V3.0 Buyer App",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": true
+    }
+  }
+}

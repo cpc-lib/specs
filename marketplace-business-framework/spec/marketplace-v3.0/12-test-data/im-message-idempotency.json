@@ -1,0 +1,7 @@
+{
+  "conversationNo": "C001",
+  "senderId": 1001,
+  "clientMessageId": "M-LOCAL-1",
+  "duplicates": 100,
+  "expectedServerMessages": 1
+}

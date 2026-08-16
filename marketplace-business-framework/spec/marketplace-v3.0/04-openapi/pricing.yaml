@@ -1,0 +1,366 @@
+openapi: 3.0.3
+info:
+  title: Pricing API
+  version: '3.0'
+paths:
+  /internal/v1/pricing/quote:
+    post:
+      operationId: quotePrices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceQuoteRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceQuoteResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-pricing
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/seller/v1/price-books:
+    post:
+      operationId: createPriceBook
+      summary: Create versioned price book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePriceBookRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-pricing
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/seller/v1/offers/{offerId}/price-change-requests:
+    post:
+      operationId: createPriceChangeRequest
+      summary: Request price change / approval
+      parameters:
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceChangeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-pricing
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+  /internal/v1/pricing/evaluate:
+    post:
+      operationId: evaluatePricing
+      summary: Evaluate deterministic base/effective pricing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PricingEvaluateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-pricing
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+components:
+  schemas:
+    ApiError:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Money:
+      type: object
+      required:
+      - currency
+      - amount
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        amount:
+          type: string
+          pattern: ^-?\d+(\.\d{1,2})?$
+    PriceQuoteRequest:
+      type: object
+      required:
+      - buyerId
+      - items
+      properties:
+        buyerId:
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            type: object
+    PriceQuoteResponse:
+      type: object
+      properties:
+        quoteVersion:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+    CreatePriceBookRequest:
+      type: object
+      required:
+      - priceBookCode
+      - currency
+      - dimensionType
+      - effectiveFrom
+      properties:
+        priceBookCode:
+          type: string
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        dimensionType:
+          type: string
+          enum:
+          - BASE
+          - REGION
+          - CHANNEL
+          - MEMBER
+          - CONTRACTUAL
+          - FLASH
+        dimensionValue:
+          type: string
+        priority:
+          type: integer
+        effectiveFrom:
+          type: string
+          format: date-time
+        effectiveTo:
+          type: string
+          format: date-time
+    PriceChangeRequest:
+      type: object
+      required:
+      - newPrice
+      properties:
+        newPrice:
+          type: number
+          minimum: 0
+        reason:
+          type: string
+        scheduledEffectiveAt:
+          type: string
+          format: date-time
+    PricingEvaluateRequest:
+      type: object
+      required:
+      - offerId
+      - skuId
+      - quantity
+      - currency
+      - evaluatedAt
+      properties:
+        offerId:
+          type: integer
+          format: int64
+        skuId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+        regionCode:
+          type: string
+        channel:
+          type: string
+        memberLevel:
+          type: string
+        evaluatedAt:
+          type: string
+          format: date-time
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

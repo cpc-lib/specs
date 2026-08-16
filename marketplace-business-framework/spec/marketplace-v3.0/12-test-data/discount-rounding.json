@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "base": "33.33"
+    },
+    {
+      "id": 2,
+      "base": "33.33"
+    },
+    {
+      "id": 3,
+      "base": "33.34"
+    }
+  ],
+  "discount": "10.00",
+  "assertions": [
+    "sumAllocated=10.00",
+    "residualExplicit=true",
+    "deterministic=true"
+  ]
+}

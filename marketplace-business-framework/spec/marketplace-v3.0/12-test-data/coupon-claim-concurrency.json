@@ -1,0 +1,7 @@
+{
+  "totalIssueLimit": 100,
+  "perUserClaimLimit": 1,
+  "users": 10000,
+  "concurrency": 10000,
+  "expectedMaxIssued": 100
+}

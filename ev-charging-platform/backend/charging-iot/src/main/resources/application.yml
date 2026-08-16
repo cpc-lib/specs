@@ -1,0 +1,74 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: charging-iot
+  config:
+    import: optional:nacos:${spring.application.name}.yml?server-addr=${NACOS_SERVER_ADDR:127.0.0.1:8848}
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:127.0.0.1}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    listener:
+      simple:
+        default-requeue-rejected: false
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+charging:
+  security:
+    dev-tenant-header-enabled: ${DEV_TENANT_HEADER_ENABLED:false}
+iot:
+  gateway-id: ${IOT_GATEWAY_ID:dev}
+  tcp-port: ${IOT_TCP_PORT:19090}
+  dev-secret: ${IOT_DEV_SECRET:dev-secret}
+  lifecycle-topic: ${DEVICE_LIFECYCLE_TOPIC:ev.device.lifecycle.v1}
+  offline-scan-ms: ${IOT_OFFLINE_SCAN_MS:10000}
+  offline-scan-batch-size: ${IOT_OFFLINE_SCAN_BATCH_SIZE:200}
+  command:
+    exchange: ev.device.command.exchange
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+
+# SPEC 8.3 resilience / observability
+spring.cloud.sentinel.enabled: true
+spring.cloud.sentinel.eager: true
+spring.cloud.sentinel.transport.dashboard: ${SENTINEL_DASHBOARD:}
+feign.sentinel.enabled: true
+management.metrics.tags.application: ${spring.application.name}
+management.prometheus.metrics.export.enabled: true
+charging.performance.spec83: true
+
+## SPEC 8.3 bounded runtime defaults
+spring.kafka.consumer.max-poll-records: ${KAFKA_MAX_POLL_RECORDS:200}
+spring.kafka.producer.properties.delivery.timeout.ms: ${KAFKA_DELIVERY_TIMEOUT_MS:30000}
+spring.kafka.producer.properties.request.timeout.ms: ${KAFKA_REQUEST_TIMEOUT_MS:10000}
+spring.rabbitmq.connection-timeout: ${RABBITMQ_CONNECTION_TIMEOUT_MS:5000}
+spring.rabbitmq.listener.simple.prefetch: ${RABBITMQ_PREFETCH:50}
+charging.executor.io.core-size: ${IO_EXECUTOR_CORE:8}
+charging.executor.io.max-size: ${IO_EXECUTOR_MAX:32}
+charging.executor.io.queue-capacity: ${IO_EXECUTOR_QUEUE:500}
+charging.executor.business.core-size: ${BUSINESS_EXECUTOR_CORE:8}
+charging.executor.business.max-size: ${BUSINESS_EXECUTOR_MAX:24}
+charging.executor.business.queue-capacity: ${BUSINESS_EXECUTOR_QUEUE:1000}
+
+management.endpoint.health.probes.enabled: true
+management.metrics.distribution.percentiles-histogram.http.server.requests: true
+management.metrics.distribution.slo.http.server.requests: 100ms,300ms,800ms,2s
+server.tomcat.threads.max: ${TOMCAT_MAX_THREADS:200}
+server.tomcat.threads.min-spare: ${TOMCAT_MIN_SPARE_THREADS:20}
+server.tomcat.accept-count: ${TOMCAT_ACCEPT_COUNT:200}
+server.tomcat.connection-timeout: ${HTTP_CONNECTION_TIMEOUT:5s}

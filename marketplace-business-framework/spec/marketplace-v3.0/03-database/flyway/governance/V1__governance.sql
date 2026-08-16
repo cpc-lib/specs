@@ -1,0 +1,121 @@
+CREATE TABLE violation_case (
+  id BIGINT PRIMARY KEY,
+  violation_no VARCHAR(64) NOT NULL,
+  merchant_id BIGINT NOT NULL,
+  shop_id BIGINT NULL,
+  subject_type VARCHAR(32) NOT NULL,
+  subject_id VARCHAR(128) NOT NULL,
+  violation_type VARCHAR(64) NOT NULL,
+  severity VARCHAR(32) NOT NULL,
+  rule_code VARCHAR(64) NOT NULL,
+  rule_version VARCHAR(64) NOT NULL,
+  source_type VARCHAR(32) NOT NULL,
+  source_id VARCHAR(128) NULL,
+  evidence_snapshot_ref VARCHAR(128) NULL,
+  status VARCHAR(32) NOT NULL,
+  decision_summary VARCHAR(2048) NULL,
+  reviewer_id BIGINT NULL,
+  decided_at DATETIME(3) NULL,
+  version INT NOT NULL DEFAULT 0,
+  created_at DATETIME(3) NOT NULL,
+  updated_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_violation_no (violation_no),
+  KEY idx_violation_merchant (merchant_id, status, severity, created_at),
+  KEY idx_violation_subject (subject_type, subject_id, status)
+);
+
+CREATE TABLE penalty_action (
+  id BIGINT PRIMARY KEY,
+  action_no VARCHAR(64) NOT NULL,
+  violation_id BIGINT NOT NULL,
+  merchant_id BIGINT NOT NULL,
+  action_type VARCHAR(64) NOT NULL,
+  action_version INT NOT NULL,
+  action_scope_json JSON NULL,
+  action_amount DECIMAL(18,2) NULL,
+  currency CHAR(3) NULL,
+  status VARCHAR(32) NOT NULL,
+  idempotency_key VARCHAR(128) NOT NULL,
+  executed_at DATETIME(3) NULL,
+  execution_result_json JSON NULL,
+  created_at DATETIME(3) NOT NULL,
+  updated_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_penalty_action_no (action_no),
+  UNIQUE KEY uk_penalty_action_idem (idempotency_key),
+  UNIQUE KEY uk_penalty_action_version (violation_id, action_type, action_version)
+);
+
+CREATE TABLE penalty_reversal_action (
+  id BIGINT PRIMARY KEY,
+  reversal_no VARCHAR(64) NOT NULL,
+  penalty_action_id BIGINT NOT NULL,
+  appeal_id BIGINT NULL,
+  reversal_type VARCHAR(32) NOT NULL,
+  reversal_scope_json JSON NULL,
+  status VARCHAR(32) NOT NULL,
+  idempotency_key VARCHAR(128) NOT NULL,
+  executed_at DATETIME(3) NULL,
+  created_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_penalty_reversal_no (reversal_no),
+  UNIQUE KEY uk_penalty_reversal_idem (idempotency_key)
+);
+
+CREATE TABLE appeal_case (
+  id BIGINT PRIMARY KEY,
+  appeal_no VARCHAR(64) NOT NULL,
+  violation_id BIGINT NOT NULL,
+  merchant_id BIGINT NOT NULL,
+  appellant_user_id BIGINT NOT NULL,
+  reason VARCHAR(2048) NOT NULL,
+  evidence_ids_json JSON NULL,
+  status VARCHAR(32) NOT NULL,
+  decision VARCHAR(32) NULL,
+  decision_reason VARCHAR(2048) NULL,
+  reviewer_id BIGINT NULL,
+  decided_at DATETIME(3) NULL,
+  version INT NOT NULL DEFAULT 0,
+  created_at DATETIME(3) NOT NULL,
+  updated_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_appeal_no (appeal_no),
+  KEY idx_appeal_violation (violation_id, status),
+  KEY idx_appeal_merchant (merchant_id, status, created_at)
+);
+
+CREATE TABLE product_governance_policy (
+  id BIGINT PRIMARY KEY,
+  policy_code VARCHAR(64) NOT NULL,
+  version_no INT NOT NULL,
+  classification VARCHAR(32) NOT NULL,
+  category_id BIGINT NULL,
+  merchant_type VARCHAR(32) NULL,
+  region_code VARCHAR(64) NULL,
+  condition_json JSON NOT NULL,
+  required_qualification_json JSON NULL,
+  enforcement_json JSON NOT NULL,
+  status VARCHAR(32) NOT NULL,
+  effective_from DATETIME(3) NOT NULL,
+  effective_to DATETIME(3) NULL,
+  UNIQUE KEY uk_product_governance_policy (policy_code, version_no),
+  KEY idx_product_governance_active (status, category_id, region_code, effective_from, effective_to)
+);
+
+CREATE TABLE ip_complaint_case (
+  id BIGINT PRIMARY KEY,
+  complaint_no VARCHAR(64) NOT NULL,
+  complainant_type VARCHAR(32) NOT NULL,
+  complainant_ref VARCHAR(128) NOT NULL,
+  merchant_id BIGINT NOT NULL,
+  shop_id BIGINT NULL,
+  offer_id BIGINT NULL,
+  brand_id BIGINT NULL,
+  complaint_type VARCHAR(32) NOT NULL,
+  evidence_json JSON NOT NULL,
+  seller_response_json JSON NULL,
+  status VARCHAR(32) NOT NULL,
+  decision VARCHAR(32) NULL,
+  version INT NOT NULL DEFAULT 0,
+  created_at DATETIME(3) NOT NULL,
+  updated_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_ip_complaint_no (complaint_no),
+  KEY idx_ip_complaint_merchant (merchant_id, status, created_at)
+);

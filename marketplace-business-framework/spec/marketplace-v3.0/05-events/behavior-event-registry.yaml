@@ -1,0 +1,31 @@
+version: '3.0'
+topic: marketplace.behavior.v1
+partitionKeyPreference:
+- userId
+- anonymousId
+- sessionId
+events:
+- IMPRESSION
+- PRODUCT_VIEW
+- PRODUCT_CLICK
+- SEARCH
+- SEARCH_RESULT_CLICK
+- CART_ADD
+- CART_REMOVE
+- FAVORITE_ADD
+- FAVORITE_REMOVE
+- SHOP_FOLLOW
+- SHOP_UNFOLLOW
+- COUPON_CLAIM
+- TRADE_PAID
+- TRADE_COMPLETED
+- REFUND_SUCCESS
+- REVIEW_PUBLISHED
+- HIDE_RECOMMENDATION
+requiredFields:
+- eventId
+- eventType
+- occurredAt
+- objectType
+- objectId
+- consentContext

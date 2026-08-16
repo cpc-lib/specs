@@ -1,0 +1,112 @@
+version: '3.0'
+criticalScenarios:
+- id: E2E-001
+  name: multi-merchant checkout
+  tasks:
+  - '011'
+  - '012'
+  - '013'
+  - '014'
+  assertions:
+  - 1 Trade
+  - N MerchantOrders
+  - amount allocation conservation
+  - idempotent submit
+- id: E2E-002
+  name: inventory concurrency
+  tasks:
+  - 008
+  - '013'
+  - '035'
+  assertions:
+  - no oversell
+  - DB durable reservation
+  - Redis failure does not corrupt normal inventory
+- id: E2E-003
+  name: payment duplicate callback
+  tasks:
+  - '014'
+  assertions:
+  - 100 callbacks -> 1 payment transaction/effect
+- id: E2E-004
+  name: refund quota concurrency
+  tasks:
+  - 018
+  - 019
+  assertions:
+  - successful+reserved <= refundable
+  - UNKNOWN keeps reservation
+- id: E2E-005
+  name: partial fulfillment/return
+  tasks:
+  - '015'
+  - 018
+  - 019
+  assertions:
+  - quantity conservation
+  - inspection caps refund
+  - stock disposition controlled
+- id: E2E-006
+  name: merchant settlement/payout
+  tasks:
+  - '022'
+  - '023'
+  - '024'
+  assertions:
+  - eligibility consumed once
+  - payable not over-reserved
+  - UNKNOWN payout not repeated
+- id: E2E-007
+  name: funds hold governance
+  tasks:
+  - '024'
+  - 029
+  - '030'
+  assertions:
+  - active hold blocks affected payout
+  - unrelated scope remains operable
+- id: E2E-008
+  name: merchant isolation
+  tasks:
+  - '003'
+  - '004'
+  - '032'
+  - '033'
+  assertions:
+  - seller cannot access another merchant data
+  - client merchantId not authority
+- id: E2E-009
+  name: promotion budget/flash
+  tasks:
+  - '010'
+  - '013'
+  - '035'
+  assertions:
+  - quota/budget conservation
+  - flash quota != warehouse inventory
+- id: E2E-010
+  name: search stale data
+  tasks:
+  - '027'
+  assertions:
+  - old event cannot regress index
+  - checkout revalidates
+- id: E2E-011
+  name: review authenticity
+  tasks:
+  - '021'
+  - 029
+  assertions:
+  - verified purchase
+  - risk+moderation gating
+  - summary rebuildable
+- id: E2E-012
+  name: platform failure recovery
+  tasks:
+  - '025'
+  - '037'
+  - 038
+  assertions:
+  - MQ/ES/Redis/provider faults recover
+  - no duplicate money
+  - reconciliation visible

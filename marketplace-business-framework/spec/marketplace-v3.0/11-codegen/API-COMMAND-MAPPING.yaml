@@ -1,0 +1,510 @@
+createAfterSale:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: CreateAfterSale
+  idempotencyRequired: true
+approveAfterSale:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: ApproveAfterSale
+  idempotencyRequired: true
+decideDispute:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: DecideDispute
+  idempotencyRequired: true
+submitReturnShipment:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: SubmitReturnShipment
+  idempotencyRequired: true
+receiveReturn:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: ReceiveReturn
+  idempotencyRequired: true
+inspectReturn:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: InspectReturn
+  idempotencyRequired: true
+createExchangeOrder:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: CreateExchangeOrder
+  idempotencyRequired: true
+createRepairOrder:
+  ownerService: marketplace-aftersale
+  applicationType: Command
+  applicationOperation: CreateRepairOrder
+  idempotencyRequired: true
+previewCheckout:
+  ownerService: marketplace-trade
+  applicationType: Command
+  applicationOperation: PreviewCheckout
+  idempotencyRequired: true
+submitTrade:
+  ownerService: marketplace-trade
+  applicationType: Command
+  applicationOperation: SubmitTrade
+  idempotencyRequired: true
+getTrade:
+  ownerService: marketplace-trade
+  applicationType: Query
+  applicationOperation: GetTrade
+  idempotencyRequired: false
+cancelTrade:
+  ownerService: marketplace-trade
+  applicationType: Command
+  applicationOperation: CancelTrade
+  idempotencyRequired: true
+createCategoryAttribute:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: CreateCategoryAttribute
+  idempotencyRequired: true
+getCategoryAttributeSchema:
+  ownerService: marketplace-product
+  applicationType: Query
+  applicationOperation: GetCategoryAttributeSchema
+  idempotencyRequired: false
+addFavoriteOffer:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: AddFavoriteOffer
+  idempotencyRequired: false
+removeFavoriteOffer:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: RemoveFavoriteOffer
+  idempotencyRequired: false
+followShop:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: FollowShop
+  idempotencyRequired: false
+unfollowShop:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: UnfollowShop
+  idempotencyRequired: false
+createCustomerServiceCase:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: CreateCustomerServiceCase
+  idempotencyRequired: true
+createImConversation:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: CreateImConversation
+  idempotencyRequired: true
+sendImMessage:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: SendImMessage
+  idempotencyRequired: true
+listImMessages:
+  ownerService: marketplace-customer-service
+  applicationType: Query
+  applicationOperation: ListImMessages
+  idempotencyRequired: false
+getNotificationPreferences:
+  ownerService: marketplace-customer-service
+  applicationType: Query
+  applicationOperation: GetNotificationPreferences
+  idempotencyRequired: false
+updateNotificationPreferences:
+  ownerService: marketplace-customer-service
+  applicationType: Command
+  applicationOperation: UpdateNotificationPreferences
+  idempotencyRequired: false
+getBuyer360:
+  ownerService: marketplace-customer-service
+  applicationType: Query
+  applicationOperation: GetBuyer360
+  idempotencyRequired: false
+getMerchantFundsBalance:
+  ownerService: marketplace-finance
+  applicationType: Query
+  applicationOperation: GetMerchantFundsBalance
+  idempotencyRequired: false
+listMerchantFundsLedger:
+  ownerService: marketplace-finance
+  applicationType: Query
+  applicationOperation: ListMerchantFundsLedger
+  idempotencyRequired: false
+listFinanceDailyCloses:
+  ownerService: marketplace-finance
+  applicationType: Query
+  applicationOperation: ListFinanceDailyCloses
+  idempotencyRequired: false
+runFinanceDailyClose:
+  ownerService: marketplace-finance
+  applicationType: Command
+  applicationOperation: RunFinanceDailyClose
+  idempotencyRequired: true
+applyPaymentClearing:
+  ownerService: marketplace-finance
+  applicationType: Command
+  applicationOperation: ApplyPaymentClearing
+  idempotencyRequired: true
+applyRefundReverseClearing:
+  ownerService: marketplace-finance
+  applicationType: Command
+  applicationOperation: ApplyRefundReverseClearing
+  idempotencyRequired: true
+createFulfillmentPlan:
+  ownerService: marketplace-fulfillment
+  applicationType: Command
+  applicationOperation: CreateFulfillmentPlan
+  idempotencyRequired: true
+createFulfillmentPackage:
+  ownerService: marketplace-fulfillment
+  applicationType: Command
+  applicationOperation: CreateFulfillmentPackage
+  idempotencyRequired: true
+shipPackage:
+  ownerService: marketplace-fulfillment
+  applicationType: Command
+  applicationOperation: ShipPackage
+  idempotencyRequired: true
+confirmOrderReceive:
+  ownerService: marketplace-fulfillment
+  applicationType: Command
+  applicationOperation: ConfirmOrderReceive
+  idempotencyRequired: true
+listOrderPackages:
+  ownerService: marketplace-fulfillment
+  applicationType: Query
+  applicationOperation: ListOrderPackages
+  idempotencyRequired: false
+handleTrackingCallback:
+  ownerService: marketplace-fulfillment
+  applicationType: Command
+  applicationOperation: HandleTrackingCallback
+  idempotencyRequired: false
+createDigitalFulfillment:
+  ownerService: marketplace-fulfillment
+  applicationType: Command
+  applicationOperation: CreateDigitalFulfillment
+  idempotencyRequired: true
+createViolationCase:
+  ownerService: marketplace-governance
+  applicationType: Command
+  applicationOperation: CreateViolationCase
+  idempotencyRequired: true
+decideViolationCase:
+  ownerService: marketplace-governance
+  applicationType: Command
+  applicationOperation: DecideViolationCase
+  idempotencyRequired: true
+submitViolationAppeal:
+  ownerService: marketplace-governance
+  applicationType: Command
+  applicationOperation: SubmitViolationAppeal
+  idempotencyRequired: true
+decideAppeal:
+  ownerService: marketplace-governance
+  applicationType: Command
+  applicationOperation: DecideAppeal
+  idempotencyRequired: true
+createMerchantFundsHold:
+  ownerService: marketplace-governance
+  applicationType: Command
+  applicationOperation: CreateMerchantFundsHold
+  idempotencyRequired: true
+releaseMerchantFundsHold:
+  ownerService: marketplace-governance
+  applicationType: Command
+  applicationOperation: ReleaseMerchantFundsHold
+  idempotencyRequired: true
+reserveInventory:
+  ownerService: marketplace-inventory
+  applicationType: Command
+  applicationOperation: ReserveInventory
+  idempotencyRequired: true
+commitInventory:
+  ownerService: marketplace-inventory
+  applicationType: Command
+  applicationOperation: CommitInventory
+  idempotencyRequired: true
+releaseInventory:
+  ownerService: marketplace-inventory
+  applicationType: Command
+  applicationOperation: ReleaseInventory
+  idempotencyRequired: true
+checkInventoryAvailability:
+  ownerService: marketplace-inventory
+  applicationType: Command
+  applicationOperation: CheckInventoryAvailability
+  idempotencyRequired: true
+approveMerchant:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: ApproveMerchant
+  idempotencyRequired: true
+createShop:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: CreateShop
+  idempotencyRequired: true
+createMerchantApplication:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: CreateMerchantApplication
+  idempotencyRequired: true
+submitMerchantApplication:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: SubmitMerchantApplication
+  idempotencyRequired: true
+approveMerchantApplicationV25:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: ApproveMerchantApplicationV25
+  idempotencyRequired: true
+applyCategoryAdmission:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: ApplyCategoryAdmission
+  idempotencyRequired: true
+requestMerchantExit:
+  ownerService: marketplace-merchant
+  applicationType: Command
+  applicationOperation: RequestMerchantExit
+  idempotencyRequired: true
+createPayment:
+  ownerService: marketplace-payment
+  applicationType: Command
+  applicationOperation: CreatePayment
+  idempotencyRequired: true
+getPayment:
+  ownerService: marketplace-payment
+  applicationType: Query
+  applicationOperation: GetPayment
+  idempotencyRequired: false
+createRefund:
+  ownerService: marketplace-payment
+  applicationType: Command
+  applicationOperation: CreateRefund
+  idempotencyRequired: true
+getRefund:
+  ownerService: marketplace-payment
+  applicationType: Query
+  applicationOperation: GetRefund
+  idempotencyRequired: false
+paymentCallback:
+  ownerService: marketplace-payment
+  applicationType: Command
+  applicationOperation: PaymentCallback
+  idempotencyRequired: false
+quotePrices:
+  ownerService: marketplace-pricing
+  applicationType: Command
+  applicationOperation: QuotePrices
+  idempotencyRequired: true
+createPriceBook:
+  ownerService: marketplace-pricing
+  applicationType: Command
+  applicationOperation: CreatePriceBook
+  idempotencyRequired: true
+createPriceChangeRequest:
+  ownerService: marketplace-pricing
+  applicationType: Command
+  applicationOperation: CreatePriceChangeRequest
+  idempotencyRequired: true
+evaluatePricing:
+  ownerService: marketplace-pricing
+  applicationType: Command
+  applicationOperation: EvaluatePricing
+  idempotencyRequired: true
+evaluatePromotions:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: EvaluatePromotions
+  idempotencyRequired: true
+reservePromotionQuota:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: ReservePromotionQuota
+  idempotencyRequired: true
+createPlatformCampaign:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: CreatePlatformCampaign
+  idempotencyRequired: true
+createSellerCampaign:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: CreateSellerCampaign
+  idempotencyRequired: true
+createCouponTemplate:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: CreateCouponTemplate
+  idempotencyRequired: true
+claimCoupon:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: ClaimCoupon
+  idempotencyRequired: true
+reserveFlashSaleQuota:
+  ownerService: marketplace-promotion
+  applicationType: Command
+  applicationOperation: ReserveFlashSaleQuota
+  idempotencyRequired: true
+getRecommendations:
+  ownerService: marketplace-recommendation
+  applicationType: Query
+  applicationOperation: GetRecommendations
+  idempotencyRequired: false
+hideRecommendation:
+  ownerService: marketplace-recommendation
+  applicationType: Command
+  applicationOperation: HideRecommendation
+  idempotencyRequired: true
+listReconciliationBatches:
+  ownerService: marketplace-reconciliation
+  applicationType: Query
+  applicationOperation: ListReconciliationBatches
+  idempotencyRequired: false
+resolveReconciliationItem:
+  ownerService: marketplace-reconciliation
+  applicationType: Command
+  applicationOperation: ResolveReconciliationItem
+  idempotencyRequired: true
+listProviderStatements:
+  ownerService: marketplace-reconciliation
+  applicationType: Query
+  applicationOperation: ListProviderStatements
+  idempotencyRequired: false
+listReconciliationExceptions:
+  ownerService: marketplace-reconciliation
+  applicationType: Query
+  applicationOperation: ListReconciliationExceptions
+  idempotencyRequired: false
+createReview:
+  ownerService: marketplace-review
+  applicationType: Command
+  applicationOperation: CreateReview
+  idempotencyRequired: true
+createAdditionalReview:
+  ownerService: marketplace-review
+  applicationType: Command
+  applicationOperation: CreateAdditionalReview
+  idempotencyRequired: true
+replyReview:
+  ownerService: marketplace-review
+  applicationType: Command
+  applicationOperation: ReplyReview
+  idempotencyRequired: true
+listOfferReviews:
+  ownerService: marketplace-review
+  applicationType: Query
+  applicationOperation: ListOfferReviews
+  idempotencyRequired: false
+evaluateRisk:
+  ownerService: marketplace-risk
+  applicationType: Command
+  applicationOperation: EvaluateRisk
+  idempotencyRequired: true
+listRiskCases:
+  ownerService: marketplace-risk
+  applicationType: Query
+  applicationOperation: ListRiskCases
+  idempotencyRequired: false
+resolveRiskCase:
+  ownerService: marketplace-risk
+  applicationType: Command
+  applicationOperation: ResolveRiskCase
+  idempotencyRequired: true
+searchOffers:
+  ownerService: marketplace-search
+  applicationType: Query
+  applicationOperation: SearchOffers
+  idempotencyRequired: false
+getSearchSuggestions:
+  ownerService: marketplace-search
+  applicationType: Query
+  applicationOperation: GetSearchSuggestions
+  idempotencyRequired: false
+startSearchReindex:
+  ownerService: marketplace-search
+  applicationType: Command
+  applicationOperation: StartSearchReindex
+  idempotencyRequired: true
+listSellerOrders:
+  ownerService: marketplace-trade
+  applicationType: Query
+  applicationOperation: ListSellerOrders
+  idempotencyRequired: false
+shipMerchantOrder:
+  ownerService: marketplace-trade
+  applicationType: Command
+  applicationOperation: ShipMerchantOrder
+  idempotencyRequired: true
+createOffer:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: CreateOffer
+  idempotencyRequired: true
+publishOffer:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: PublishOffer
+  idempotencyRequired: true
+createSpuDraft:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: CreateSpuDraft
+  idempotencyRequired: true
+createSpuVersion:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: CreateSpuVersion
+  idempotencyRequired: true
+submitOfferPublish:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: SubmitOfferPublish
+  idempotencyRequired: true
+approveBrandAuthorization:
+  ownerService: marketplace-product
+  applicationType: Command
+  applicationOperation: ApproveBrandAuthorization
+  idempotencyRequired: true
+listSettlements:
+  ownerService: marketplace-settlement
+  applicationType: Query
+  applicationOperation: ListSettlements
+  idempotencyRequired: false
+getSettlement:
+  ownerService: marketplace-settlement
+  applicationType: Query
+  applicationOperation: GetSettlement
+  idempotencyRequired: false
+approveSettlement:
+  ownerService: marketplace-settlement
+  applicationType: Command
+  applicationOperation: ApproveSettlement
+  idempotencyRequired: true
+createSettlementPayout:
+  ownerService: marketplace-settlement
+  applicationType: Command
+  applicationOperation: CreateSettlementPayout
+  idempotencyRequired: true
+listMerchantPayables:
+  ownerService: marketplace-settlement
+  applicationType: Query
+  applicationOperation: ListMerchantPayables
+  idempotencyRequired: false
+getMerchantPayout:
+  ownerService: marketplace-settlement
+  applicationType: Query
+  applicationOperation: GetMerchantPayout
+  idempotencyRequired: false
+createMerchantWithdrawal:
+  ownerService: marketplace-settlement
+  applicationType: Command
+  applicationOperation: CreateMerchantWithdrawal
+  idempotencyRequired: true

@@ -1,0 +1,40 @@
+COUNTERFEIT:
+  defaultSeverity: CRITICAL
+  possibleActions:
+  - PRODUCT_BLOCK
+  - FUNDS_HOLD
+  - MERCHANT_SUSPEND
+  - DEPOSIT_DEDUCTION
+PROHIBITED_GOODS:
+  defaultSeverity: CRITICAL
+  possibleActions:
+  - PRODUCT_BLOCK
+  - SHOP_SUSPEND
+  - MERCHANT_SUSPEND
+FAKE_SHIPMENT:
+  defaultSeverity: HIGH
+  possibleActions:
+  - SHOP_LIMIT
+  - SETTLEMENT_DELAY
+  - FUNDS_HOLD
+BRUSH_ORDER:
+  defaultSeverity: HIGH
+  possibleActions:
+  - TRAFFIC_RESTRICTION
+  - CAMPAIGN_RESTRICTION
+  - SETTLEMENT_DELAY
+BRUSH_REVIEW:
+  defaultSeverity: MEDIUM
+  possibleActions:
+  - TRAFFIC_RESTRICTION
+  - SHOP_LIMIT
+SERVICE_SLA_BREACH:
+  defaultSeverity: MEDIUM
+  possibleActions:
+  - WARNING
+  - SHOP_LIMIT
+COMPLIANCE_EXPIRED:
+  defaultSeverity: HIGH
+  possibleActions:
+  - PRODUCT_TAKE_DOWN
+  - CATEGORY_RESTRICTION

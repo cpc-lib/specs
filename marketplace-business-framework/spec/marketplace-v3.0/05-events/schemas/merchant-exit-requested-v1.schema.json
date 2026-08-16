@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "eventVersion",
+    "occurredAt",
+    "data"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "eventType": {
+      "const": "merchant.exit.requested.v1"
+    },
+    "eventVersion": {
+      "const": "1.0"
+    },
+    "traceId": {
+      "type": "string"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "exitNo",
+        "merchantId"
+      ],
+      "properties": {
+        "exitNo": {
+          "type": "string"
+        },
+        "merchantId": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

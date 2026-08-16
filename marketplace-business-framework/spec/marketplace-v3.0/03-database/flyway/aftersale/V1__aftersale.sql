@@ -1,0 +1,21 @@
+CREATE TABLE aftersale_case (
+ id BIGINT PRIMARY KEY,
+ aftersale_no VARCHAR(64) NOT NULL,
+ buyer_id BIGINT NOT NULL,
+ merchant_id BIGINT NOT NULL,
+ merchant_order_id BIGINT NOT NULL,
+ order_item_id BIGINT NOT NULL,
+ aftersale_type VARCHAR(32) NOT NULL,
+ requested_qty INT NOT NULL,
+ requested_amount DECIMAL(18,2) NOT NULL,
+ approved_amount DECIMAL(18,2),
+ reason_code VARCHAR(64) NOT NULL,
+ reason_text VARCHAR(1024),
+ status VARCHAR(32) NOT NULL,
+ version INT NOT NULL DEFAULT 0,
+ created_at DATETIME(3) NOT NULL,
+ updated_at DATETIME(3) NOT NULL,
+ UNIQUE KEY uk_aftersale_no (aftersale_no),
+ KEY idx_aftersale_buyer (buyer_id, created_at),
+ KEY idx_aftersale_merchant (merchant_id, status, created_at)
+);

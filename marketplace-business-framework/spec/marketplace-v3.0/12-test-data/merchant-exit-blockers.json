@@ -1,0 +1,8 @@
+{
+  "openOrders": 0,
+  "activeAftersales": 1,
+  "refundUnknown": 0,
+  "payoutUnknown": 0,
+  "negativeBalance": "0.00",
+  "expectedCanClose": false
+}

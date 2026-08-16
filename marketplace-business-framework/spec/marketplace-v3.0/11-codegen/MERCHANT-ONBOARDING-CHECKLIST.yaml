@@ -1,0 +1,17 @@
+enterprise:
+- identity/business registration verified
+- representative/contact verified where required
+- settlement profile verified
+- tax profile complete
+- category qualifications valid
+- brand authorization when needed
+- risk decision not REJECT
+- agreement accepted
+- deposit satisfied when required
+individual_c2c:
+- identity verified
+- age eligible
+- settlement profile verified
+- risk decision acceptable
+- restricted-category rules applied
+activation_transaction: Merchant ACTIVE + membership/admin setup + Outbox

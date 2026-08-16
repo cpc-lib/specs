@@ -1,0 +1,18 @@
+SELLER_REVIEW:
+  on_timeout: 'policy: auto-approve or platform-review'
+  must_revalidate: true
+BUYER_RETURN_SHIP:
+  on_timeout: expire ReturnOrder; no refund
+  must_revalidate: true
+RETURN_RECEIVE:
+  on_timeout: escalate operation task
+  must_revalidate: true
+INSPECTION:
+  on_timeout: escalate or policy-decision; never silent edit
+  must_revalidate: true
+EXCHANGE_SHIP:
+  on_timeout: escalate/compensate according to exchange policy
+  must_revalidate: true
+REPAIR_SLA:
+  on_timeout: customer-service escalation/compensation eligibility
+  must_revalidate: true

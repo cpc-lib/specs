@@ -1,0 +1,126 @@
+CreateTrade:
+  owner: marketplace-trade
+  local:
+  - trade
+  - merchant_order
+  - order_item
+  - mq_outbox
+  crossService:
+  - inventory reserve
+  - coupon lock
+  - promotion budget reserve
+  pattern: Saga
+ReserveInventory:
+  owner: marketplace-inventory
+  lock: DB conditional update / row lock by sku+warehouse
+  invariant: available_qty >= requested
+PaymentCallback:
+  owner: marketplace-payment
+  lock: payment_order FOR UPDATE
+  local:
+  - payment_order
+  - payment_attempt
+  - payment_transaction
+  - mq_outbox
+RefundReserve:
+  owner: marketplace-payment
+  lock: payment_order/refund quota rows
+  invariant: successful+reserved<=refundable
+SettlementClose:
+  owner: marketplace-settlement
+  local:
+  - settlement_batch
+  - settlement_item
+  - merchant_balance_account
+  - mq_outbox
+ApplyPaymentClearing:
+  owner: marketplace-finance
+  lock: payment_clearing unique paymentTransactionId + merchant balance rows in stable
+    merchant order
+  local:
+  - payment_clearing_record
+  - payment_clearing_allocation
+  - merchant_balance_ledger
+  - marketplace_ledger_entry/line
+  - mq_outbox
+ApplyRefundReverseClearing:
+  owner: marketplace-finance
+  lock: refund transaction idempotency + affected merchant balance rows
+  local:
+  - refund_reverse_allocation
+  - merchant_balance_ledger
+  - marketplace_ledger_entry/line
+  - mq_outbox
+CreateMerchantPayable:
+  owner: marketplace-settlement
+  lock: settlement batch FOR UPDATE
+  invariant: one payable per settlement batch
+ReservePayout:
+  owner: marketplace-settlement
+  lock: merchant_payable FOR UPDATE
+  invariant: reserved+paid<=payable
+PublishOffer:
+  owner: marketplace-product
+  lock: offer row/version
+  local:
+  - merchant_offer
+  - merchant_offer_version
+  - offer_publish_request
+  - mq_outbox
+  revalidate:
+  - merchant/shop
+  - brand authorization
+  - compliance
+  - moderation refs
+  - price availability
+ReservePromotionBudget:
+  owner: marketplace-promotion
+  lock: promotion_budget_account
+  invariant: reserved + consumed + requested <= total
+ReservePromotionQuota:
+  owner: marketplace-promotion
+  lock: promotion_quota or atomic conditional update
+  invariant: reserved + consumed + requested <= total
+ClaimCoupon:
+  owner: marketplace-promotion
+  lock: durable quota/claim reservation
+  invariant: per-user claim limit + total issue limit
+ReserveFlashSale:
+  owner: marketplace-promotion
+  front: Redis Lua allowed
+  durable:
+  - promotion_quota_reservation
+  - flash_sale_reservation
+  crossService: then normal InventoryReservation
+ApproveMerchantApplication:
+  owner: marketplace-merchant
+  lock: merchant_application FOR UPDATE
+  revalidate:
+  - verification profile
+  - qualifications
+  - risk decision
+  - agreement/deposit policy
+  local:
+  - merchant_application
+  - merchant
+  - merchant_membership
+  - mq_outbox
+ExecutePenalty:
+  owner: marketplace-governance
+  lock: penalty_action by unique idempotency
+  crossService: issue domain commands; never direct foreign DB update
+DeductMerchantDeposit:
+  owner: marketplace-merchant
+  lock: merchant_deposit_account FOR UPDATE
+  invariant: available balance >= deduction and source penalty approved
+CreateFundsHold:
+  owner: marketplace-settlement
+  lock: merchant funds/payable scope as required
+  local:
+  - merchant_funds_hold
+  - merchant_balance_ledger/eligibility adjustment where applicable
+  - mq_outbox
+AdvanceMerchantExit:
+  owner: marketplace-merchant
+  lock: merchant_exit_case FOR UPDATE
+  revalidate: all current phase blockers

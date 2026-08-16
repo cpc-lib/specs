@@ -1,0 +1,10 @@
+order_item_quantity:
+  formula: ordered = cancelled_before_fulfillment + fulfillable_scope
+  package_constraint: sum(package_item.quantity for active/non-void packages) <= fulfillable_scope
+  shipment_constraint: shipped_qty <= packed_qty <= fulfill_qty
+  receive_constraint: received_qty <= shipped_qty
+  return_constraint: active_or_completed_return_qty <= received_or_policy_eligible_qty
+partial_shipping:
+  merchant_order_PARTIALLY_SHIPPED: some but not all non-cancelled fulfillable qty
+    shipped
+  merchant_order_SHIPPED: all non-cancelled fulfillable qty shipped

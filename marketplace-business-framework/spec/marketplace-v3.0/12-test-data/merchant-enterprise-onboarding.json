@@ -1,0 +1,10 @@
+{
+  "merchantType": "ENTERPRISE",
+  "verification": {
+    "business": "PASS",
+    "settlementProfile": "PASS",
+    "risk": "PASS"
+  },
+  "categoryQualification": "PASS",
+  "expected": "ACTIVE"
+}

@@ -1,0 +1,89 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: charging-gateway
+  config:
+    import: optional:nacos:${spring.application.name}.yml?server-addr=${NACOS_SERVER_ADDR:127.0.0.1:8848}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: open
+              uri: lb://charging-open
+              predicates:
+                - Path=/open-api/**,/admin-api/v1/open/**
+            - id: charging-websocket
+              uri: lb:ws://charging-core
+              predicates:
+                - Path=/ws/charging
+            - id: system
+              uri: lb://charging-system
+              predicates:
+                - Path=/auth-api/**,/admin-api/v1/system/**
+            - id: asset
+              uri: lb://charging-asset
+              predicates:
+                - Path=/admin-api/v1/assets/**,/merchant-api/v1/assets/**,/app-api/v1/stations/**
+            - id: core-ws
+              uri: lb:ws://charging-core
+              predicates:
+                - Path=/ws/**
+            - id: core
+              uri: lb://charging-core
+              predicates:
+                - Path=/app-api/v1/charging/**,/app-api/v1/orders/**,/merchant-api/v1/core/**,/admin-api/v1/charging/**,/admin-api/v1/device-commands/**,/admin-api/v1/billing/**,/admin-api/v1/core-dashboard/**
+            - id: payment
+              uri: lb://charging-payment
+              predicates:
+                - Path=/app-api/v1/payments/**,/merchant-api/v1/payments/**,/admin-api/v1/payments/**,/admin-api/v1/refunds/**,/admin-api/v1/payment-dashboard/**
+            - id: finance
+              uri: lb://charging-finance
+              predicates:
+                - Path=/admin-api/v1/finance/**,/merchant-api/v1/finance/**
+            - id: iot
+              uri: lb://charging-iot
+              predicates:
+                - Path=/admin-api/v1/iot/**
+            - id: operation
+              uri: lb://charging-operation
+              predicates:
+                - Path=/admin-api/v1/operation/**,/merchant-api/v1/operation/**
+            - id: technician-operation
+              uri: lb://charging-operation
+              predicates:
+                - Path=/technician-api/v1/operation/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+
+# SPEC 8.3 resilience / observability
+spring.cloud.sentinel.enabled: true
+spring.cloud.sentinel.eager: true
+spring.cloud.sentinel.transport.dashboard: ${SENTINEL_DASHBOARD:}
+feign.sentinel.enabled: true
+management.metrics.tags.application: ${spring.application.name}
+management.prometheus.metrics.export.enabled: true
+charging.performance.spec83: true
+
+## SPEC 8.3 bounded runtime defaults
+charging.executor.io.core-size: ${IO_EXECUTOR_CORE:8}
+charging.executor.io.max-size: ${IO_EXECUTOR_MAX:32}
+charging.executor.io.queue-capacity: ${IO_EXECUTOR_QUEUE:500}
+charging.executor.business.core-size: ${BUSINESS_EXECUTOR_CORE:8}
+charging.executor.business.max-size: ${BUSINESS_EXECUTOR_MAX:24}
+charging.executor.business.queue-capacity: ${BUSINESS_EXECUTOR_QUEUE:1000}
+
+management.endpoint.health.probes.enabled: true
+management.metrics.distribution.percentiles-histogram.http.server.requests: true
+management.metrics.distribution.slo.http.server.requests: 100ms,300ms,800ms,2s
+
+spring.cloud.sentinel.filter.enabled: false

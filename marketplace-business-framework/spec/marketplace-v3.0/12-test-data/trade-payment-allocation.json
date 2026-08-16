@@ -1,0 +1,17 @@
+{
+  "payment": "900.00",
+  "merchantOrders": [
+    {
+      "orderNo": "A",
+      "amount": "540.00"
+    },
+    {
+      "orderNo": "B",
+      "amount": "360.00"
+    }
+  ],
+  "assertions": [
+    "sumAllocation=900.00",
+    "duplicateEventNoDuplicateAllocation"
+  ]
+}

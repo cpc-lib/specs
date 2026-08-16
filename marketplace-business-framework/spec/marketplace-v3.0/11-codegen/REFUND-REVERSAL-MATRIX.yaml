@@ -1,0 +1,20 @@
+BUYER_CASH:
+  providerRefund: true
+  merchantImpact: reverse original merchant economic responsibility
+  platformImpact: reverse clearing
+PLATFORM_SUBSIDY:
+  providerRefund: only buyer cash portion is provider refund
+  merchantImpact: normally reverse entitlement for returned goods
+  platformImpact: reverse subsidy expense/clearing
+MERCHANT_DISCOUNT:
+  providerRefund: false
+  merchantImpact: original reduced entitlement reversed with returned item economics
+  platformImpact: neutral unless campaign policy
+SHIPPING:
+  providerRefund: policy
+  merchantImpact: based on shipping funder
+  platformImpact: based on shipping funder
+TAX:
+  providerRefund: tax policy
+  merchantImpact: tax issuer policy
+  platformImpact: invoice/tax reversal

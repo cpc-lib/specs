@@ -1,0 +1,531 @@
+openapi: 3.0.3
+info:
+  title: Promotion API
+  version: '3.0'
+paths:
+  /internal/v1/promotions/evaluate:
+    post:
+      operationId: evaluatePromotions
+      summary: Evaluate promotion/coupon compatibility and funding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionEvaluateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /internal/v1/promotions/reservations:
+    post:
+      operationId: reservePromotionQuota
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/platform/v1/promotion-campaigns:
+    post:
+      operationId: createPlatformCampaign
+      summary: Create platform promotion campaign
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/seller/v1/promotion-campaigns:
+    post:
+      operationId: createSellerCampaign
+      summary: Create merchant/shop campaign
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCampaignRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/seller/v1/coupon-templates:
+    post:
+      operationId: createCouponTemplate
+      summary: Create coupon template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCouponTemplateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/buyer/v1/coupons/{templateCode}/claim:
+    post:
+      operationId: claimCoupon
+      summary: Claim coupon with quota/limit protection
+      parameters:
+      - name: templateCode
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+  /api/buyer/v1/flash-sales/{campaignId}/skus/{skuId}/reserve:
+    post:
+      operationId: reserveFlashSaleQuota
+      summary: Reserve flash-sale quota before normal inventory reservation
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: skuId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-promotion
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+components:
+  schemas:
+    ApiError:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Money:
+      type: object
+      required:
+      - currency
+      - amount
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        amount:
+          type: string
+          pattern: ^-?\d+(\.\d{1,2})?$
+    CreateCampaignRequest:
+      type: object
+      required:
+      - campaignType
+      - name
+      - startAt
+      - endAt
+      properties:
+        campaignType:
+          type: string
+        name:
+          type: string
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        budgetAmount:
+          type: number
+          minimum: 0
+        currency:
+          type: string
+    CreateCouponTemplateRequest:
+      type: object
+      required:
+      - templateCode
+      - couponType
+      - claimStartAt
+      - claimEndAt
+      - useStartAt
+      - useEndAt
+      - benefit
+      - fundingParty
+      properties:
+        templateCode:
+          type: string
+        couponType:
+          type: string
+        claimStartAt:
+          type: string
+          format: date-time
+        claimEndAt:
+          type: string
+          format: date-time
+        useStartAt:
+          type: string
+          format: date-time
+        useEndAt:
+          type: string
+          format: date-time
+        thresholdAmount:
+          type: number
+          minimum: 0
+        benefit:
+          type: object
+        fundingParty:
+          type: string
+          enum:
+          - PLATFORM
+          - MERCHANT
+          - SHOP
+          - BRAND
+          - EXTERNAL_PARTNER
+        perUserClaimLimit:
+          type: integer
+          minimum: 1
+        perUserUseLimit:
+          type: integer
+          minimum: 1
+    PromotionEvaluateRequest:
+      type: object
+      required:
+      - buyerId
+      - items
+      - evaluatedAt
+      properties:
+        buyerId:
+          type: integer
+          format: int64
+        regionCode:
+          type: string
+        channel:
+          type: string
+        memberLevel:
+          type: string
+        couponCodes:
+          type: array
+          items:
+            type: string
+        items:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required:
+            - offerId
+            - skuId
+            - quantity
+            - unitPrice
+            properties:
+              offerId:
+                type: integer
+                format: int64
+              skuId:
+                type: integer
+                format: int64
+              quantity:
+                type: integer
+                minimum: 1
+              unitPrice:
+                type: number
+                minimum: 0
+        evaluatedAt:
+          type: string
+          format: date-time
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

@@ -1,0 +1,17 @@
+{
+  "goods": "100.00",
+  "promotions": [
+    {
+      "type": "SHOP_FULL_REDUCTION",
+      "discount": "10.00",
+      "funding": "MERCHANT"
+    },
+    {
+      "type": "PLATFORM_COUPON",
+      "discount": "5.00",
+      "funding": "PLATFORM"
+    }
+  ],
+  "compatibility": "STACKABLE",
+  "expectedBuyerPay": "85.00"
+}

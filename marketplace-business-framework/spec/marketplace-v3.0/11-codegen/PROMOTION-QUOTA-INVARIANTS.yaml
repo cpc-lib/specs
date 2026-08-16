@@ -1,0 +1,8 @@
+budget: reservedBudget + consumedBudget <= totalBudget
+quota: reservedQty + consumedQty <= totalQty
+coupon: one CouponWallet instance may transition to USED at most once
+claim_limit: successfulIssued + activeClaimReservations <= perUserClaimLimit
+purchase_limit: reservedQty + committedQty - policyReleasedQty <= configuredLimit
+flash_sale: flash quota reservation does not replace InventoryReservation
+migration_compatibility: existing promotion_quota_reservation is evolved in place;
+  no table recreation

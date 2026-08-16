@@ -1,0 +1,7 @@
+{
+  "expectedQty": 2,
+  "receivedQty": 2,
+  "acceptedQty": 1,
+  "rejectedQty": 1,
+  "expectedRefundQty": 1
+}

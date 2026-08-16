@@ -1,0 +1,9 @@
+{
+  "businessType": "ORDER",
+  "businessId": "ORD001",
+  "recipientRef": "USER:1001",
+  "templateCode": "ORDER_SHIPPED",
+  "triggerKey": "SHIP-1",
+  "requests": 100,
+  "expectedMessages": 1
+}

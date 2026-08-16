@@ -1,0 +1,23 @@
+version: '3.0'
+taskCount: 38
+mandatoryPerTask:
+- DDD interface/application/domain/infrastructure structure
+- Flyway migrations from frozen registry
+- OpenAPI contract implementation
+- application command/query mapping
+- permissions/data-scope enforcement
+- idempotency
+- Outbox/Inbox where transactional integration applies
+- structured audit/metrics/tracing
+- JUnit5 unit tests
+- Testcontainers integration tests where DB/MQ/cache is involved
+- failure-path tests
+- SPEC-IMPLEMENTATION-MAP.md
+forbidden:
+- TODO/pseudocode
+- controller business logic
+- generic status setter API
+- cross-service DB repository
+- float/double money
+- business MySQL+ES dual-write
+- blind provider retry after UNKNOWN

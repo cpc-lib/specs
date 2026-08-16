@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+VERSION=3.9.16
+SHA512=ed41650d42485cfc243fad22158caf9cbb5dc408ce7a09ddb94dd42a019de929ca43065bfa450612cf12bf78b5cafa3884b96c090de326ff590448c933454af3
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+TOOLS="$BASE_DIR/.tools"
+MVN_HOME="$TOOLS/apache-maven-$VERSION"
+ZIP="$TOOLS/apache-maven-$VERSION-bin.zip"
+if [ ! -x "$MVN_HOME/bin/mvn" ]; then
+  mkdir -p "$TOOLS"
+  URL="https://downloads.apache.org/maven/maven-3/$VERSION/binaries/apache-maven-$VERSION-bin.zip"
+  if command -v curl >/dev/null 2>&1; then curl -fL "$URL" -o "$ZIP"; else wget -O "$ZIP" "$URL"; fi
+  ACTUAL=$(sha512sum "$ZIP" | awk '{print $1}')
+  [ "$ACTUAL" = "$SHA512" ] || { echo "Maven SHA-512 mismatch" >&2; exit 2; }
+  python3 - "$ZIP" "$TOOLS" <<'PY2'
+import sys,zipfile
+with zipfile.ZipFile(sys.argv[1]) as z: z.extractall(sys.argv[2])
+PY2
+fi
+exec "$MVN_HOME/bin/mvn" "$@"

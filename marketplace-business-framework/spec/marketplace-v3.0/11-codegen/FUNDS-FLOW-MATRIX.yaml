@@ -1,0 +1,41 @@
+BuyerPayment:
+  source: PaymentTransaction
+  steps:
+  - PaymentClearingRecord
+  - PaymentClearingAllocation
+  - MerchantBalanceLedger:PENDING
+  terminal: Reconciliation
+PlatformSubsidy:
+  source: FundingAllocation PLATFORM_*
+  steps:
+  - Platform subsidy economic posting
+  - Merchant pending entitlement preserved
+  terminal: Settlement
+MerchantFundedDiscount:
+  source: FundingAllocation MERCHANT_*
+  steps:
+  - Reduce merchant gross entitlement
+  terminal: Settlement
+Settlement:
+  source: SettlementEligibility
+  steps:
+  - SettlementBatch
+  - MerchantPayable
+  - PayoutReservation
+  - PayoutOrder
+  - PayoutTransaction
+  terminal: Paid/Reconciled
+RefundBeforeSettlement:
+  source: RefundTransaction
+  steps:
+  - RefundReverseAllocation
+  - Reduce merchant pending/eligibility
+  - Ledger reversal
+  terminal: Reconciled
+RefundAfterPayout:
+  source: RefundTransaction
+  steps:
+  - RefundReverseAllocation
+  - SettlementAdjustment
+  - Merchant NEGATIVE/Future deduction
+  terminal: Reconciled

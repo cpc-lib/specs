@@ -1,0 +1,5 @@
+{
+  "searchPrice": "100.00",
+  "checkoutCurrentPrice": "120.00",
+  "expected": "CHECKOUT_RECALCULATES_AND_SHOWS_120"
+}

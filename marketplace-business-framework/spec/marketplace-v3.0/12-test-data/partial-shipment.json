@@ -1,0 +1,39 @@
+{
+  "orderNo": "ORD-PART-001",
+  "items": [
+    {
+      "orderItemId": 1,
+      "qty": 2
+    },
+    {
+      "orderItemId": 2,
+      "qty": 1
+    }
+  ],
+  "packages": [
+    {
+      "items": [
+        {
+          "orderItemId": 1,
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "items": [
+        {
+          "orderItemId": 1,
+          "qty": 1
+        },
+        {
+          "orderItemId": 2,
+          "qty": 1
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "merchantOrderStatusAfterFirst": "PARTIALLY_SHIPPED",
+    "final": "SHIPPED"
+  }
+}

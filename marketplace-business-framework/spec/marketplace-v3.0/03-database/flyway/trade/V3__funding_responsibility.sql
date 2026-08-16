@@ -1,0 +1,41 @@
+CREATE TABLE order_item_economics_snapshot (
+  id BIGINT PRIMARY KEY,
+  trade_id BIGINT NOT NULL,
+  merchant_order_id BIGINT NOT NULL,
+  order_item_id BIGINT NOT NULL,
+  currency CHAR(3) NOT NULL,
+  merchandise_gross DECIMAL(18,2) NOT NULL,
+  allocated_shipping DECIMAL(18,2) NOT NULL DEFAULT 0,
+  allocated_tax DECIMAL(18,2) NOT NULL DEFAULT 0,
+  platform_funded_discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  merchant_funded_discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  shop_funded_discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  brand_funded_discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  other_funded_discount DECIMAL(18,2) NOT NULL DEFAULT 0,
+  buyer_cash_allocation DECIMAL(18,2) NOT NULL,
+  merchant_gross_entitlement DECIMAL(18,2) NOT NULL,
+  commission_base DECIMAL(18,2) NOT NULL,
+  settlement_base DECIMAL(18,2) NOT NULL,
+  calculation_trace_json JSON NOT NULL,
+  created_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_order_item_economics (order_item_id),
+  KEY idx_item_economics_trade (trade_id, merchant_order_id)
+);
+
+CREATE TABLE funding_allocation (
+  id BIGINT PRIMARY KEY,
+  trade_id BIGINT NOT NULL,
+  merchant_order_id BIGINT NOT NULL,
+  order_item_id BIGINT NOT NULL,
+  source_type VARCHAR(32) NOT NULL,
+  source_id VARCHAR(128),
+  funding_party_type VARCHAR(32) NOT NULL,
+  funding_party_id BIGINT,
+  currency CHAR(3) NOT NULL,
+  amount DECIMAL(18,2) NOT NULL,
+  settlement_impact VARCHAR(40) NOT NULL,
+  refundable_flag TINYINT NOT NULL DEFAULT 1,
+  created_at DATETIME(3) NOT NULL,
+  KEY idx_funding_trade (trade_id, merchant_order_id),
+  KEY idx_funding_item (order_item_id, source_type)
+);

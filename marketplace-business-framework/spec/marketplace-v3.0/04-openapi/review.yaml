@@ -1,0 +1,287 @@
+openapi: 3.0.3
+info:
+  title: Review API
+  version: '3.0'
+paths:
+  /api/buyer/v1/reviews:
+    post:
+      operationId: createReview
+      summary: Create verified-purchase review
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReviewRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-review
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/buyer/v1/reviews/{reviewNo}/additional:
+    post:
+      operationId: createAdditionalReview
+      summary: Add follow-up review
+      parameters:
+      - name: reviewNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdditionalReviewRequest'
+      x-owner-service: marketplace-review
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+  /api/seller/v1/reviews/{reviewNo}/reply:
+    post:
+      operationId: replyReview
+      summary: Seller reply to review
+      parameters:
+      - name: reviewNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewReplyRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-review
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+  /api/buyer/v1/offers/{offerId}/reviews:
+    get:
+      operationId: listOfferReviews
+      summary: List published offer reviews
+      parameters:
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-review
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+components:
+  schemas:
+    CreateReviewRequest:
+      type: object
+      required:
+      - orderItemId
+      - productScore
+      properties:
+        orderItemId:
+          type: integer
+          format: int64
+        productScore:
+          type: integer
+          minimum: 1
+          maximum: 5
+        serviceScore:
+          type: integer
+          minimum: 1
+          maximum: 5
+        logisticsScore:
+          type: integer
+          minimum: 1
+          maximum: 5
+        content:
+          type: string
+        mediaFileIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+    ReviewReplyRequest:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.
+    AdditionalReviewRequest:
+      type: object
+      required:
+      - content
+      properties:
+        content:
+          type: string
+          maxLength: 4000
+        mediaFileIds:
+          type: array
+          items:
+            type: integer
+            format: int64

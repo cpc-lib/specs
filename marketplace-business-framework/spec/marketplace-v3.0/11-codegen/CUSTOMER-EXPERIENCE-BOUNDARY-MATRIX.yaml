@@ -1,0 +1,5 @@
+CustomerServiceCase: support workflow only; domain actions via command APIs
+IM: communication facts only; no direct trade/refund/payment state mutation
+Buyer360: CQRS read-only; cannot authorize money/order transitions
+Notification: delivery owner; business services own when/why
+FavoriteFollow: user-owned idempotent relation

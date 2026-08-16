@@ -1,0 +1,433 @@
+version: '1.1'
+businessModuleCount: 26
+platformModules:
+- marketplace-gateway
+- marketplace-system
+frameworkModules:
+- marketplace-common
+- marketplace-web
+- marketplace-security
+- marketplace-mybatis
+- marketplace-redis
+- marketplace-file
+businessModules:
+  marketplace-user:
+    package: com.company.marketplace.user
+    responsibility: Buyer account/profile/address and buyer-side identity context.
+    domainSlices:
+    - account
+    - profile
+    - address
+    - membership
+    specConcepts:
+    - User/Buyer
+    - Buyer identity
+    - Buyer address
+    - Buyer-facing account context
+  marketplace-merchant:
+    package: com.company.marketplace.merchant
+    responsibility: Merchant onboarding, verification, qualification, deposit, credit
+      and exit.
+    domainSlices:
+    - merchant
+    - application
+    - verification
+    - qualification
+    - categoryadmission
+    - deposit
+    - credit
+    - exit
+    specConcepts:
+    - MerchantApplication
+    - MerchantVerificationProfile
+    - MerchantCategoryAdmission
+    - MerchantDeposit
+    - MerchantCredit
+    - MerchantExit
+  marketplace-shop:
+    package: com.company.marketplace.shop
+    responsibility: Shop lifecycle, merchant membership and shop-scoped authorization.
+    domainSlices:
+    - shop
+    - membership
+    - role
+    - scope
+    specConcepts:
+    - Shop
+    - MerchantMembership
+    - MerchantRole
+    - ShopScope
+    - DataScope
+  marketplace-product:
+    package: com.company.marketplace.product
+    responsibility: Platform category, attributes, brand, SPU, SKU, Offer and compliance.
+    domainSlices:
+    - category
+    - attribute
+    - brand
+    - spu
+    - sku
+    - offer
+    - compliance
+    - authorization
+    specConcepts:
+    - PlatformCategory
+    - CategoryAttribute
+    - Brand
+    - SPU
+    - SKU
+    - Offer
+    - BrandAuthorization
+    - ProductCompliance
+  marketplace-pricing:
+    package: com.company.marketplace.pricing
+    responsibility: Server-authoritative price books, price rules and immutable pricing
+      snapshots.
+    domainSlices:
+    - pricebook
+    - rule
+    - policy
+    - snapshot
+    - change
+    specConcepts:
+    - PriceBook
+    - PriceRule
+    - PriceSelectionPolicy
+    - PricingSnapshot
+    - PriceChangeRequest
+  marketplace-inventory:
+    package: com.company.marketplace.inventory
+    responsibility: Warehouse SKU stock, reservations and immutable inventory ledger.
+    domainSlices:
+    - stock
+    - reservation
+    - ledger
+    - warehouse
+    - returnstock
+    specConcepts:
+    - InventoryStock
+    - InventoryReservation
+    - InventoryLedger
+    - Warehouse
+    - ReturnStockDisposition
+  marketplace-promotion:
+    package: com.company.marketplace.promotion
+    responsibility: Campaigns, coupons, promotion budgets/quotas, gifts, bundles and
+      flash sales.
+    domainSlices:
+    - campaign
+    - coupon
+    - budget
+    - quota
+    - compatibility
+    - flashsale
+    - gift
+    - bundle
+    - purchaselimit
+    specConcepts:
+    - PromotionCampaign
+    - PromotionRule
+    - Coupon
+    - CampaignBudget
+    - PromotionQuota
+    - FlashSale
+    - Gift
+    - Bundle
+  marketplace-cart:
+    package: com.company.marketplace.cart
+    responsibility: Buyer cart grouped by merchant/shop with no price freezing.
+    domainSlices:
+    - cart
+    - item
+    specConcepts:
+    - Cart
+    - CartItem
+    - Cross-shop cart grouping
+  marketplace-checkout:
+    package: com.company.marketplace.checkout
+    responsibility: Checkout session, quote and authoritative pre-trade validation.
+    domainSlices:
+    - session
+    - quote
+    - validation
+    specConcepts:
+    - CheckoutSession
+    - Pricing/Promotion preview
+    - Saleability revalidation
+    - CheckoutToken
+  marketplace-trade:
+    package: com.company.marketplace.trade
+    responsibility: Cross-shop Trade, MerchantOrder, OrderItem and immutable transaction
+      snapshots.
+    domainSlices:
+    - trade
+    - merchantorder
+    - orderitem
+    - snapshot
+    - allocation
+    - funding
+    - idempotency
+    specConcepts:
+    - Trade
+    - MerchantOrder
+    - OrderItem
+    - Order snapshots
+    - DiscountAllocation
+    - FundingAllocation
+    - TradeIdempotency
+  marketplace-payment:
+    package: com.company.marketplace.payment
+    responsibility: Payment order/attempt/transaction, provider adapters and refund
+      money facts.
+    domainSlices:
+    - paymentorder
+    - paymentattempt
+    - paymenttransaction
+    - refund
+    - provider
+    - callback
+    specConcepts:
+    - PaymentOrder
+    - PaymentAttempt
+    - PaymentTransaction
+    - RefundOrder
+    - RefundTransaction
+    - UNKNOWN semantics
+  marketplace-fulfillment:
+    package: com.company.marketplace.fulfillment
+    responsibility: Fulfillment planning, package/shipment, routing, delivery confirmation
+      and digital fulfillment.
+    domainSlices:
+    - fulfillmentorder
+    - package
+    - shipment
+    - routing
+    - delivery
+    - digital
+    specConcepts:
+    - FulfillmentOrder
+    - Package
+    - Shipment
+    - WarehouseRouting
+    - DeliveryConfirmation
+    - DigitalFulfillment
+  marketplace-aftersale:
+    package: com.company.marketplace.aftersale
+    responsibility: After-sale case, reverse logistics, inspection, exchange, repair
+      and timeout policy.
+    domainSlices:
+    - case
+    - returnorder
+    - reverseshipment
+    - inspection
+    - exchange
+    - repair
+    - timeout
+    specConcepts:
+    - AfterSaleCase
+    - ReturnOrder
+    - ReverseShipment
+    - ReturnInspection
+    - ExchangeOrder
+    - RepairOrder
+    - AfterSaleTimeout
+  marketplace-dispute:
+    package: com.company.marketplace.dispute
+    responsibility: Dispute evidence, arbitration decision and domain-command execution.
+    domainSlices:
+    - case
+    - evidence
+    - arbitration
+    - decision
+    specConcepts:
+    - DisputeCase
+    - EvidenceRecord
+    - DecisionSnapshot
+    - Arbitration
+  marketplace-settlement:
+    package: com.company.marketplace.settlement
+    responsibility: Merchant settlement eligibility, payable, balances, holds, payouts
+      and adjustments.
+    domainSlices:
+    - eligibility
+    - batch
+    - payable
+    - balance
+    - payout
+    - fundshold
+    - adjustment
+    - commission
+    specConcepts:
+    - SettlementEligibility
+    - SettlementBatch
+    - MerchantPayable
+    - MerchantBalance
+    - MerchantFundsHold
+    - Payout
+    - SettlementAdjustment
+  marketplace-finance:
+    package: com.company.marketplace.finance
+    responsibility: Payment clearing, double-entry finance ledger, accounting posting
+      and daily close.
+    domainSlices:
+    - clearing
+    - ledger
+    - accounting
+    - dailyclose
+    - control
+    specConcepts:
+    - PaymentClearing
+    - MarketplaceLedger
+    - AccountingPosting
+    - DailyClose
+    - FinanceControlCheck
+  marketplace-reconciliation:
+    package: com.company.marketplace.reconciliation
+    responsibility: Provider statement, business matching, exception handling and
+      financial reconciliation.
+    domainSlices:
+    - statement
+    - reconciliation
+    - exception
+    - rule
+    specConcepts:
+    - ProviderStatement
+    - ReconciliationTask
+    - ReconciliationException
+    - FinancialReconciliation
+  marketplace-invoice:
+    package: com.company.marketplace.invoice
+    responsibility: Invoice application, issue, red flush, reissue and delivery.
+    domainSlices:
+    - application
+    - issue
+    - redflush
+    - reissue
+    - delivery
+    specConcepts:
+    - InvoiceApplication
+    - InvoiceIssue
+    - RedFlush
+    - Reissue
+    - InvoiceDelivery
+  marketplace-review:
+    package: com.company.marketplace.review
+    responsibility: Verified purchase reviews, additional reviews, seller replies
+      and moderation.
+    domainSlices:
+    - review
+    - additional
+    - reply
+    - moderation
+    - summary
+    specConcepts:
+    - Review
+    - AdditionalReview
+    - SellerReviewReply
+    - ReviewModeration
+    - ReviewSummary
+  marketplace-risk:
+    package: com.company.marketplace.risk
+    responsibility: Scenario risk rules, feature snapshots, decisions, cases and anti-abuse
+      signals.
+    domainSlices:
+    - ruleset
+    - feature
+    - decision
+    - case
+    - abuse
+    - device
+    specConcepts:
+    - RiskRuleSet
+    - RiskFeatureSnapshot
+    - RiskDecision
+    - RiskCase
+    - AntiAbuse
+  marketplace-governance:
+    package: com.company.marketplace.governance
+    responsibility: Violation, penalty, appeal, prohibited goods and IP/counterfeit
+      governance.
+    domainSlices:
+    - violation
+    - penalty
+    - appeal
+    - productpolicy
+    - ipcomplaint
+    specConcepts:
+    - ViolationCase
+    - PenaltyAction
+    - AppealCase
+    - ProductGovernancePolicy
+    - IpComplaintCase
+  marketplace-search:
+    package: com.company.marketplace.search
+    responsibility: Derived search projections, query understanding, ranking and reindexing.
+    domainSlices:
+    - projection
+    - query
+    - ranking
+    - suggestion
+    - reindex
+    specConcepts:
+    - OfferSearchDocument
+    - SearchQueryPlan
+    - RankPolicy
+    - Suggestion
+    - Reindex
+  marketplace-recommendation:
+    package: com.company.marketplace.recommendation
+    responsibility: Recommendation candidates, model/policy versions and experiments.
+    domainSlices:
+    - candidate
+    - model
+    - policy
+    - experiment
+    - behavior
+    specConcepts:
+    - CandidateSource
+    - RecommendationModelVersion
+    - RecommendationPolicy
+    - Experiment
+    - BehaviorEvent
+  marketplace-notification:
+    package: com.company.marketplace.notification
+    responsibility: Notification preferences, templates, messages and delivery facts.
+    domainSlices:
+    - preference
+    - template
+    - message
+    - delivery
+    specConcepts:
+    - NotificationPreference
+    - NotificationTemplate
+    - NotificationMessage
+    - NotificationDelivery
+  marketplace-customer-service:
+    package: com.company.marketplace.customerservice
+    responsibility: Customer service cases and buyer-seller communication context.
+    domainSlices:
+    - case
+    - conversation
+    - message
+    - readcursor
+    specConcepts:
+    - CustomerServiceCase
+    - IM Conversation
+    - IM Message
+    - ReadCursor
+  marketplace-cqrs:
+    package: com.company.marketplace.cqrs
+    responsibility: CQRS read models such as Buyer360 and denormalized marketplace
+      views.
+    domainSlices:
+    - buyer360
+    - buyerorder
+    - merchantorder
+    - productdetail
+    - settlementstatement
+    specConcepts:
+    - Buyer360View
+    - BuyerOrderReadModel
+    - MerchantOrderReadModel
+    - ProductDetailReadModel
+    - SettlementStatementReadModel

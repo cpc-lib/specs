@@ -1,0 +1,8 @@
+{
+  "originalPenalty": "SHOP_SUSPEND",
+  "appealDecision": "FULL_REVERSE",
+  "expected": {
+    "originalPenaltyRetained": true,
+    "reversalActionCreated": true
+  }
+}

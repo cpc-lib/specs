@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="http://example.com/evcharging">
+  <process id="maintenanceWorkOrder" name="Maintenance Work Order" isExecutable="true">
+    <startEvent id="start"/>
+    <sequenceFlow id="s1" sourceRef="start" targetRef="dispatchTask"/>
+
+    <userTask id="dispatchTask" name="Dispatch"/>
+    <sequenceFlow id="s2" sourceRef="dispatchTask" targetRef="repairTask"/>
+
+    <userTask id="repairTask" name="Repair"/>
+    <sequenceFlow id="s3" sourceRef="repairTask" targetRef="verifyTask"/>
+
+    <userTask id="verifyTask" name="Verify"/>
+    <sequenceFlow id="s4" sourceRef="verifyTask" targetRef="verifyGateway"/>
+
+    <exclusiveGateway id="verifyGateway" default="verifyFailed"/>
+    <sequenceFlow id="verifyPassed" sourceRef="verifyGateway" targetRef="end">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${verified == true}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="verifyFailed" sourceRef="verifyGateway" targetRef="repairTask"/>
+
+    <endEvent id="end"/>
+  </process>
+</definitions>

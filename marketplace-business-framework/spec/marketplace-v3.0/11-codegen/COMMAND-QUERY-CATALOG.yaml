@@ -1,0 +1,262 @@
+Trade:
+  commands:
+  - PreviewCheckout
+  - SubmitTrade
+  - CancelTrade
+  - CloseExpiredTrade
+  - ApplyPaymentSucceeded
+  queries:
+  - GetBuyerTrade
+  - ListBuyerTrades
+  - GetSellerOrder
+  - ListSellerOrders
+Inventory:
+  commands:
+  - ReserveInventory
+  - CommitReservation
+  - ReleaseReservation
+  - ExpireReservation
+  - AdjustStock
+  queries:
+  - CheckAvailability
+  - GetStock
+Payment:
+  commands:
+  - CreatePayment
+  - HandlePaymentCallback
+  - QueryUnknownPayment
+  - CreateRefund
+  - HandleRefundCallback
+  - QueryUnknownRefund
+  queries:
+  - GetPayment
+  - GetRefund
+  - CalculateRefundable
+AfterSale:
+  commands:
+  - CreateAfterSale
+  - ApproveAfterSale
+  - RejectAfterSale
+  - SubmitReturn
+  - ReceiveReturn
+  - EscalateDispute
+  queries:
+  - GetAfterSale
+  - ListSellerAfterSales
+Settlement:
+  commands:
+  - GenerateEligibility
+  - GenerateSettlement
+  - ApproveSettlement
+  - CreatePayout
+  - HandlePayoutResult
+  - CreateSettlementAdjustment
+  queries:
+  - ListSettlements
+  - GetSettlement
+  - GetMerchantBalance
+FinanceClearing:
+  commands:
+  - ApplyPaymentClearing
+  - ApplyRefundReverseClearing
+  - PostMerchantFundsLedger
+  - RunFinanceDailyClose
+  queries:
+  - GetMerchantFundsBalance
+  - ListMerchantFundsLedger
+  - ListFinanceControlChecks
+MerchantPayout:
+  commands:
+  - CreateMerchantPayable
+  - ReservePayout
+  - ExecutePayout
+  - QueryUnknownPayout
+  - CreateMerchantWithdrawal
+  queries:
+  - ListMerchantPayables
+  - GetPayout
+  - ListWithdrawals
+Fulfillment:
+  commands:
+  - CreateFulfillmentPlan
+  - CreatePackage
+  - ShipPackage
+  - HandleTrackingCallback
+  - ConfirmReceive
+  - AutoReceive
+  - MarkDeliveryRejected
+  - CreateDigitalFulfillment
+  - QueryUnknownDigitalFulfillment
+  queries:
+  - GetFulfillment
+  - ListOrderPackages
+  - GetShipmentTracking
+AfterSaleExecution:
+  commands:
+  - CreateReturnOrder
+  - SubmitReturnShipment
+  - ReceiveReturn
+  - InspectReturn
+  - CreateExchangeOrder
+  - CreateRepairOrder
+  - HandleAfterSaleTimeout
+  queries:
+  - GetReturnOrder
+  - GetExchangeOrder
+  - GetRepairOrder
+  - GetAfterSaleEvidence
+ProductCatalog:
+  commands:
+  - CreateCategoryAttributeVersion
+  - CreateSpuDraft
+  - CreateSpuVersion
+  - CreateSkuCombination
+  - CreateOfferVersion
+  - SubmitOfferPublish
+  - ApproveBrandAuthorization
+  - BlockOffer
+  queries:
+  - GetCategorySchema
+  - GetSpuVersion
+  - GetOfferVersion
+  - ListBrandAuthorizations
+Pricing:
+  commands:
+  - CreatePriceBook
+  - PublishPriceBook
+  - CreatePriceChangeRequest
+  - ApprovePriceChange
+  - ActivateScheduledPrice
+  queries:
+  - EvaluatePricing
+  - GetEffectivePrice
+  - GetPricingSnapshot
+Promotion:
+  commands:
+  - CreateCampaign
+  - PublishCampaign
+  - ReserveBudget
+  - ReleaseBudget
+  - ReserveQuota
+  - ReleaseQuota
+  - CreateCouponTemplate
+  - ClaimCoupon
+  - LockCoupon
+  - UseCoupon
+  - ReleaseCoupon
+  - ReserveFlashSaleQuota
+  - CommitFlashSaleQuota
+  queries:
+  - EvaluatePromotions
+  - ListBuyerCoupons
+  - GetCampaign
+  - GetPromotionSnapshot
+MerchantGovernance:
+  commands:
+  - CreateMerchantApplication
+  - SubmitMerchantApplication
+  - ApproveMerchantApplication
+  - CreateVerificationProfile
+  - ChangeSettlementProfile
+  - ApplyCategoryAdmission
+  - RecordMerchantDepositTransaction
+  - RequestMerchantExit
+  - AdvanceMerchantExit
+  queries:
+  - GetMerchantApplication
+  - GetMerchantVerificationProfile
+  - GetMerchantCredit
+  - GetMerchantExitBlockers
+PlatformGovernance:
+  commands:
+  - CreateViolationCase
+  - InvestigateViolation
+  - DecideViolation
+  - ExecutePenalty
+  - SubmitAppeal
+  - DecideAppeal
+  - ExecutePenaltyReversal
+  - CreateProductGovernancePolicy
+  - CreateIpComplaint
+  queries:
+  - GetViolation
+  - ListMerchantViolations
+  - GetAppeal
+  - GetIpComplaint
+RiskDeepening:
+  commands:
+  - EvaluateRisk
+  - CreateRiskCase
+  - ResolveRiskCase
+  - RecordAbuseSignal
+  queries:
+  - GetRiskDecision
+  - ListRiskCases
+  - GetRiskFeatureSnapshot
+MerchantFundsHold:
+  commands:
+  - CreateFundsHold
+  - ReleaseFundsHold
+  - ExpireFundsHold
+  queries:
+  - ListActiveFundsHolds
+  - GetFundsHold
+Search:
+  commands:
+  - UpdateOfferProjection
+  - RebuildSearchIndex
+  - PublishSynonymSet
+  - PublishRankPolicy
+  queries:
+  - SearchOffers
+  - GetSuggestions
+  - ExplainSearchQueryPlan
+Recommendation:
+  commands:
+  - PublishModelVersion
+  - PublishRecommendationPolicy
+  - CreateExperiment
+  - RecordExposure
+  - HideRecommendation
+  queries:
+  - GetRecommendations
+  - GetExperimentAssignment
+ReviewCX:
+  commands:
+  - CreateReview
+  - ModerateReview
+  - PublishReview
+  - AddAdditionalReview
+  - ReplyReview
+  - AddFavorite
+  - RemoveFavorite
+  - FollowShop
+  - UnfollowShop
+  queries:
+  - ListOfferReviews
+  - GetReviewSummary
+  - ListFavorites
+  - ListFollowedShops
+CustomerService:
+  commands:
+  - CreateCustomerServiceCase
+  - AssignCase
+  - ResolveCase
+  - ReopenCase
+  - SendImMessage
+  - MarkMessageRead
+  queries:
+  - GetCustomerServiceCase
+  - ListCases
+  - ListMessages
+  - GetBuyer360
+NotificationDeepening:
+  commands:
+  - RequestNotification
+  - RetryNotification
+  - UpdateNotificationPreference
+  - HandleDeliveryReceipt
+  - HandleBounce
+  queries:
+  - GetNotificationPreferences
+  - ListNotificationDeliveries

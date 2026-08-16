@@ -1,0 +1,177 @@
+openapi: 3.0.3
+info:
+  title: Platform Catalog API
+  version: '3.0'
+paths:
+  /api/platform/v1/categories/{categoryId}/attributes:
+    post:
+      operationId: createCategoryAttribute
+      summary: Create category attribute schema version
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryAttributeRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: true
+  /api/platform/v1/categories/{categoryId}/attribute-schema:
+    get:
+      operationId: getCategoryAttributeSchema
+      summary: Get active category attribute schema
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-product
+      x-command-query: QUERY
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: false
+components:
+  schemas:
+    CreateCategoryAttributeRequest:
+      type: object
+      required:
+      - attributeCode
+      - attributeName
+      - attributeType
+      - dataType
+      properties:
+        attributeCode:
+          type: string
+        attributeName:
+          type: string
+        attributeType:
+          type: string
+          enum:
+          - KEY
+          - SALE
+          - NORMAL
+          - SEARCH
+          - COMPLIANCE
+        dataType:
+          type: string
+          enum:
+          - STRING
+          - INTEGER
+          - DECIMAL
+          - BOOLEAN
+          - ENUM
+          - MULTI_ENUM
+          - DATE
+        required:
+          type: boolean
+        searchable:
+          type: boolean
+        filterable:
+          type: boolean
+        skuDimension:
+          type: boolean
+        validation:
+          type: object
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

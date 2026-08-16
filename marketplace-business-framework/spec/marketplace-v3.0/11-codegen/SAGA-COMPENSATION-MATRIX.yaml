@@ -1,0 +1,77 @@
+CreateTrade:
+- step: 1
+  action: Trade local create
+  compensation: mark/cancel draft trade if cross steps fail
+  owner: trade
+- step: 2
+  action: Reserve inventory
+  compensation: Release inventory reservations
+  owner: inventory
+- step: 3
+  action: Lock coupon
+  compensation: Release coupon lock
+  owner: promotion
+- step: 4
+  action: Reserve campaign budget/quota
+  compensation: Release promotion quota
+  owner: promotion
+- step: 5
+  action: Finalize WAITING_PAYMENT
+  compensation: Cancel trade and emit cancellation
+  owner: trade
+PaymentSucceeded:
+- step: 1
+  action: Persist PaymentTransaction
+  compensation: none; money fact immutable
+  owner: payment
+- step: 2
+  action: Create TradePaymentAllocation
+  compensation: reversal allocation only
+  owner: payment/finance
+- step: 3
+  action: Mark Trade/MerchantOrder PAID
+  compensation: business refund/cancel policy, not deletion
+  owner: trade
+- step: 4
+  action: Commit InventoryReservation
+  compensation: return/recovery process if exceptional
+  owner: inventory
+Refund:
+- step: 1
+  action: Reserve refundable quota
+  compensation: release only on authoritative failure/cancel
+  owner: payment
+- step: 2
+  action: Provider refund
+  compensation: UNKNOWN query; never blind retry
+  owner: payment
+- step: 3
+  action: Create reversal/allocation adjustment
+  compensation: reversal journal
+  owner: finance
+- step: 4
+  action: Settlement negative adjustment if already settled
+  compensation: adjustment reversal
+  owner: settlement
+ReturnRefund:
+  steps:
+  - step: CreateReturnOrder
+    compensation: CancelReturnOrder if no reverse shipment
+  - step: ReceiveAndInspect
+    compensation: append correction/reinspection; never delete physical receipt
+  - step: ReserveRefundQuota
+    compensation: release only if provider refund not SUCCESS/UNKNOWN
+  - step: ProviderRefund
+    compensation: none for confirmed SUCCESS; use financial reversal policy
+  - step: ReturnInventoryDisposition
+    compensation: inventory adjustment ledger, never direct stock overwrite
+Exchange:
+  steps:
+  - step: Return/Inspection
+    compensation: retain historical return facts
+  - step: ReserveReplacementInventory
+    compensation: ReleaseReservation
+  - step: CreateReplacementFulfillment
+    compensation: cancel only before irreversible shipment
+  - step: ShipReplacement
+    compensation: after shipment use reverse logistics, not delete shipment

@@ -1,0 +1,5 @@
+{
+  "originalMerchantPending": "100.00",
+  "refundBuyerCash": "50.00",
+  "expectedPendingAfter": "50.00"
+}

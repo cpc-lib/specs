@@ -1,0 +1,15 @@
+steps:
+- normalize query
+- tokenize
+- synonym expansion
+- typo/correction candidate
+- intent/category/brand extraction
+- hard saleability/governance filters
+- structured filters
+- facet aggregations
+- rank policy
+- optional personalization
+- optional sponsored merge with explicit sponsored flag
+- search_after pagination
+deepPagination: forbidden beyond configured threshold
+checkoutRevalidation: mandatory for price/inventory/saleability

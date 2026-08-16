@@ -1,0 +1,3 @@
+package com.example.evcharging.finance.ledger;
+import org.junit.jupiter.api.Test;import java.util.List;import static org.assertj.core.api.Assertions.*;
+class LedgerPostingTest {@Test void balancedPostingAccepted(){assertThatCode(()->new LedgerPosting(List.of(new LedgerPosting.Entry("A",LedgerPosting.Side.DEBIT,100),new LedgerPosting.Entry("B",LedgerPosting.Side.CREDIT,100)))).doesNotThrowAnyException();}@Test void unbalancedRejected(){assertThatThrownBy(()->new LedgerPosting(List.of(new LedgerPosting.Entry("A",LedgerPosting.Side.DEBIT,100),new LedgerPosting.Entry("B",LedgerPosting.Side.CREDIT,99)))).isInstanceOf(IllegalArgumentException.class);}}

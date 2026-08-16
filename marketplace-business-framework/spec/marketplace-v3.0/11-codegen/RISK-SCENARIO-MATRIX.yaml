@@ -1,0 +1,59 @@
+MERCHANT_ONBOARDING:
+  decisions:
+  - PASS
+  - REVIEW
+  - REJECT
+  businessOwner: merchant
+PRODUCT_PUBLISH:
+  decisions:
+  - PASS
+  - REVIEW
+  - REJECT
+  - HOLD
+  businessOwner: product
+COUPON_CLAIM:
+  decisions:
+  - PASS
+  - REJECT
+  - CHALLENGE
+  businessOwner: promotion
+FLASH_SALE:
+  decisions:
+  - PASS
+  - REJECT
+  - CHALLENGE
+  businessOwner: promotion
+TRADE_SUBMIT:
+  decisions:
+  - PASS
+  - REVIEW
+  - REJECT
+  - CHALLENGE
+  businessOwner: trade
+REFUND:
+  decisions:
+  - PASS
+  - REVIEW
+  - REJECT
+  - HOLD
+  businessOwner: payment/aftersale
+REVIEW:
+  decisions:
+  - PASS
+  - REVIEW
+  - REJECT
+  businessOwner: review
+SETTLEMENT:
+  decisions:
+  - PASS
+  - REVIEW
+  - HOLD
+  businessOwner: settlement
+PAYOUT:
+  decisions:
+  - PASS
+  - REVIEW
+  - REJECT
+  - HOLD
+  - CHALLENGE
+  businessOwner: settlement

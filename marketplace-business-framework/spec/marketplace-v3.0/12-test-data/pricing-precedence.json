@@ -1,0 +1,14 @@
+{
+  "offerId": 4001,
+  "base": "100.00",
+  "region": "98.00",
+  "member": "95.00",
+  "flash": "80.00",
+  "policy": [
+    "FLASH",
+    "MEMBER",
+    "REGION",
+    "BASE"
+  ],
+  "expectedSelected": "80.00"
+}

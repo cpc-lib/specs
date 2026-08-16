@@ -1,0 +1,418 @@
+version: '3.0'
+services:
+  aftersale:
+    module: marketplace-aftersale
+    migrations:
+    - file: V1__aftersale.sql
+      version: '1'
+      createsTables:
+      - aftersale_case
+    - file: V2__reverse_exchange_repair.sql
+      version: '2'
+      createsTables:
+      - return_order
+      - reverse_shipment
+      - return_inspection
+      - exchange_order
+      - repair_order
+      - aftersale_timeout_clock
+      - aftersale_evidence
+    duplicateVersions: {}
+  cart:
+    module: marketplace-cart
+    migrations:
+    - file: V1__cart.sql
+      version: '1'
+      createsTables:
+      - cart_item
+    duplicateVersions: {}
+  checkout:
+    module: marketplace-checkout
+    migrations:
+    - file: V1__checkout.sql
+      version: '1'
+      createsTables:
+      - checkout_session
+    duplicateVersions: {}
+  cqrs:
+    module: marketplace-cqrs
+    migrations:
+    - file: V1__buyer360.sql
+      version: '1'
+      createsTables:
+      - buyer_360_projection
+    duplicateVersions: {}
+  customer-service:
+    module: marketplace-customer-service
+    migrations:
+    - file: V1__customer_service_im.sql
+      version: '1'
+      createsTables:
+      - customer_service_case
+      - im_conversation
+      - im_message
+      - im_read_cursor
+    - file: V2__im_frozen_routing_keys.sql
+      version: '2'
+      createsTables: []
+    duplicateVersions: {}
+  dispute:
+    module: marketplace-dispute
+    migrations:
+    - file: V1__dispute.sql
+      version: '1'
+      createsTables:
+      - dispute_case
+    duplicateVersions: {}
+  finance:
+    module: marketplace-finance
+    migrations:
+    - file: V1__finance.sql
+      version: '1'
+      createsTables:
+      - marketplace_ledger_entry
+      - marketplace_ledger_line
+    - file: V2__payment_clearing_refund_reverse.sql
+      version: '2'
+      createsTables:
+      - payment_clearing_record
+      - payment_clearing_allocation
+      - refund_reverse_allocation
+      - finance_daily_close
+      - finance_control_check
+    - file: V3__frozen_routing_keys.sql
+      version: '3'
+      createsTables: []
+    duplicateVersions: {}
+  fulfillment:
+    module: marketplace-fulfillment
+    migrations:
+    - file: V1__fulfillment.sql
+      version: '1'
+      createsTables:
+      - fulfillment_order
+      - shipment_package
+    - file: V2__fulfillment_deepening.sql
+      version: '2'
+      createsTables:
+      - fulfillment_route_snapshot
+      - fulfillment_order_item
+      - fulfillment_package
+      - fulfillment_package_item
+      - shipment
+      - shipment_tracking_event
+      - delivery_confirmation
+      - digital_fulfillment
+    duplicateVersions: {}
+  governance:
+    module: marketplace-governance
+    migrations:
+    - file: V1__governance.sql
+      version: '1'
+      createsTables:
+      - violation_case
+      - penalty_action
+      - penalty_reversal_action
+      - appeal_case
+      - product_governance_policy
+      - ip_complaint_case
+    duplicateVersions: {}
+  inventory:
+    module: marketplace-inventory
+    migrations:
+    - file: V1__inventory.sql
+      version: '1'
+      createsTables:
+      - inventory_stock
+      - inventory_reservation
+      - inventory_ledger
+    - file: V2__return_stock_disposition.sql
+      version: '2'
+      createsTables:
+      - inventory_return_inbound
+      - return_stock_disposition
+    duplicateVersions: {}
+  merchant:
+    module: marketplace-merchant
+    migrations:
+    - file: V1__merchant.sql
+      version: '1'
+      createsTables:
+      - merchant
+      - merchant_membership
+      - merchant_deposit_account
+    - file: V2__merchant_governance.sql
+      version: '2'
+      createsTables:
+      - merchant_application
+      - merchant_verification_profile
+      - merchant_settlement_profile
+      - merchant_category_admission
+      - merchant_deposit_transaction
+      - merchant_credit_profile
+      - merchant_exit_case
+    duplicateVersions: {}
+  notification:
+    module: marketplace-notification
+    migrations:
+    - file: V1__notification.sql
+      version: '1'
+      createsTables:
+      - notification_preference
+      - notification_template_version
+      - notification_message
+      - notification_delivery
+    duplicateVersions: {}
+  outbox:
+    module: TEMPLATE_PER_TRANSACTIONAL_SERVICE
+    migrations:
+    - file: V1__integration.sql
+      version: '1'
+      createsTables:
+      - mq_outbox
+      - mq_inbox
+      - integration_task
+    duplicateVersions: {}
+  payment:
+    module: marketplace-payment
+    migrations:
+    - file: V1__payment.sql
+      version: '1'
+      createsTables:
+      - payment_order
+      - payment_attempt
+      - payment_transaction
+      - refund_order
+      - refund_quota_reservation
+    - file: V2__payment_refund_hardening.sql
+      version: '2'
+      createsTables:
+      - trade_payment_allocation
+      - payment_callback_log
+      - refund_transaction
+    - file: V3__frozen_routing_keys.sql
+      version: '3'
+      createsTables: []
+    duplicateVersions: {}
+  pricing:
+    module: marketplace-pricing
+    migrations:
+    - file: V1__pricing.sql
+      version: '1'
+      createsTables:
+      - offer_price
+    - file: V2__price_books_rules_snapshots.sql
+      version: '2'
+      createsTables:
+      - price_book
+      - price_book_item
+      - price_selection_policy
+      - price_change_request
+      - pricing_calculation_snapshot
+    duplicateVersions: {}
+  product:
+    module: marketplace-product
+    migrations:
+    - file: V1__product.sql
+      version: '1'
+      createsTables:
+      - platform_category
+      - brand
+      - product_spu
+      - product_sku
+      - merchant_offer
+    - file: V2__catalog_product_versioning.sql
+      version: '2'
+      createsTables:
+      - category_attribute_definition
+      - category_attribute_option
+      - product_spu_version
+      - product_sku_version
+      - merchant_offer_version
+      - brand_authorization
+      - product_compliance_snapshot
+      - offer_publish_request
+    duplicateVersions: {}
+  promotion:
+    module: marketplace-promotion
+    migrations:
+    - file: V1__promotion.sql
+      version: '1'
+      createsTables:
+      - promotion_campaign
+      - coupon_wallet
+    - file: V2__promotion_allocation_lock.sql
+      version: '2'
+      createsTables:
+      - promotion_quota_reservation
+    - file: V3__promotion_engine_coupon_flash.sql
+      version: '3'
+      createsTables:
+      - promotion_rule
+      - promotion_scope
+      - promotion_compatibility_rule
+      - promotion_budget_account
+      - promotion_budget_reservation
+      - promotion_quota
+      - coupon_template
+      - coupon_claim_reservation
+      - promotion_purchase_limit_counter
+      - flash_sale_sku
+      - flash_sale_reservation
+      - bundle_offer
+      - bundle_offer_component
+      - promotion_calculation_snapshot
+    duplicateVersions: {}
+  recommendation:
+    module: marketplace-recommendation
+    migrations:
+    - file: V1__recommendation.sql
+      version: '1'
+      createsTables:
+      - recommendation_model_version
+      - recommendation_policy
+      - recommendation_experiment
+      - recommendation_experiment_variant
+      - recommendation_experiment_assignment
+    duplicateVersions: {}
+  reconciliation:
+    module: marketplace-reconciliation
+    migrations:
+    - file: V1__reconciliation.sql
+      version: '1'
+      createsTables:
+      - reconciliation_batch
+      - reconciliation_item
+    - file: V2__provider_statements.sql
+      version: '2'
+      createsTables:
+      - provider_statement
+      - provider_statement_item
+    duplicateVersions: {}
+  review:
+    module: marketplace-review
+    migrations:
+    - file: V1__review.sql
+      version: '1'
+      createsTables:
+      - review
+    - file: V2__review_deepening.sql
+      version: '2'
+      createsTables:
+      - additional_review
+      - seller_review_reply
+      - review_moderation_record
+      - review_summary_projection
+    - file: V3__frozen_routing_keys.sql
+      version: '3'
+      createsTables: []
+    duplicateVersions: {}
+  risk:
+    module: marketplace-risk
+    migrations:
+    - file: V1__risk.sql
+      version: '1'
+      createsTables:
+      - risk_rule
+      - risk_decision_log
+    - file: V2__risk_deepening.sql
+      version: '2'
+      createsTables:
+      - risk_rule_set
+      - risk_feature_snapshot
+      - risk_decision
+      - risk_case
+      - abuse_signal_event
+    duplicateVersions: {}
+  search:
+    module: marketplace-search
+    migrations:
+    - file: V1__search_projection.sql
+      version: '1'
+      createsTables:
+      - search_projection_checkpoint
+      - search_reindex_job
+      - search_synonym_set
+      - search_query_rewrite_rule
+      - search_rank_policy
+    duplicateVersions: {}
+  settlement:
+    module: marketplace-settlement
+    migrations:
+    - file: V1__settlement.sql
+      version: '1'
+      createsTables:
+      - merchant_balance_account
+      - settlement_batch
+      - settlement_item
+      - payout_order
+    - file: V2__commission_eligibility_ledger.sql
+      version: '2'
+      createsTables:
+      - commission_rule
+      - settlement_eligibility
+      - settlement_adjustment
+      - merchant_balance_ledger
+    - file: V3__merchant_payable_hold_payout.sql
+      version: '3'
+      createsTables:
+      - merchant_settlement_hold
+      - merchant_payable
+      - payout_reservation
+      - payout_transaction
+      - merchant_withdrawal_request
+    - file: V4__merchant_funds_hold.sql
+      version: '4'
+      createsTables:
+      - merchant_funds_hold
+    - file: V5__frozen_routing_keys.sql
+      version: '5'
+      createsTables: []
+    duplicateVersions: {}
+  shop:
+    module: marketplace-shop
+    migrations:
+    - file: V1__shop.sql
+      version: '1'
+      createsTables:
+      - shop
+    duplicateVersions: {}
+  trade:
+    module: marketplace-trade
+    migrations:
+    - file: V1__trade.sql
+      version: '1'
+      createsTables:
+      - trade
+      - merchant_order
+      - order_item
+      - merchant_order_index
+    - file: V2__trade_amount_allocations.sql
+      version: '2'
+      createsTables:
+      - discount_allocation
+      - order_address_snapshot
+      - trade_idempotency
+    - file: V3__funding_responsibility.sql
+      version: '3'
+      createsTables:
+      - order_item_economics_snapshot
+      - funding_allocation
+    - file: V4__frozen_routing_keys.sql
+      version: '4'
+      createsTables: []
+    duplicateVersions: {}
+  user:
+    module: marketplace-user
+    migrations:
+    - file: V1__user.sql
+      version: '1'
+      createsTables:
+      - user_account
+      - user_address
+    - file: V2__favorite_follow.sql
+      version: '2'
+      createsTables:
+      - user_favorite_offer
+      - user_shop_follow
+    duplicateVersions: {}

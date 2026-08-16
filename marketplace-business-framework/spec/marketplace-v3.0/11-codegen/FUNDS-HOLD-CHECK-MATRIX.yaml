@@ -1,0 +1,5 @@
+settlementEligibility: block/hold affected economic scope before CONSUMED
+merchantPayable: prevent new payout reservation for held amount/scope
+payout: do not send provider request while ACTIVE hold matches
+availableBalance: prevent withdrawal/transfer of held amount
+release: revalidate source case and ledger/payable state before releasing

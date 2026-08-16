@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0"><modelVersion>4.0.0</modelVersion>
+<parent><groupId>com.company.marketplace</groupId><artifactId>marketplace-framework</artifactId><version>${revision}</version><relativePath>../pom.xml</relativePath></parent><artifactId>marketplace-web</artifactId>
+<dependencies><dependency><groupId>com.company.marketplace</groupId><artifactId>marketplace-common</artifactId><version>${revision}</version></dependency><dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency><dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-validation</artifactId></dependency></dependencies></project>

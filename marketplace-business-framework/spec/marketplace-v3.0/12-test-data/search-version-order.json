@@ -1,0 +1,17 @@
+{
+  "offerId": 4001,
+  "events": [
+    {
+      "dataVersion": 10,
+      "title": "New"
+    },
+    {
+      "dataVersion": 9,
+      "title": "Old"
+    }
+  ],
+  "expectedIndexed": {
+    "dataVersion": 10,
+    "title": "New"
+  }
+}

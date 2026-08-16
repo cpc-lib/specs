@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.company.marketplace</groupId>
+  <artifactId>marketplace-business-framework</artifactId>
+  <version>${revision}</version>
+  <packaging>pom</packaging>
+  <name>Marketplace Business Framework</name>
+
+  <modules>
+    <module>marketplace-dependencies</module>
+    <module>marketplace-framework</module>
+    <module>marketplace-gateway</module>
+    <module>marketplace-system</module>
+    <module>marketplace-user</module>
+    <module>marketplace-merchant</module>
+    <module>marketplace-shop</module>
+    <module>marketplace-product</module>
+    <module>marketplace-pricing</module>
+    <module>marketplace-inventory</module>
+    <module>marketplace-promotion</module>
+    <module>marketplace-cart</module>
+    <module>marketplace-checkout</module>
+    <module>marketplace-trade</module>
+    <module>marketplace-payment</module>
+    <module>marketplace-fulfillment</module>
+    <module>marketplace-aftersale</module>
+    <module>marketplace-dispute</module>
+    <module>marketplace-settlement</module>
+    <module>marketplace-finance</module>
+    <module>marketplace-reconciliation</module>
+    <module>marketplace-invoice</module>
+    <module>marketplace-review</module>
+    <module>marketplace-risk</module>
+    <module>marketplace-governance</module>
+    <module>marketplace-search</module>
+    <module>marketplace-recommendation</module>
+    <module>marketplace-notification</module>
+    <module>marketplace-customer-service</module>
+    <module>marketplace-cqrs</module>
+  </modules>
+
+  <properties>
+    <revision>1.1.0-SNAPSHOT</revision>
+    <java.version>21</java.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.company.marketplace</groupId>
+        <artifactId>marketplace-dependencies</artifactId>
+        <version>${revision}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.14.0</version>
+          <configuration><release>${java.version}</release></configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

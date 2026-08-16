@@ -1,0 +1,10 @@
+transport: Kafka
+topic: marketplace.behavior.v1
+idempotency: eventId
+partitioning: userId else anonymousId/sessionId
+privacy: no auth/payment secrets
+consumers:
+- recommendation features
+- analytics
+- search analytics
+- risk-derived features where policy permits

@@ -1,0 +1,6 @@
+{
+  "buyerId": 1001,
+  "orderItemBuyerId": 1001,
+  "orderStatus": "COMPLETED",
+  "expectedEligible": true
+}

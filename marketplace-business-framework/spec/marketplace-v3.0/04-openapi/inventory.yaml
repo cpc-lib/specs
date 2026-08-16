@@ -1,0 +1,330 @@
+openapi: 3.0.3
+info:
+  title: Inventory Internal API
+  version: '3.0'
+paths:
+  /internal/v1/inventory/reservations:
+    post:
+      operationId: reserveInventory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReserveInventoryRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryReservationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-inventory
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /internal/v1/inventory/reservations/{reservationNo}/commit:
+    post:
+      operationId: commitInventory
+      parameters:
+      - name: reservationNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: Committed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryReservationCommitRequest'
+      x-owner-service: marketplace-inventory
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+  /internal/v1/inventory/reservations/{reservationNo}/release:
+    post:
+      operationId: releaseInventory
+      parameters:
+      - name: reservationNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: Released
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryReservationReleaseRequest'
+      x-owner-service: marketplace-inventory
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+  /internal/v1/inventory/availability:
+    post:
+      operationId: checkInventoryAvailability
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-inventory
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+components:
+  schemas:
+    ApiError:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Money:
+      type: object
+      required:
+      - currency
+      - amount
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        amount:
+          type: string
+          pattern: ^-?\d+(\.\d{1,2})?$
+    ReserveInventoryItem:
+      type: object
+      required:
+      - skuId
+      - warehouseId
+      - quantity
+      properties:
+        skuId:
+          type: integer
+          format: int64
+        warehouseId:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          minimum: 1
+    ReserveInventoryRequest:
+      type: object
+      required:
+      - businessType
+      - businessId
+      - expireAt
+      - items
+      properties:
+        businessType:
+          type: string
+        businessId:
+          type: string
+        idempotencyKey:
+          type: string
+        expireAt:
+          type: string
+          format: date-time
+        items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ReserveInventoryItem'
+    InventoryReservationResponse:
+      type: object
+      properties:
+        reservationNos:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.
+    InventoryReservationCommitRequest:
+      type: object
+      properties:
+        commandId:
+          type: string
+    InventoryReservationReleaseRequest:
+      type: object
+      properties:
+        commandId:
+          type: string
+        reason:
+          type: string
+          maxLength: 512

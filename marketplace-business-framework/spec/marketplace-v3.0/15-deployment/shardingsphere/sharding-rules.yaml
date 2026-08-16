@@ -1,0 +1,48 @@
+rules:
+  - !SHARDING
+    tables:
+      trade:
+        actualDataNodes: ds_${0..3}.trade_${0..15}
+        databaseStrategy:
+          standard:
+            shardingColumn: buyer_id
+            shardingAlgorithmName: buyer_db_hash
+        tableStrategy:
+          standard:
+            shardingColumn: buyer_id
+            shardingAlgorithmName: buyer_table_hash
+      merchant_order:
+        actualDataNodes: ds_${0..3}.merchant_order_${0..15}
+        databaseStrategy:
+          standard:
+            shardingColumn: buyer_id
+            shardingAlgorithmName: buyer_db_hash
+        tableStrategy:
+          standard:
+            shardingColumn: buyer_id
+            shardingAlgorithmName: buyer_table_hash
+      payment_order:
+        actualDataNodes: pay_ds_${0..3}.payment_order_${0..15}
+        tableStrategy:
+          standard:
+            shardingColumn: payment_no
+            shardingAlgorithmName: payment_hash
+      settlement_batch:
+        actualDataNodes: fin_ds_${0..3}.settlement_batch_${0..15}
+        tableStrategy:
+          standard:
+            shardingColumn: merchant_id
+            shardingAlgorithmName: merchant_hash
+    shardingAlgorithms:
+      buyer_db_hash:
+        type: HASH_MOD
+        props: {sharding-count: 4}
+      buyer_table_hash:
+        type: HASH_MOD
+        props: {sharding-count: 16}
+      payment_hash:
+        type: HASH_MOD
+        props: {sharding-count: 16}
+      merchant_hash:
+        type: HASH_MOD
+        props: {sharding-count: 16}

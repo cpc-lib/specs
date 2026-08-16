@@ -1,0 +1,382 @@
+openapi: 3.0.3
+info:
+  title: Marketplace Payment API
+  version: '3.0'
+paths:
+  /api/buyer/v1/payments:
+    post:
+      operationId: createPayment
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePaymentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-payment
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+  /api/buyer/v1/payments/{paymentNo}:
+    get:
+      operationId: getPayment
+      parameters:
+      - name: paymentNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-payment
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+  /api/buyer/v1/refunds:
+    post:
+      operationId: createRefund
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRefundRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-payment
+      x-command-query: COMMAND
+      x-auth-scope: BUYER
+      x-idempotency-required: true
+  /api/buyer/v1/refunds/{refundNo}:
+    get:
+      operationId: getRefund
+      parameters:
+      - name: refundNo
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-payment
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+  /internal/v1/payment/callback/{channel}:
+    post:
+      operationId: paymentCallback
+      parameters:
+      - name: channel
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Provider ACK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-payment
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: false
+components:
+  schemas:
+    ApiError:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Money:
+      type: object
+      required:
+      - currency
+      - amount
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        amount:
+          type: string
+          pattern: ^-?\d+(\.\d{1,2})?$
+    CreatePaymentRequest:
+      type: object
+      required:
+      - tradeNo
+      - channel
+      - clientType
+      properties:
+        tradeNo:
+          type: string
+        channel:
+          type: string
+          enum:
+          - WECHAT
+          - ALIPAY
+          - UNIONPAY
+          - WALLET
+        clientType:
+          type: string
+          enum:
+          - APP
+          - MINI_PROGRAM
+          - H5
+          - WEB
+        returnUrl:
+          type: string
+    CreatePaymentResponse:
+      type: object
+      required:
+      - paymentNo
+      - attemptNo
+      - status
+      properties:
+        paymentNo:
+          type: string
+        attemptNo:
+          type: string
+        status:
+          type: string
+        channelPayload:
+          type: object
+          additionalProperties: true
+        expireAt:
+          type: string
+          format: date-time
+    PaymentResponse:
+      type: object
+      properties:
+        paymentNo:
+          type: string
+        tradeNo:
+          type: string
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+        attempts:
+          type: array
+          items:
+            type: object
+            properties:
+              attemptNo:
+                type: string
+              channel:
+                type: string
+              status:
+                type: string
+    CreateRefundRequest:
+      type: object
+      required:
+      - paymentNo
+      - businessType
+      - businessId
+      - amount
+      - reasonCode
+      properties:
+        paymentNo:
+          type: string
+        businessType:
+          type: string
+          enum:
+          - AFTERSALE
+          - ORDER_CANCEL
+          - DISPUTE
+          - MANUAL_APPROVED
+        businessId:
+          type: string
+        amount:
+          type: string
+        reasonCode:
+          type: string
+    RefundResponse:
+      type: object
+      properties:
+        refundNo:
+          type: string
+        paymentNo:
+          type: string
+        status:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

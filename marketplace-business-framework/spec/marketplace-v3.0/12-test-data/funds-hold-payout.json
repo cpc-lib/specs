@@ -1,0 +1,6 @@
+{
+  "holdScope": "PAYOUT",
+  "status": "ACTIVE",
+  "payoutAmount": "1000.00",
+  "expectedProviderRequestCount": 0
+}

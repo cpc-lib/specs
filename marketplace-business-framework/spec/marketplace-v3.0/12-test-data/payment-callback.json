@@ -1,0 +1,6 @@
+{
+  "paymentNo": "PAY202600001",
+  "amount": "900.00",
+  "duplicateCallbacks": 100,
+  "expectedTransactions": 1
+}

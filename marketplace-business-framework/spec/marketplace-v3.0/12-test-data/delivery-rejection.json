@@ -1,0 +1,9 @@
+{
+  "orderNo": "ORD-REFUSE-001",
+  "shipmentStatus": "IN_TRANSIT",
+  "carrierEvent": "REFUSED",
+  "expected": {
+    "shipment": "RETURNING",
+    "orderMustNotBecome": "CANCELLED"
+  }
+}

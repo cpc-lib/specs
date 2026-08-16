@@ -1,0 +1,261 @@
+openapi: 3.0.3
+info:
+  title: Marketplace Search API
+  version: '3.0'
+paths:
+  /api/buyer/v1/search:
+    get:
+      operationId: searchOffers
+      summary: Search marketplace offers
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: categoryId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int64
+      - name: regionCode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - RELEVANCE
+          - SALES
+          - PRICE_ASC
+          - PRICE_DESC
+          - RATING
+          - NEWEST
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: searchAfter
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-search
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+  /api/buyer/v1/search/suggestions:
+    get:
+      operationId: getSearchSuggestions
+      summary: Autocomplete/query suggestions
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-search
+      x-command-query: QUERY
+      x-auth-scope: BUYER
+      x-idempotency-required: false
+  /internal/v1/search/reindex:
+    post:
+      operationId: startSearchReindex
+      summary: Start versioned rebuild/reindex
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchReindexRequest'
+      x-owner-service: marketplace-search
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+components:
+  schemas:
+    SearchHit:
+      type: object
+      required:
+      - offerId
+      - title
+      - score
+      properties:
+        offerId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        displayPrice:
+          type: number
+        score:
+          type: number
+        sponsored:
+          type: boolean
+        highlights:
+          type: object
+        sortValues:
+          type: array
+          items: {}
+    SearchResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        queryPlanId:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchHit'
+        facets:
+          type: object
+        nextSearchAfter:
+          type: string
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.
+    SearchReindexRequest:
+      type: object
+      required:
+      - indexType
+      - sourceVersion
+      properties:
+        indexType:
+          type: string
+          enum:
+          - OFFER
+          - SHOP
+          - SUGGESTION
+        sourceVersion:
+          type: string
+        targetIndexName:
+          type: string
+        validateBeforeAliasSwitch:
+          type: boolean
+          default: true

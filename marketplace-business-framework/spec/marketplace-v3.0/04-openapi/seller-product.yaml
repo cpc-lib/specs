@@ -1,0 +1,476 @@
+openapi: 3.0.3
+info:
+  title: Seller Product API
+  version: '3.0'
+paths:
+  /api/seller/v1/offers:
+    post:
+      operationId: createOffer
+      summary: Create merchant offer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOfferRequest'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/seller/v1/offers/{offerId}/publish:
+    post:
+      operationId: publishOffer
+      summary: Publish offer
+      parameters:
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+  /api/seller/v1/spus:
+    post:
+      operationId: createSpuDraft
+      summary: Create merchant product/SPU draft
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpuDraftRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/seller/v1/spus/{spuId}/versions:
+    post:
+      operationId: createSpuVersion
+      summary: Create next immutable candidate SPU version
+      parameters:
+      - name: spuId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSpuVersionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+  /api/seller/v1/offers/{offerId}/publish-requests:
+    post:
+      operationId: submitOfferPublish
+      summary: Validate and submit offer version for publication
+      parameters:
+      - name: offerId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferPublishRequest'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: true
+  /api/platform/v1/brand-authorizations/{authorizationNo}/approve:
+    post:
+      operationId: approveBrandAuthorization
+      summary: Approve merchant brand authorization
+      parameters:
+      - name: authorizationNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-product
+      x-command-query: COMMAND
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: true
+components:
+  schemas:
+    ApiError:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        traceId:
+          type: string
+    Money:
+      type: object
+      required:
+      - currency
+      - amount
+      properties:
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+        amount:
+          type: string
+          pattern: ^-?\d+(\.\d{1,2})?$
+    CreateOfferRequest:
+      type: object
+      required:
+      - shopId
+      - spuId
+      - skuId
+      - title
+      properties:
+        shopId:
+          type: integer
+          format: int64
+        spuId:
+          type: integer
+          format: int64
+        skuId:
+          type: integer
+          format: int64
+        title:
+          type: string
+          maxLength: 512
+        mainImageFileId:
+          type: integer
+          format: int64
+    OfferResponse:
+      type: object
+      properties:
+        offerId:
+          type: integer
+          format: int64
+        offerNo:
+          type: string
+        status:
+          type: string
+    AttributeValueInput:
+      type: object
+      required:
+      - attributeCode
+      - value
+      properties:
+        attributeCode:
+          type: string
+        value: {}
+    CreateSpuDraftRequest:
+      type: object
+      required:
+      - categoryId
+      - title
+      - attributes
+      properties:
+        categoryId:
+          type: integer
+          format: int64
+        brandId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValueInput'
+    SkuSpecInput:
+      type: object
+      required:
+      - specs
+      properties:
+        specs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValueInput'
+        barcode:
+          type: string
+    CreateSpuVersionRequest:
+      type: object
+      required:
+      - title
+      - attributes
+      - skus
+      properties:
+        title:
+          type: string
+        descriptionRef:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeValueInput'
+        skus:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/SkuSpecInput'
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.
+    OfferPublishRequest:
+      type: object
+      required:
+      - offerVersionId
+      - clientRequestId
+      properties:
+        offerVersionId:
+          type: integer
+          format: int64
+        clientRequestId:
+          type: string

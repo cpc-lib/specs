@@ -1,0 +1,360 @@
+openapi: 3.0.3
+info:
+  title: Marketplace Finance Clearing API
+  version: '3.0'
+paths:
+  /api/seller/v1/funds/balance:
+    get:
+      operationId: getMerchantFundsBalance
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantFundsBalanceResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-finance
+      x-command-query: QUERY
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: false
+  /api/seller/v1/funds/ledger:
+    get:
+      operationId: listMerchantFundsLedger
+      parameters:
+      - name: bucket
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-finance
+      x-command-query: QUERY
+      x-auth-scope: SELLER_MEMBERSHIP_SCOPE
+      x-idempotency-required: false
+  /api/platform/v1/finance/daily-closes:
+    get:
+      operationId: listFinanceDailyCloses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-finance
+      x-command-query: QUERY
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: false
+  /api/platform/v1/finance/daily-closes/{closeDate}/run:
+    post:
+      operationId: runFinanceDailyClose
+      parameters:
+      - name: closeDate
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RunDailyCloseRequest'
+      x-owner-service: marketplace-finance
+      x-command-query: COMMAND
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: true
+  /internal/v1/finance/payment-clearings:
+    post:
+      operationId: applyPaymentClearing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyPaymentClearingRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-finance
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /internal/v1/finance/refund-reversals:
+    post:
+      operationId: applyRefundReverseClearing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplyRefundReverseRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-finance
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+components:
+  schemas:
+    MerchantFundsBalanceResponse:
+      type: object
+      properties:
+        currency:
+          type: string
+        pending:
+          type: string
+        available:
+          type: string
+        frozen:
+          type: string
+        settling:
+          type: string
+        negative:
+          type: string
+    ApplyPaymentClearingRequest:
+      type: object
+      required:
+      - paymentNo
+      - paymentTransactionId
+      - tradeNo
+      - amount
+      - currency
+      properties:
+        paymentNo:
+          type: string
+        paymentTransactionId:
+          type: integer
+          format: int64
+        tradeNo:
+          type: string
+        amount:
+          type: string
+        currency:
+          type: string
+    ApplyRefundReverseRequest:
+      type: object
+      required:
+      - refundNo
+      - refundTransactionId
+      - amount
+      - currency
+      properties:
+        refundNo:
+          type: string
+        refundTransactionId:
+          type: integer
+          format: int64
+        amount:
+          type: string
+        currency:
+          type: string
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.
+    RunDailyCloseRequest:
+      type: object
+      properties:
+        force:
+          type: boolean
+          default: false
+        reason:
+          type: string
+          maxLength: 1024

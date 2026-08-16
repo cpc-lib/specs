@@ -1,0 +1,37 @@
+SubmitTrade: buyerId + checkoutToken + Idempotency-Key
+ReserveInventory: businessType + businessId + skuId
+PaymentCreate: buyerId + tradeNo + Idempotency-Key
+PaymentCallback: channel + channelTradeNo
+RefundCreate: paymentNo + businessRefundRequestId
+Ship: merchantOrder + packageRequestId
+ConfirmReceive: merchantOrder + receiveCommandId
+AfterSaleCreate: buyerId + orderItemId + clientRequestId
+SettlementGenerate: merchantId + settlementPeriod
+Payout: settlementNo + payoutRequestId
+PaymentClearing: paymentTransactionId unique
+RefundReverseClearing: refundTransactionId + reverseType + originalFundingAllocationId
+MerchantPayable: settlementBatchId unique
+PayoutReserve: merchantPayableId + payoutRequestId
+Withdrawal: merchantId + Idempotency-Key
+PublishOffer: offerId + offerVersionId + publishRequestNo
+CreatePriceChange: merchantId + offerId + clientRequestId
+ClaimCoupon: userId + couponTemplateId + clientRequestId
+LockCoupon: couponCode + tradeNo
+ReservePromotionBudget: campaignId + businessId + allocationKey
+ReservePromotionQuota: campaignId + quotaKey + businessId
+ReserveFlashSale: buyerId + campaignId + skuId + clientRequestId
+SubmitMerchantApplication: applicantUserId + applicationNo
+ApproveMerchantApplication: applicationNo + approvalDecisionId
+ExecutePenalty: violationId + actionType + actionVersion
+PenaltyReversal: penaltyActionId + appealDecisionId
+CreateFundsHold: sourceType + sourceId + scopeType + scopeId
+ReleaseFundsHold: holdNo + releaseDecisionId
+AdvanceMerchantExit: exitNo + phase + phaseAttemptKey
+SearchProjection: projection consumer group + eventId
+CreateReview: buyerId + orderItemId + reviewPolicySlot
+AdditionalReview: reviewNo + clientRequestId
+SellerReviewReply: reviewNo + merchantId + clientRequestId
+FavoriteOffer: userId + offerId unique relation
+ShopFollow: userId + shopId unique relation
+SendImMessage: conversationId + sender + clientMessageId
+RequestNotification: businessType + businessId + recipientRef + templateCode + triggerKey

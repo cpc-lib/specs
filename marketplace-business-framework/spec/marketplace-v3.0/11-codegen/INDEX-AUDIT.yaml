@@ -1,0 +1,32 @@
+version: '3.0'
+status: FROZEN_BASELINE
+hotRouteIndexes:
+- table: order_item
+  index: idx_order_item_buyer_route
+  purpose: trade binding route
+- table: payment_attempt
+  index: idx_payment_attempt_route
+  purpose: payment binding route
+- table: refund_order
+  index: idx_refund_order_payment_route
+  purpose: refund co-location
+- table: settlement_item
+  index: idx_settlement_item_merchant_route
+  purpose: merchant settlement route
+- table: additional_review
+  index: idx_additional_review_offer_route
+  purpose: review route
+- table: im_message
+  index: idx_im_message_buyer_route
+  purpose: buyer IM route
+existingCriticalIndexes:
+- inventory_stock uk_stock_sku_wh
+- inventory_reservation expire/idempotency indexes
+- trade buyer/status-expire indexes
+- merchant_order buyer/merchant indexes
+- payment provider unique transaction indexes
+- settlement merchant/status indexes
+- mq_outbox pending retry index
+- mq_inbox consumer+event unique index
+rule: EXPLAIN/slow-query driven index changes after codegen require migration + performance
+  evidence; do not add arbitrary indexes to every column.

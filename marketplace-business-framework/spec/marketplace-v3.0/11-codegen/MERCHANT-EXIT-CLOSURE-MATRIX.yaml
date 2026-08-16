@@ -1,0 +1,22 @@
+BUSINESS_FREEZE:
+- block new offers/new trade eligibility
+- preserve refunds/aftersales/callbacks
+PRODUCT_OFFBOARD:
+- offline offers
+- stop new promotions
+OPEN_ORDER_SETTLEMENT:
+- all merchant orders terminal or explicitly transferred/handled
+AFTERSALE_WINDOW:
+- no blocking aftersales/disputes
+FINANCIAL_RECONCILIATION:
+- no payment/refund/payout UNKNOWN
+- no critical reconciliation
+DEPOSIT_SETTLEMENT:
+- penalties finalized
+- negative balance settled
+- refund deposit if eligible
+DATA_RETENTION:
+- export/retention/legal hold policy applied
+CLOSED:
+- merchant closed; immutable historical facts remain queryable by authorized platform
+  processes

@@ -1,0 +1,18 @@
+{
+  "returnQty": 3,
+  "decisions": [
+    {
+      "type": "RESTOCK_SELLABLE",
+      "qty": 1
+    },
+    {
+      "type": "RESTOCK_DEFECTIVE",
+      "qty": 1
+    },
+    {
+      "type": "QUARANTINE",
+      "qty": 1
+    }
+  ],
+  "expectedAvailableIncrease": 1
+}

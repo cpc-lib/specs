@@ -1,0 +1,17 @@
+{
+  "goods": "100.00",
+  "candidates": [
+    {
+      "campaignId": 10,
+      "discount": "20.00",
+      "priority": 10
+    },
+    {
+      "campaignId": 11,
+      "discount": "20.00",
+      "priority": 10
+    }
+  ],
+  "tieBreak": "campaignId asc",
+  "expectedCampaignId": 10
+}

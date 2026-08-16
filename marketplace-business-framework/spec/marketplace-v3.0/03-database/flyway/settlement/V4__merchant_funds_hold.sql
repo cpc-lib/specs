@@ -1,0 +1,23 @@
+CREATE TABLE merchant_funds_hold (
+  id BIGINT PRIMARY KEY,
+  hold_no VARCHAR(64) NOT NULL,
+  merchant_id BIGINT NOT NULL,
+  scope_type VARCHAR(32) NOT NULL,
+  scope_id VARCHAR(128) NULL,
+  currency CHAR(3) NULL,
+  hold_amount DECIMAL(18,2) NULL,
+  reason_type VARCHAR(64) NOT NULL,
+  source_type VARCHAR(32) NOT NULL,
+  source_id VARCHAR(128) NOT NULL,
+  status VARCHAR(32) NOT NULL,
+  effective_at DATETIME(3) NOT NULL,
+  expire_at DATETIME(3) NULL,
+  review_required TINYINT NOT NULL DEFAULT 0,
+  released_by BIGINT NULL,
+  release_reason VARCHAR(1024) NULL,
+  version INT NOT NULL DEFAULT 0,
+  created_at DATETIME(3) NOT NULL,
+  updated_at DATETIME(3) NOT NULL,
+  UNIQUE KEY uk_merchant_funds_hold_no (hold_no),
+  KEY idx_merchant_funds_hold_active (merchant_id, status, scope_type, effective_at, expire_at)
+);

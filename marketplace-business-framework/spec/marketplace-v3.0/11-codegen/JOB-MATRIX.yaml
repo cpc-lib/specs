@@ -1,0 +1,50 @@
+TradePaymentTimeoutJob: close WAITING_PAYMENT trades and compensate reservations
+InventoryReservationExpireJob: expire RESERVED inventory reservations
+AutoReceiveJob: scan carrier-delivered packages/orders past receive policy; lock and
+  revalidate before AutoReceived
+AfterSaleTimeoutJob: process aftersale_timeout_clock by keyset; idempotent policy
+  command
+PaymentUnknownQueryJob: query provider for UNKNOWN attempts
+RefundUnknownQueryJob: query provider for UNKNOWN refunds
+SettlementGenerateJob: generate merchant settlement candidates
+PayoutUnknownQueryJob: query payout provider
+ReconciliationJob: T-1 channel and settlement reconciliation
+SearchRepairJob: repair search read model gaps
+OutboxRetryJob: publish pending/failed outbox
+IntegrationRetryJob: retry integration tasks
+FinanceDailyCloseJob: run financial control checks after statement/reconciliation
+  window
+ProviderStatementImportJob: download/import payment/refund/payout provider statements
+MerchantSettlementHoldReleaseJob: release expired policy holds after revalidation
+MerchantNegativeBalanceCheckJob: surface merchants with unresolved negative balance
+ReturnReceiveTimeoutJob: escalate returns not received by expected deadline
+RepairSlaJob: escalate overdue repair orders
+DigitalFulfillmentUnknownQueryJob: query external digital provider for UNKNOWN delivery
+PriceEffectiveJob: activate scheduled approved price versions; keyset and idempotent
+PromotionCampaignStateJob: activate/expire campaigns by effective time
+CouponExpireJob: expire AVAILABLE/RELEASED coupons after use end
+PromotionReservationExpireJob: release expired budget/quota reservations
+FlashSaleReservationExpireJob: release expired flash quota and related reservations
+PromotionProjectionReconcileJob: compare Redis hot counters with durable quota/budget
+  reservations
+ProductComplianceExpireJob: mark expired compliance and evaluate offer blocking policy
+MerchantVerificationExpireJob: expire verification/qualification profiles and trigger
+  governance re-evaluation
+MerchantCreditDailyJob: compute versioned merchant credit metrics/level
+FundsHoldExpireReviewJob: process expiring holds; revalidate source risk/governance
+  case before release
+MerchantExitAdvanceJob: advance exit cases by keyset when blockers cleared
+GovernancePolicyEffectiveJob: activate/expire product governance policies
+RiskRuleSetEffectiveJob: activate versioned risk rule sets
+RepeatOffenderScanJob: aggregate confirmed violation patterns and create review cases
+SearchProjectionRepairJob: compare source version vs indexed version and repair missing/stale
+  offer docs
+SearchReindexJob: keyset source scan into new versioned index then alias switch after
+  validation
+SearchSuggestionBuildJob: rebuild suggestion/autocomplete projection
+RecommendationFeatureJob: aggregate behavior to feature projections with version/watermark
+RecommendationExperimentExpireJob: expire assignments/experiments according to policy
+ReviewSummaryRepairJob: rebuild review summary from published review facts
+CustomerServiceSlaJob: escalate cases past SLA
+NotificationRetryJob: retry RETRY_WAIT/PENDING deliveries with provider-aware policy
+Buyer360RepairJob: repair CQRS projection from source events

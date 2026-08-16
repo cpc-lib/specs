@@ -1,0 +1,18 @@
+RESTOCK_SELLABLE:
+  available_stock_delta: +qty
+  bucket: AVAILABLE
+RESTOCK_DEFECTIVE:
+  available_stock_delta: '0'
+  bucket: DEFECTIVE
+REPAIR_REQUIRED:
+  available_stock_delta: '0'
+  bucket: REPAIR
+RETURN_TO_VENDOR:
+  available_stock_delta: '0'
+  bucket: RTV
+SCRAP:
+  available_stock_delta: '0'
+  bucket: SCRAP
+QUARANTINE:
+  available_stock_delta: '0'
+  bucket: QUARANTINE

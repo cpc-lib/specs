@@ -1,0 +1,7 @@
+{
+  "skuId": 5001,
+  "warehouseId": 1,
+  "available": 100,
+  "concurrency": 1000,
+  "expectedMaxSuccess": 100
+}

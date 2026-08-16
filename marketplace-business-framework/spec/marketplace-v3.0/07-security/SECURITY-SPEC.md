@@ -1,0 +1,12 @@
+# Security SPEC
+- OAuth2/JWT
+- buyer / seller / platform audience separation
+- MerchantMembership / ShopScope
+- PII encryption + masking
+- payment/refund/payout webhook verification
+- anti-replay
+- rate limit
+- device/risk challenge
+- file scan/quarantine
+- secrets in Vault/KMS/K8s Secret, never plaintext config
+- support access temporary + audited

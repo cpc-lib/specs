@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: EV Charging Partner OpenAPI
+  version: 1.0.0
+  description: HMAC-authenticated partner API introduced by SPEC 8.2.
+servers:
+  - url: https://api.example.com
+components:
+  securitySchemes:
+    AppKey:
+      type: apiKey
+      in: header
+      name: X-App-Key
+    Timestamp:
+      type: apiKey
+      in: header
+      name: X-Timestamp
+    Nonce:
+      type: apiKey
+      in: header
+      name: X-Nonce
+    Signature:
+      type: apiKey
+      in: header
+      name: X-Signature
+  schemas:
+    StartChargingRequest:
+      type: object
+      required: [requestId, externalUserId, connectorCode]
+      properties:
+        requestId: {type: string, maxLength: 128}
+        externalUserId: {type: string, maxLength: 128}
+        connectorCode: {type: string, maxLength: 64}
+    StopChargingRequest:
+      type: object
+      required: [requestId]
+      properties:
+        requestId: {type: string, maxLength: 128}
+security:
+  - AppKey: []
+    Timestamp: []
+    Nonce: []
+    Signature: []
+paths:
+  /open-api/v1/stations:
+    get:
+      summary: List stations within Partner DataScope
+      responses:
+        '200': {description: OK}
+  /open-api/v1/stations/{stationId}:
+    get:
+      summary: Station and connector detail
+      parameters:
+        - in: path
+          name: stationId
+          required: true
+          schema: {type: integer, format: int64}
+      responses:
+        '200': {description: OK}
+  /open-api/v1/charging/start:
+    post:
+      summary: Start charging
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/StartChargingRequest'}
+      responses:
+        '200': {description: Charging session accepted}
+  /open-api/v1/charging/{sessionNo}/stop:
+    post:
+      summary: Stop Partner-owned charging session
+      parameters:
+        - in: path
+          name: sessionNo
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/StopChargingRequest'}
+      responses:
+        '200': {description: Stop request accepted}
+  /open-api/v1/orders/{orderNo}:
+    get:
+      summary: Read Partner-owned order within Station DataScope
+      parameters:
+        - in: path
+          name: orderNo
+          required: true
+          schema: {type: string}
+      responses:
+        '200': {description: OK}

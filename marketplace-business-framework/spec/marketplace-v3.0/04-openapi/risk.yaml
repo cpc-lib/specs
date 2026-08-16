@@ -1,0 +1,227 @@
+openapi: 3.0.3
+info:
+  title: Risk Internal API
+  version: '3.0'
+paths:
+  /internal/v1/risk/evaluate:
+    post:
+      operationId: evaluateRisk
+      summary: Evaluate scenario risk
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RiskEvaluateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskDecisionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-risk
+      x-command-query: COMMAND
+      x-auth-scope: SERVICE_TO_SERVICE
+      x-idempotency-required: true
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+  /api/platform/v1/risk-cases:
+    get:
+      operationId: listRiskCases
+      summary: List risk review cases
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-risk
+      x-command-query: QUERY
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: false
+  /api/platform/v1/risk-cases/{riskCaseNo}/resolve:
+    post:
+      operationId: resolveRiskCase
+      summary: Resolve manual risk review
+      parameters:
+      - name: riskCaseNo
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 128
+        description: Client command idempotency key. Provider callbacks use provider-native
+          unique keys instead.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiEnvelope'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '409':
+          description: Business Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+      x-owner-service: marketplace-risk
+      x-command-query: COMMAND
+      x-auth-scope: PLATFORM_RBAC
+      x-idempotency-required: true
+components:
+  schemas:
+    RiskEvaluateRequest:
+      type: object
+      required:
+      - scenario
+      - subjectType
+      - subjectId
+      - features
+      properties:
+        scenario:
+          type: string
+        subjectType:
+          type: string
+        subjectId:
+          type: string
+        merchantId:
+          type: integer
+          format: int64
+        userId:
+          type: integer
+          format: int64
+        features:
+          type: object
+    RiskDecisionResponse:
+      type: object
+      required:
+      - decisionNo
+      - decision
+      - reasonCodes
+      - ruleSetVersion
+      properties:
+        decisionNo:
+          type: string
+        decision:
+          type: string
+          enum:
+          - PASS
+          - REVIEW
+          - REJECT
+          - CHALLENGE
+          - HOLD
+        riskScore:
+          type: number
+        reasonCodes:
+          type: array
+          items:
+            type: string
+        ruleSetVersion:
+          type: integer
+        challengeType:
+          type: string
+        holdScope:
+          type: object
+        expireAt:
+          type: string
+          format: date-time
+    ApiEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+          example: '0'
+        message:
+          type: string
+          example: OK
+        data: {}
+        traceId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+      - code
+      - message
+      - traceId
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: object
+        traceId:
+          type: string
+    EmptyCommandRequest:
+      type: object
+      additionalProperties: false
+      description: Explicit empty command body when the command has no business fields.

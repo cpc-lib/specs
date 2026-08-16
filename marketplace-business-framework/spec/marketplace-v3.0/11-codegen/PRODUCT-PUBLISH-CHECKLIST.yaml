@@ -1,0 +1,14 @@
+checks:
+- merchant ACTIVE
+- shop ACTIVE
+- category saleable
+- mandatory attributes valid
+- SKU normalized combinations unique
+- brand authorization valid when required
+- product compliance PASS/not expired
+- moderation approved
+- active/effective price exists
+- logistics policy valid
+- aftersale policy valid
+transaction: activate one immutable OfferVersion + update Offer activeVersion + Outbox
+  atomically

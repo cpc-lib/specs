@@ -1,0 +1,22 @@
+orderEconomics:
+- sum(orderItem buyerCashAllocation) == trade.payableAmount
+- sum(discount allocation by source) == source discount amount
+- funding allocation is immutable after trade creation
+payment:
+- one successful provider transaction -> one effective clearing record
+- sum trade payment allocations == payment transaction amount
+refund:
+- successfulRefund + reservedRefund <= refundableAmount
+- sum BUYER_CASH_REFUND reverse allocations == provider successful refund amount
+merchantFunds:
+- balance account equals append-only merchant balance ledger fold
+- settlement eligibility consumed at most once
+- payable reservedAmount + paidAmount <= payableAmount
+payout:
+- SUCCESS payout total <= merchant payable
+- UNKNOWN keeps reservation
+- provider payout no unique
+ledger:
+- debit == credit per entry
+reconciliation:
+- unexplained 0.01 difference is mismatch

@@ -1,0 +1,27 @@
+{
+  "buyerId": 10001,
+  "items": [
+    {
+      "merchantId": 2001,
+      "shopId": 3001,
+      "offerId": 4001,
+      "skuId": 5001,
+      "qty": 1,
+      "price": "600.00"
+    },
+    {
+      "merchantId": 2002,
+      "shopId": 3002,
+      "offerId": 4002,
+      "skuId": 5002,
+      "qty": 1,
+      "price": "400.00"
+    }
+  ],
+  "platformCoupon": "100.00",
+  "expected": {
+    "tradeCount": 1,
+    "merchantOrderCount": 2,
+    "payable": "900.00"
+  }
+}

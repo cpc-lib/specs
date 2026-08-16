@@ -1,0 +1,11 @@
+{
+  "orderNo": "ORD-C2C-001",
+  "flow": [
+    "SHIPPED",
+    "AFTERSALE_APPLIED",
+    "SELLER_REJECT",
+    "DISPUTE",
+    "PLATFORM_DECIDE",
+    "REFUND"
+  ]
+}

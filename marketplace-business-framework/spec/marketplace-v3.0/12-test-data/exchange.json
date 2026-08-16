@@ -1,0 +1,13 @@
+{
+  "originalSkuId": 5001,
+  "replacementSkuId": 5002,
+  "qty": 1,
+  "replacementAvailable": 1,
+  "expected": [
+    "RESERVE_REPLACEMENT",
+    "FULFILL",
+    "SHIP",
+    "RECEIVE",
+    "COMPLETE"
+  ]
+}

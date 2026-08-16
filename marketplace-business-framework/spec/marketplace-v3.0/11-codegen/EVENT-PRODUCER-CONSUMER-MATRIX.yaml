@@ -1,0 +1,143 @@
+payment.payment.succeeded.v1:
+  producer: marketplace-payment
+  consumers:
+  - marketplace-trade
+  - marketplace-finance
+finance.payment.clearing-allocated.v1:
+  producer: marketplace-finance
+  consumers:
+  - marketplace-settlement
+  - marketplace-reconciliation
+payment.refund.succeeded.v1:
+  producer: marketplace-payment
+  consumers:
+  - marketplace-finance
+  - marketplace-aftersale
+finance.refund.reverse-clearing-posted.v1:
+  producer: marketplace-finance
+  consumers:
+  - marketplace-settlement
+  - marketplace-reconciliation
+settlement.payable.created.v1:
+  producer: marketplace-settlement
+  consumers:
+  - marketplace-finance
+settlement.payout.requested.v1:
+  producer: marketplace-settlement
+  consumers:
+  - payout-provider-worker
+settlement.payout.unknown.v1:
+  producer: marketplace-settlement
+  consumers:
+  - integration-task
+  - reconciliation
+finance.daily-close.completed.v1:
+  producer: marketplace-finance
+  consumers:
+  - platform-ops
+  - data-platform
+v2.3_fulfillment:
+  fulfillment.package.shipped.v1:
+    producer: marketplace-fulfillment
+    consumers:
+    - marketplace-trade
+    - marketplace-notification
+  fulfillment.order.received.v1:
+    producer: marketplace-fulfillment
+    consumers:
+    - marketplace-trade
+    - marketplace-settlement
+    - marketplace-review
+  aftersale.return.inspected.v1:
+    producer: marketplace-aftersale
+    consumers:
+    - marketplace-payment
+    - marketplace-inventory
+    - marketplace-settlement
+  inventory.return.disposition-posted.v1:
+    producer: marketplace-inventory
+    consumers:
+    - marketplace-aftersale
+    - analytics
+v2.4_product_pricing_promotion:
+  product.offer.version-published.v1:
+    producer: marketplace-product
+    consumers:
+    - marketplace-search
+    - marketplace-pricing
+    - marketplace-inventory
+  pricing.offer-price.changed.v1:
+    producer: marketplace-pricing
+    consumers:
+    - marketplace-search
+    - marketplace-checkout
+  promotion.campaign.published.v1:
+    producer: marketplace-promotion
+    consumers:
+    - marketplace-checkout
+    - marketplace-search
+  promotion.flash-sale.reserved.v1:
+    producer: marketplace-promotion
+    consumers:
+    - marketplace-trade
+    - marketplace-inventory
+v2.5_governance_risk:
+  merchant.application.approved.v1:
+    producer: marketplace-merchant
+    consumers:
+    - marketplace-shop
+    - marketplace-risk
+    - marketplace-notification
+  governance.penalty.requested.v1:
+    producer: marketplace-governance
+    consumers:
+    - marketplace-product
+    - marketplace-merchant
+    - marketplace-settlement
+  risk.decision.created.v1:
+    producer: marketplace-risk
+    consumers:
+    - calling business context/read analytics
+  settlement.funds-hold.created.v1:
+    producer: marketplace-settlement
+    consumers:
+    - marketplace-finance
+    - marketplace-notification
+  merchant.exit.requested.v1:
+    producer: marketplace-merchant
+    consumers:
+    - marketplace-product
+    - marketplace-trade
+    - marketplace-settlement
+    - marketplace-notification
+v2.6_discovery_cx:
+  product.offer.version-published.v1:
+    producer: marketplace-product
+    consumers:
+    - marketplace-search
+    - marketplace-recommendation projection
+  pricing.offer-price.changed.v1:
+    producer: marketplace-pricing
+    consumers:
+    - marketplace-search
+  review.review.published.v1:
+    producer: marketplace-review
+    consumers:
+    - marketplace-search
+    - marketplace-recommendation
+    - marketplace-cqrs
+  review.summary.updated.v1:
+    producer: marketplace-review
+    consumers:
+    - marketplace-search
+    - marketplace-shop/read models
+  user.favorite.added.v1:
+    producer: marketplace-user
+    consumers:
+    - marketplace-recommendation
+    - marketplace-cqrs
+  customer-service.case.created.v1:
+    producer: marketplace-customer-service
+    consumers:
+    - marketplace-notification
+    - marketplace-cqrs

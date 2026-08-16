@@ -1,0 +1,62 @@
+marketplace-user:
+- user_account
+- user_address
+marketplace-merchant:
+- merchant
+- merchant_membership
+- merchant_deposit_account
+marketplace-shop:
+- shop
+marketplace-product:
+- platform_category
+- brand
+- product_spu
+- product_sku
+- merchant_offer
+marketplace-pricing:
+- offer_price
+marketplace-inventory:
+- inventory_stock
+- inventory_reservation
+- inventory_ledger
+marketplace-cart:
+- cart_item
+marketplace-promotion:
+- promotion_campaign
+- coupon_wallet
+marketplace-checkout:
+- checkout_session
+marketplace-trade:
+- trade
+- merchant_order
+- order_item
+- merchant_order_index
+marketplace-payment:
+- payment_order
+- payment_attempt
+- payment_transaction
+- refund_order
+- refund_quota_reservation
+marketplace-fulfillment:
+- fulfillment_order
+- shipment_package
+marketplace-aftersale:
+- aftersale_case
+marketplace-dispute:
+- dispute_case
+marketplace-settlement:
+- merchant_balance_account
+- settlement_batch
+- settlement_item
+- payout_order
+marketplace-finance:
+- marketplace_ledger_entry
+- marketplace_ledger_line
+marketplace-reconciliation:
+- reconciliation_batch
+- reconciliation_item
+marketplace-review:
+- review
+marketplace-risk:
+- risk_rule
+- risk_decision_log

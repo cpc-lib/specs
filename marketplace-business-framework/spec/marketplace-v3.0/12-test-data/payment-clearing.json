@@ -1,0 +1,8 @@
+{
+  "payment": "900.00",
+  "merchantOrders": [
+    "540.00",
+    "360.00"
+  ],
+  "expectedAllocation": "900.00"
+}

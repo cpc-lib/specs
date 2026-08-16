@@ -1,0 +1,8 @@
+{
+  "campaignQuota": 100,
+  "warehouseInventory": 80,
+  "requests": 100000,
+  "expectedMaxFlashReservations": 100,
+  "expectedMaxInventoryReservations": 80,
+  "expectedMaxTrades": 80
+}

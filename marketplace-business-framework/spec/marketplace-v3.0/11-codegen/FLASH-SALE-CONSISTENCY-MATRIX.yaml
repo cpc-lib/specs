@@ -1,0 +1,20 @@
+front_layer: Redis/Lua campaign quota + per-user rate/limit
+durable_layer:
+- promotion_quota_reservation
+- flash_sale_reservation
+- inventory_reservation
+- trade_idempotency
+commit_order:
+- flash quota reserve
+- inventory reserve
+- trade create
+- payment
+- quota commit
+- inventory commit
+compensation:
+- release flash quota
+- release inventory
+- release coupon/promotion budget
+reconciliation: Redis projection vs durable reservations/commits
+durable_quota_quantity_column: promotion_quota_reservation.reserved_quantity
+legacy_compatibility: quota_id may be null only for pre-V2.4 migrated rows

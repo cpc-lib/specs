@@ -1,0 +1,10 @@
+{
+  "violationType": "COUNTERFEIT",
+  "severity": "CRITICAL",
+  "actions": [
+    "PRODUCT_BLOCK",
+    "FUNDS_HOLD",
+    "MERCHANT_SUSPEND"
+  ],
+  "expectedIdempotent": true
+}

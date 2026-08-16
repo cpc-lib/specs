@@ -1,0 +1,4 @@
+package com.company.marketplace.framework.mybatis;
+import java.time.LocalDateTime;
+public abstract class BaseDO { private Long id; private String creator; private String updater; private LocalDateTime createTime; private LocalDateTime updateTime; private Boolean deleted;
+ public Long getId(){return id;} public void setId(Long id){this.id=id;} public String getCreator(){return creator;} public void setCreator(String v){creator=v;} public String getUpdater(){return updater;} public void setUpdater(String v){updater=v;} public LocalDateTime getCreateTime(){return createTime;} public void setCreateTime(LocalDateTime v){createTime=v;} public LocalDateTime getUpdateTime(){return updateTime;} public void setUpdateTime(LocalDateTime v){updateTime=v;} public Boolean getDeleted(){return deleted;} public void setDeleted(Boolean v){deleted=v;}}

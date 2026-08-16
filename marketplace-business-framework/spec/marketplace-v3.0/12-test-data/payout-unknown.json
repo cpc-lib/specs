@@ -1,0 +1,6 @@
+{
+  "payoutNo": "PO-1",
+  "providerResult": "TIMEOUT",
+  "expected": "UNKNOWN",
+  "mustNotBlindRetry": true
+}

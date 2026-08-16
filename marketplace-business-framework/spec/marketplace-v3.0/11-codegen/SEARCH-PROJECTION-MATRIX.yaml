@@ -1,0 +1,23 @@
+product.offer.version-published.v1:
+- title
+- attributes
+- category
+- brand
+- saleability
+- dataVersion
+pricing.offer-price.changed.v1:
+- displayPrice
+- priceBucket
+inventory.inventory.committed.v1:
+- availability projection refresh trigger
+promotion.campaign.published.v1:
+- promotionLabels
+review.summary.updated.v1:
+- reviewSummary
+governance.penalty.executed.v1:
+- governanceFlags/saleability refresh
+rules:
+  sourceOfTruth: domain databases
+  ordering: incoming sourceVersion must not regress indexedVersion
+  idempotency: eventId
+  rebuildable: true

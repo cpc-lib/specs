@@ -1,0 +1,6 @@
+{
+  "merchantType": "INDIVIDUAL",
+  "identity": "PASS",
+  "riskDecision": "REJECT",
+  "expectedApplication": "REJECTED"
+}

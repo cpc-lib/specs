@@ -1,0 +1,520 @@
+version: '3.0'
+events:
+  merchant.merchant.approved.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-merchant-approved-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  product.offer.published.v1:
+    producerService: marketplace-product
+    schema: schemas/product-offer-published-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  pricing.offer-price.changed.v1:
+    producerService: marketplace-pricing
+    schema: schemas/pricing-offer-price-changed-v1.schema.json
+    consumers:
+    - marketplace-search
+    delivery: RabbitMQ transactional event
+  inventory.inventory.reserved.v1:
+    producerService: marketplace-inventory
+    schema: schemas/inventory-inventory-reserved-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  inventory.inventory.released.v1:
+    producerService: marketplace-inventory
+    schema: schemas/inventory-inventory-released-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  inventory.inventory.committed.v1:
+    producerService: marketplace-inventory
+    schema: schemas/inventory-inventory-committed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.coupon.locked.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-coupon-locked-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  trade.trade.created.v1:
+    producerService: marketplace-trade
+    schema: schemas/trade-trade-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  trade.trade.cancelled.v1:
+    producerService: marketplace-trade
+    schema: schemas/trade-trade-cancelled-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  payment.payment.succeeded.v1:
+    producerService: marketplace-payment
+    schema: schemas/payment-payment-succeeded-v1.schema.json
+    consumers:
+    - marketplace-trade
+    - marketplace-finance
+    delivery: RabbitMQ transactional event
+  payment.payment.unknown.v1:
+    producerService: marketplace-payment
+    schema: schemas/payment-payment-unknown-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  payment.refund.succeeded.v1:
+    producerService: marketplace-payment
+    schema: schemas/payment-refund-succeeded-v1.schema.json
+    consumers:
+    - marketplace-finance
+    - marketplace-aftersale
+    delivery: RabbitMQ transactional event
+  fulfillment.order.shipped.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-order-shipped-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  fulfillment.order.received.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-order-received-v1.schema.json
+    consumers:
+    - marketplace-trade
+    - marketplace-settlement
+    - marketplace-review
+    delivery: RabbitMQ transactional event
+  aftersale.case.created.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-case-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  dispute.case.created.v1:
+    producerService: marketplace-dispute
+    schema: schemas/dispute-case-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  dispute.case.decided.v1:
+    producerService: marketplace-dispute
+    schema: schemas/dispute-case-decided-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  settlement.batch.created.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-batch-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  settlement.payout.succeeded.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-payout-succeeded-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  review.review.published.v1:
+    producerService: marketplace-review
+    schema: schemas/review-review-published-v1.schema.json
+    consumers:
+    - marketplace-search
+    - marketplace-recommendation
+    - marketplace-cqrs
+    delivery: RabbitMQ transactional event
+  finance.payment.clearing-created.v1:
+    producerService: marketplace-finance
+    schema: schemas/finance-payment-clearing-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  finance.payment.clearing-allocated.v1:
+    producerService: marketplace-finance
+    schema: schemas/finance-payment-clearing-allocated-v1.schema.json
+    consumers:
+    - marketplace-settlement
+    - marketplace-reconciliation
+    delivery: RabbitMQ transactional event
+  finance.refund.reverse-clearing-posted.v1:
+    producerService: marketplace-finance
+    schema: schemas/finance-refund-reverse-clearing-posted-v1.schema.json
+    consumers:
+    - marketplace-settlement
+    - marketplace-reconciliation
+    delivery: RabbitMQ transactional event
+  settlement.hold.applied.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-hold-applied-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  settlement.hold.released.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-hold-released-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  settlement.payable.created.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-payable-created-v1.schema.json
+    consumers:
+    - marketplace-finance
+    delivery: RabbitMQ transactional event
+  settlement.payout.requested.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-payout-requested-v1.schema.json
+    consumers:
+    - payout-provider-worker
+    delivery: RabbitMQ transactional event
+  settlement.payout.unknown.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-payout-unknown-v1.schema.json
+    consumers:
+    - integration-task
+    - reconciliation
+    delivery: RabbitMQ transactional event
+  finance.daily-close.completed.v1:
+    producerService: marketplace-finance
+    schema: schemas/finance-daily-close-completed-v1.schema.json
+    consumers:
+    - platform-ops
+    - data-platform
+    delivery: RabbitMQ transactional event
+  reconciliation.exception.created.v1:
+    producerService: marketplace-reconciliation
+    schema: schemas/reconciliation-exception-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  fulfillment.fulfillment.allocated.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-fulfillment-allocated-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  fulfillment.package.created.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-package-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  fulfillment.package.shipped.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-package-shipped-v1.schema.json
+    consumers:
+    - marketplace-trade
+    - marketplace-notification
+    delivery: RabbitMQ transactional event
+  fulfillment.shipment.delivered.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-shipment-delivered-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  fulfillment.delivery.rejected.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-delivery-rejected-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  fulfillment.digital.delivered.v1:
+    producerService: marketplace-fulfillment
+    schema: schemas/fulfillment-digital-delivered-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  aftersale.return-order.created.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-return-order-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  aftersale.reverse-shipment.created.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-reverse-shipment-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  aftersale.return.received.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-return-received-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  aftersale.return.inspected.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-return-inspected-v1.schema.json
+    consumers:
+    - marketplace-payment
+    - marketplace-inventory
+    - marketplace-settlement
+    delivery: RabbitMQ transactional event
+  aftersale.exchange.created.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-exchange-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  aftersale.repair.created.v1:
+    producerService: marketplace-aftersale
+    schema: schemas/aftersale-repair-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  inventory.return.disposition-posted.v1:
+    producerService: marketplace-inventory
+    schema: schemas/inventory-return-disposition-posted-v1.schema.json
+    consumers:
+    - marketplace-aftersale
+    - analytics
+    delivery: RabbitMQ transactional event
+  dispute.evidence.submitted.v1:
+    producerService: marketplace-dispute
+    schema: schemas/dispute-evidence-submitted-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  product.spu.version-published.v1:
+    producerService: marketplace-product
+    schema: schemas/product-spu-version-published-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  product.offer.publish-requested.v1:
+    producerService: marketplace-product
+    schema: schemas/product-offer-publish-requested-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  product.offer.version-published.v1:
+    producerService: marketplace-product
+    schema: schemas/product-offer-version-published-v1.schema.json
+    consumers:
+    - marketplace-search
+    - marketplace-recommendation projection
+    delivery: RabbitMQ transactional event
+  product.offer.blocked.v1:
+    producerService: marketplace-product
+    schema: schemas/product-offer-blocked-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  product.brand-authorization.activated.v1:
+    producerService: marketplace-product
+    schema: schemas/product-brand-authorization-activated-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  pricing.price-book.published.v1:
+    producerService: marketplace-pricing
+    schema: schemas/pricing-price-book-published-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.campaign.published.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-campaign-published-v1.schema.json
+    consumers:
+    - marketplace-checkout
+    - marketplace-search
+    delivery: RabbitMQ transactional event
+  promotion.budget.reserved.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-budget-reserved-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.budget.released.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-budget-released-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.quota.reserved.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-quota-reserved-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.quota.released.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-quota-released-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.coupon.claimed.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-coupon-claimed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  promotion.flash-sale.reserved.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-flash-sale-reserved-v1.schema.json
+    consumers:
+    - marketplace-trade
+    - marketplace-inventory
+    delivery: RabbitMQ transactional event
+  promotion.flash-sale.committed.v1:
+    producerService: marketplace-promotion
+    schema: schemas/promotion-flash-sale-committed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  merchant.application.submitted.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-application-submitted-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  merchant.application.approved.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-application-approved-v1.schema.json
+    consumers:
+    - marketplace-shop
+    - marketplace-risk
+    - marketplace-notification
+    delivery: RabbitMQ transactional event
+  merchant.category-admission.activated.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-category-admission-activated-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  merchant.credit.updated.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-credit-updated-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  merchant.exit.requested.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-exit-requested-v1.schema.json
+    consumers:
+    - marketplace-product
+    - marketplace-trade
+    - marketplace-settlement
+    - marketplace-notification
+    delivery: RabbitMQ transactional event
+  merchant.exit.closed.v1:
+    producerService: marketplace-merchant
+    schema: schemas/merchant-exit-closed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  governance.violation.created.v1:
+    producerService: marketplace-governance
+    schema: schemas/governance-violation-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  governance.violation.confirmed.v1:
+    producerService: marketplace-governance
+    schema: schemas/governance-violation-confirmed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  governance.penalty.requested.v1:
+    producerService: marketplace-governance
+    schema: schemas/governance-penalty-requested-v1.schema.json
+    consumers:
+    - marketplace-product
+    - marketplace-merchant
+    - marketplace-settlement
+    delivery: RabbitMQ transactional event
+  governance.penalty.executed.v1:
+    producerService: marketplace-governance
+    schema: schemas/governance-penalty-executed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  governance.appeal.submitted.v1:
+    producerService: marketplace-governance
+    schema: schemas/governance-appeal-submitted-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  governance.appeal.decided.v1:
+    producerService: marketplace-governance
+    schema: schemas/governance-appeal-decided-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  risk.decision.created.v1:
+    producerService: marketplace-risk
+    schema: schemas/risk-decision-created-v1.schema.json
+    consumers:
+    - calling business context/read analytics
+    delivery: RabbitMQ transactional event
+  risk.case.created.v1:
+    producerService: marketplace-risk
+    schema: schemas/risk-case-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  settlement.funds-hold.created.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-funds-hold-created-v1.schema.json
+    consumers:
+    - marketplace-finance
+    - marketplace-notification
+    delivery: RabbitMQ transactional event
+  settlement.funds-hold.released.v1:
+    producerService: marketplace-settlement
+    schema: schemas/settlement-funds-hold-released-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  search.offer.projection-updated.v1:
+    producerService: marketplace-search
+    schema: schemas/search-offer-projection-updated-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  search.reindex.started.v1:
+    producerService: marketplace-search
+    schema: schemas/search-reindex-started-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  search.reindex.completed.v1:
+    producerService: marketplace-search
+    schema: schemas/search-reindex-completed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  review.review.created.v1:
+    producerService: marketplace-review
+    schema: schemas/review-review-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  review.review.blocked.v1:
+    producerService: marketplace-review
+    schema: schemas/review-review-blocked-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  review.additional.created.v1:
+    producerService: marketplace-review
+    schema: schemas/review-additional-created-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  review.seller-reply.published.v1:
+    producerService: marketplace-review
+    schema: schemas/review-seller-reply-published-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  review.summary.updated.v1:
+    producerService: marketplace-review
+    schema: schemas/review-summary-updated-v1.schema.json
+    consumers:
+    - marketplace-search
+    - marketplace-shop/read models
+    delivery: RabbitMQ transactional event
+  user.favorite.added.v1:
+    producerService: marketplace-user
+    schema: schemas/user-favorite-added-v1.schema.json
+    consumers:
+    - marketplace-recommendation
+    - marketplace-cqrs
+    delivery: RabbitMQ transactional event
+  user.favorite.removed.v1:
+    producerService: marketplace-user
+    schema: schemas/user-favorite-removed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  user.shop-followed.v1:
+    producerService: marketplace-user
+    schema: schemas/user-shop-followed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  user.shop-unfollowed.v1:
+    producerService: marketplace-user
+    schema: schemas/user-shop-unfollowed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  notification.message.queued.v1:
+    producerService: marketplace-notification
+    schema: schemas/notification-message-queued-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  notification.delivery.sent.v1:
+    producerService: marketplace-notification
+    schema: schemas/notification-delivery-sent-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  notification.delivery.failed.v1:
+    producerService: marketplace-notification
+    schema: schemas/notification-delivery-failed-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  customer-service.case.created.v1:
+    producerService: marketplace-customer-service
+    schema: schemas/customer-service-case-created-v1.schema.json
+    consumers:
+    - marketplace-notification
+    - marketplace-cqrs
+    delivery: RabbitMQ transactional event
+  customer-service.case.resolved.v1:
+    producerService: marketplace-customer-service
+    schema: schemas/customer-service-case-resolved-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  im.message.accepted.v1:
+    producerService: marketplace-customer-service
+    schema: schemas/im-message-accepted-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event
+  cqrs.buyer360.updated.v1:
+    producerService: marketplace-cqrs
+    schema: schemas/cqrs-buyer360-updated-v1.schema.json
+    consumers: []
+    delivery: RabbitMQ transactional event

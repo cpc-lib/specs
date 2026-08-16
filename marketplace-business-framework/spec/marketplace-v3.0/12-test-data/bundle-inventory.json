@@ -1,0 +1,23 @@
+{
+  "bundleQty": 2,
+  "components": [
+    {
+      "skuId": 1,
+      "qtyPerBundle": 1
+    },
+    {
+      "skuId": 2,
+      "qtyPerBundle": 3
+    }
+  ],
+  "expectedReservations": [
+    {
+      "skuId": 1,
+      "qty": 2
+    },
+    {
+      "skuId": 2,
+      "qty": 6
+    }
+  ]
+}

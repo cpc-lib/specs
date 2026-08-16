@@ -1,0 +1,5 @@
+{
+  "providerPayout": "99.99",
+  "localPayout": "100.00",
+  "expected": "PAYOUT_MISMATCH"
+}

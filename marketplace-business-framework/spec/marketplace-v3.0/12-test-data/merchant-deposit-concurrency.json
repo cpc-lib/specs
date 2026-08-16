@@ -1,0 +1,10 @@
+{
+  "received": "10000.00",
+  "frozen": "1000.00",
+  "deducted": "0.00",
+  "concurrentDeductions": [
+    "6000.00",
+    "6000.00"
+  ],
+  "expectedEffectiveTotalMax": "9000.00"
+}

@@ -1,0 +1,15 @@
+{
+  "channel": "MOCK",
+  "merchantId": "DEFAULT",
+  "businessDate": "2026-08-09",
+  "records": [
+    {
+      "paymentNo": "PO-DEMO-001",
+      "channelTradeNo": "CHANNEL-001",
+      "amountFen": 10000,
+      "refundAmountFen": 0,
+      "channelStatus": "SUCCESS",
+      "occurredTime": "2026-08-09T12:30:00"
+    }
+  ]
+}

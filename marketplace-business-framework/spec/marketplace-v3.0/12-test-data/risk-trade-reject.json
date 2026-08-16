@@ -1,0 +1,5 @@
+{
+  "scenario": "TRADE_SUBMIT",
+  "decision": "REJECT",
+  "expectedTradeCreated": false
+}

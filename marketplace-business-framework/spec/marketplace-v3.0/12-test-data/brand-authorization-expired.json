@@ -1,0 +1,7 @@
+{
+  "merchantId": 2001,
+  "brandId": 301,
+  "authorizationStatus": "EXPIRED",
+  "publishOffer": true,
+  "expected": "BRAND_AUTHORIZATION_EXPIRED"
+}

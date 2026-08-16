@@ -1,0 +1,8 @@
+{
+  "refundable": "100.00",
+  "requests": [
+    "80.00",
+    "80.00"
+  ],
+  "expectedMaxSuccessfulRefund": "100.00"
+}

@@ -1,0 +1,6 @@
+{
+  "experiment": "HOME-RANK-01",
+  "subjectHash": "U10001",
+  "calls": 100,
+  "expectedDistinctVariants": 1
+}

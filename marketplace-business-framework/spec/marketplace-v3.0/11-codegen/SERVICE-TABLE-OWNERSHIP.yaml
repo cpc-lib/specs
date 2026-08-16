@@ -1,0 +1,265 @@
+version: '3.0'
+domains:
+  aftersale:
+    module: marketplace-aftersale
+    ownershipType: WRITE_OWNER
+    tables:
+    - aftersale_case
+    - aftersale_evidence
+    - aftersale_timeout_clock
+    - exchange_order
+    - repair_order
+    - return_inspection
+    - return_order
+    - reverse_shipment
+  cart:
+    module: marketplace-cart
+    ownershipType: WRITE_OWNER
+    tables:
+    - cart_item
+  checkout:
+    module: marketplace-checkout
+    ownershipType: WRITE_OWNER
+    tables:
+    - checkout_session
+  cqrs:
+    module: marketplace-cqrs
+    ownershipType: WRITE_OWNER
+    tables:
+    - buyer_360_projection
+  customer-service:
+    module: marketplace-customer-service
+    ownershipType: WRITE_OWNER
+    tables:
+    - customer_service_case
+    - im_conversation
+    - im_message
+    - im_read_cursor
+  dispute:
+    module: marketplace-dispute
+    ownershipType: WRITE_OWNER
+    tables:
+    - dispute_case
+  finance:
+    module: marketplace-finance
+    ownershipType: WRITE_OWNER
+    tables:
+    - finance_control_check
+    - finance_daily_close
+    - marketplace_ledger_entry
+    - marketplace_ledger_line
+    - payment_clearing_allocation
+    - payment_clearing_record
+    - refund_reverse_allocation
+  fulfillment:
+    module: marketplace-fulfillment
+    ownershipType: WRITE_OWNER
+    tables:
+    - delivery_confirmation
+    - digital_fulfillment
+    - fulfillment_order
+    - fulfillment_order_item
+    - fulfillment_package
+    - fulfillment_package_item
+    - fulfillment_route_snapshot
+    - shipment
+    - shipment_package
+    - shipment_tracking_event
+  governance:
+    module: marketplace-governance
+    ownershipType: WRITE_OWNER
+    tables:
+    - appeal_case
+    - ip_complaint_case
+    - penalty_action
+    - penalty_reversal_action
+    - product_governance_policy
+    - violation_case
+  inventory:
+    module: marketplace-inventory
+    ownershipType: WRITE_OWNER
+    tables:
+    - inventory_ledger
+    - inventory_reservation
+    - inventory_return_inbound
+    - inventory_stock
+    - return_stock_disposition
+  merchant:
+    module: marketplace-merchant
+    ownershipType: WRITE_OWNER
+    tables:
+    - merchant
+    - merchant_application
+    - merchant_category_admission
+    - merchant_credit_profile
+    - merchant_deposit_account
+    - merchant_deposit_transaction
+    - merchant_exit_case
+    - merchant_membership
+    - merchant_settlement_profile
+    - merchant_verification_profile
+  notification:
+    module: marketplace-notification
+    ownershipType: WRITE_OWNER
+    tables:
+    - notification_delivery
+    - notification_message
+    - notification_preference
+    - notification_template_version
+  outbox:
+    module: TEMPLATE_PER_TRANSACTIONAL_SERVICE
+    ownershipType: TEMPLATE
+    tables:
+    - integration_task
+    - mq_inbox
+    - mq_outbox
+  payment:
+    module: marketplace-payment
+    ownershipType: WRITE_OWNER
+    tables:
+    - payment_attempt
+    - payment_callback_log
+    - payment_order
+    - payment_transaction
+    - refund_order
+    - refund_quota_reservation
+    - refund_transaction
+    - trade_payment_allocation
+  pricing:
+    module: marketplace-pricing
+    ownershipType: WRITE_OWNER
+    tables:
+    - offer_price
+    - price_book
+    - price_book_item
+    - price_change_request
+    - price_selection_policy
+    - pricing_calculation_snapshot
+  product:
+    module: marketplace-product
+    ownershipType: WRITE_OWNER
+    tables:
+    - brand
+    - brand_authorization
+    - category_attribute_definition
+    - category_attribute_option
+    - merchant_offer
+    - merchant_offer_version
+    - offer_publish_request
+    - platform_category
+    - product_compliance_snapshot
+    - product_sku
+    - product_sku_version
+    - product_spu
+    - product_spu_version
+  promotion:
+    module: marketplace-promotion
+    ownershipType: WRITE_OWNER
+    tables:
+    - bundle_offer
+    - bundle_offer_component
+    - coupon_claim_reservation
+    - coupon_template
+    - coupon_wallet
+    - flash_sale_reservation
+    - flash_sale_sku
+    - promotion_budget_account
+    - promotion_budget_reservation
+    - promotion_calculation_snapshot
+    - promotion_campaign
+    - promotion_compatibility_rule
+    - promotion_purchase_limit_counter
+    - promotion_quota
+    - promotion_quota_reservation
+    - promotion_rule
+    - promotion_scope
+  recommendation:
+    module: marketplace-recommendation
+    ownershipType: WRITE_OWNER
+    tables:
+    - recommendation_experiment
+    - recommendation_experiment_assignment
+    - recommendation_experiment_variant
+    - recommendation_model_version
+    - recommendation_policy
+  reconciliation:
+    module: marketplace-reconciliation
+    ownershipType: WRITE_OWNER
+    tables:
+    - provider_statement
+    - provider_statement_item
+    - reconciliation_batch
+    - reconciliation_item
+  review:
+    module: marketplace-review
+    ownershipType: WRITE_OWNER
+    tables:
+    - additional_review
+    - review
+    - review_moderation_record
+    - review_summary_projection
+    - seller_review_reply
+  risk:
+    module: marketplace-risk
+    ownershipType: WRITE_OWNER
+    tables:
+    - abuse_signal_event
+    - risk_case
+    - risk_decision
+    - risk_decision_log
+    - risk_feature_snapshot
+    - risk_rule
+    - risk_rule_set
+  search:
+    module: marketplace-search
+    ownershipType: WRITE_OWNER
+    tables:
+    - search_projection_checkpoint
+    - search_query_rewrite_rule
+    - search_rank_policy
+    - search_reindex_job
+    - search_synonym_set
+  settlement:
+    module: marketplace-settlement
+    ownershipType: WRITE_OWNER
+    tables:
+    - commission_rule
+    - merchant_balance_account
+    - merchant_balance_ledger
+    - merchant_funds_hold
+    - merchant_payable
+    - merchant_settlement_hold
+    - merchant_withdrawal_request
+    - payout_order
+    - payout_reservation
+    - payout_transaction
+    - settlement_adjustment
+    - settlement_batch
+    - settlement_eligibility
+    - settlement_item
+  shop:
+    module: marketplace-shop
+    ownershipType: WRITE_OWNER
+    tables:
+    - shop
+  trade:
+    module: marketplace-trade
+    ownershipType: WRITE_OWNER
+    tables:
+    - discount_allocation
+    - funding_allocation
+    - merchant_order
+    - merchant_order_index
+    - order_address_snapshot
+    - order_item
+    - order_item_economics_snapshot
+    - trade
+    - trade_idempotency
+  user:
+    module: marketplace-user
+    ownershipType: WRITE_OWNER
+    tables:
+    - user_account
+    - user_address
+    - user_favorite_offer
+    - user_shop_follow

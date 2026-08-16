@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0"><modelVersion>4.0.0</modelVersion><parent><groupId>com.company.marketplace</groupId><artifactId>marketplace-framework</artifactId><version>${revision}</version><relativePath>../pom.xml</relativePath></parent><artifactId>marketplace-file</artifactId>
+<dependencies><dependency><groupId>io.minio</groupId><artifactId>minio</artifactId></dependency></dependencies></project>

@@ -1,0 +1,15 @@
+baseRequirements:
+- orderItem belongs to buyer
+- order item is received/completed or policy eligible
+- within review window
+- review count policy not exceeded
+riskDecision:
+- PASS
+- REVIEW
+- BLOCK
+moderationDecision:
+- PASS
+- REVIEW
+- BLOCK
+sellerReply: cannot modify buyer review
+additionalReview: append-only child record

@@ -1,0 +1,81 @@
+CREATE TABLE station (
+  id BIGINT NOT NULL,
+  tenant_id BIGINT NOT NULL,
+  operator_id BIGINT NOT NULL,
+  station_code VARCHAR(64) NOT NULL,
+  station_name VARCHAR(128) NOT NULL,
+  status TINYINT NOT NULL,
+  longitude DECIMAL(10,7),
+  latitude DECIMAL(10,7),
+  version INT NOT NULL DEFAULT 0,
+  create_time DATETIME(3) NOT NULL,
+  update_time DATETIME(3) NOT NULL,
+  deleted BIT NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_tenant_station_code (tenant_id, station_code),
+  KEY idx_tenant_status (tenant_id, status)
+);
+
+CREATE TABLE charger (
+  id BIGINT NOT NULL,
+  tenant_id BIGINT NOT NULL,
+  station_id BIGINT NOT NULL,
+  charger_code VARCHAR(64) NOT NULL,
+  device_sn VARCHAR(128),
+  protocol_type VARCHAR(32),
+  online_status TINYINT NOT NULL DEFAULT 0,
+  running_status TINYINT NOT NULL DEFAULT 0,
+  last_heartbeat_time DATETIME(3),
+  version INT NOT NULL DEFAULT 0,
+  create_time DATETIME(3) NOT NULL,
+  update_time DATETIME(3) NOT NULL,
+  deleted BIT NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_tenant_charger_code (tenant_id, charger_code),
+  KEY idx_station_status (station_id, running_status)
+);
+
+CREATE TABLE charger_connector (
+  id BIGINT NOT NULL,
+  tenant_id BIGINT NOT NULL,
+  station_id BIGINT NOT NULL,
+  charger_id BIGINT NOT NULL,
+  connector_code VARCHAR(64) NOT NULL,
+  connector_no INT NOT NULL,
+  connector_type TINYINT NOT NULL,
+  rated_voltage_mv BIGINT,
+  rated_current_ma BIGINT,
+  rated_power_w BIGINT,
+  online_status TINYINT NOT NULL DEFAULT 0,
+  running_status TINYINT NOT NULL DEFAULT 0,
+  current_session_id BIGINT,
+  current_session_no VARCHAR(64),
+  last_status_time DATETIME(3),
+  version INT NOT NULL DEFAULT 0,
+  create_time DATETIME(3) NOT NULL,
+  update_time DATETIME(3) NOT NULL,
+  deleted BIT NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_connector_code (tenant_id, connector_code),
+  UNIQUE KEY uk_charger_connector_no (charger_id, connector_no),
+  KEY idx_station_status (station_id, running_status)
+);
+
+CREATE TABLE event_outbox (
+  id BIGINT NOT NULL,
+  event_id VARCHAR(64) NOT NULL,
+  aggregate_type VARCHAR(64) NOT NULL,
+  aggregate_id VARCHAR(64) NOT NULL,
+  event_type VARCHAR(128) NOT NULL,
+  event_version VARCHAR(16) NOT NULL,
+  payload JSON NOT NULL,
+  status TINYINT NOT NULL,
+  retry_count INT NOT NULL DEFAULT 0,
+  next_retry_time DATETIME(3),
+  occurred_time DATETIME(3) NOT NULL,
+  published_time DATETIME(3),
+  create_time DATETIME(3) NOT NULL,
+  PRIMARY KEY(id),
+  UNIQUE KEY uk_event_id(event_id),
+  KEY idx_outbox_publish(status,next_retry_time)
+);

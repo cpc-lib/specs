@@ -1,0 +1,43 @@
+steps:
+- order: 1
+  name: ValidateSaleability
+- order: 2
+  name: ResolveBasePrice
+- order: 3
+  name: ResolveDimensionPrices
+  dimensions:
+  - region
+  - channel
+  - member
+  - contractual
+- order: 4
+  name: SelectEffectivePrice
+  tieBreak:
+  - priority desc
+  - specificity desc
+  - effectiveFrom desc
+  - id asc
+- order: 5
+  name: ItemPromotionCandidates
+- order: 6
+  name: OrderShopPlatformPromotionCandidates
+- order: 7
+  name: CompatibilityGraph
+- order: 8
+  name: SelectBenefitPlan
+- order: 9
+  name: ApplyCoupons
+- order: 10
+  name: ApplyShippingBenefits
+- order: 11
+  name: CalculateTax
+- order: 12
+  name: FundingAllocation
+- order: 13
+  name: CrossItemDiscountAllocation
+- order: 14
+  name: RoundingResidual
+- order: 15
+  name: PersistSnapshots
+deterministic: true
+historical_recalculation: FORBIDDEN; use order snapshots

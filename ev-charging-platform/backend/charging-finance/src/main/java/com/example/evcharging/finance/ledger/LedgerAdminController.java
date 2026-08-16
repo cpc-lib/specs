@@ -1,0 +1,5 @@
+package com.example.evcharging.finance.ledger;
+import com.example.evcharging.framework.api.ApiResponse;import com.example.evcharging.framework.context.RequestContext;import org.springframework.jdbc.core.JdbcTemplate;import org.springframework.web.bind.annotation.*;import java.util.*;
+@RestController
+@RequestMapping("/admin-api/v1/finance/ledger")
+public class LedgerAdminController {private final JdbcTemplate jdbc;public LedgerAdminController(JdbcTemplate j){jdbc=j;}@GetMapping("/transactions")public ApiResponse<List<LedgerTransactionView>> list(@RequestParam(defaultValue="50")int limit){long tenant=RequestContext.requireTenantId();int size=Math.max(1,Math.min(limit,200));return ApiResponse.ok(jdbc.query("SELECT transaction_no,biz_type,biz_no,total_debit_fen,total_credit_fen,occurred_time FROM finance_ledger_transaction WHERE tenant_id=? ORDER BY id DESC LIMIT ?",(rs,n)->new LedgerTransactionView(rs.getString(1),rs.getString(2),rs.getString(3),rs.getLong(4),rs.getLong(5),String.valueOf(rs.getObject(6))),tenant,size));}public record LedgerTransactionView(String transactionNo,String bizType,String bizNo,long debitFen,long creditFen,String occurredTime){}}

@@ -1,0 +1,8 @@
+{
+  "name": "EV Charging Technician",
+  "appid": "__UNI__EVTECH79",
+  "description": "EV charging maintenance technician app",
+  "versionName": "0.1.0",
+  "versionCode": "79",
+  "transformPx": false
+}

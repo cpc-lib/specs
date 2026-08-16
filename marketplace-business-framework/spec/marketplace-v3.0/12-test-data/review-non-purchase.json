@@ -1,0 +1,5 @@
+{
+  "buyerId": 1002,
+  "orderItemBuyerId": 1001,
+  "expected": "REVIEW_NOT_ELIGIBLE"
+}

@@ -1,0 +1,20 @@
+inputs:
+- destination
+- available inventory
+- warehouse service area
+- storage class
+- SLA
+- carrier capability
+- shipping cost
+- split penalty
+hard_constraints:
+- inventory reservation possible
+- serviceable destination
+- SKU storage compatibility
+soft_scores:
+- SLA
+- cost
+- split count
+- merchant priority
+output: immutable FulfillmentRouteSnapshot
+side_effect: NONE; routing cannot directly deduct inventory

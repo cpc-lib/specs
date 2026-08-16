@@ -1,0 +1,52 @@
+groups:
+  - name: ev-platform-slo
+    rules:
+      - alert: EvHttpHigh5xxRate
+        expr: |
+          (
+            sum(rate(http_server_requests_seconds_count{status=~"5.."}[5m])) by (application)
+            /
+            clamp_min(sum(rate(http_server_requests_seconds_count[5m])) by (application), 0.001)
+          ) > 0.01
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: "5xx ratio > 1% for {{ $labels.application }}"
+
+      - alert: EvHttpP95Slow
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum(rate(http_server_requests_seconds_bucket[5m])) by (le,application)
+          ) > 0.8
+        for: 10m
+        labels: {severity: warning}
+        annotations:
+          summary: "HTTP p95 > 800ms for {{ $labels.application }}"
+
+      - alert: EvExecutorQueueNearlyFull
+        expr: ev_executor_queue_remaining < 50
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: "Bounded executor queue remaining capacity is low"
+
+      - alert: EvHikariPoolSaturated
+        expr: |
+          hikaricp_connections_active
+          /
+          clamp_min(hikaricp_connections_max, 1) > 0.9
+        for: 3m
+        labels: {severity: warning}
+        annotations:
+          summary: "Hikari connection pool > 90% active"
+
+      - alert: EvJvmHeapHigh
+        expr: |
+          sum(jvm_memory_used_bytes{area="heap"}) by (application)
+          /
+          clamp_min(sum(jvm_memory_max_bytes{area="heap"}) by (application),1) > 0.85
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: "JVM heap > 85% for {{ $labels.application }}"

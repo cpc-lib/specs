@@ -1,0 +1,7 @@
+requirement_id,requirement,tables,api,event,task
+TRADE-001,multi-merchant checkout,trade,merchant_order,order_item,buyer-trade.yaml,trade.trade.created.v1,TASK-012/TASK-013
+INV-001,no oversell,inventory_stock,inventory_reservation,inventory_ledger,inventory.yaml,inventory.inventory.reserved.v1,TASK-008
+PAY-001,duplicate callback idempotent,payment_order,payment_attempt,payment_transaction,payment.yaml,payment.payment.succeeded.v1,TASK-014
+REF-001,concurrent refund quota,refund_order,refund_quota_reservation,aftersale.yaml,payment.refund.succeeded.v1,TASK-019
+SET-001,merchant settlement,settlement_batch,settlement_item,merchant_balance_account,settlement.yaml,settlement.batch.created.v1,TASK-022
+SEC-001,merchant isolation,merchant_membership,merchant_order_index,seller-order.yaml,,TASK-032

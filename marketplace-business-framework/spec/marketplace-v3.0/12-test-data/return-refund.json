@@ -1,0 +1,15 @@
+{
+  "afterSaleType": "RETURN_REFUND",
+  "boughtQty": 2,
+  "returnQty": 1,
+  "flow": [
+    "APPROVED",
+    "RETURN_ORDER",
+    "IN_TRANSIT",
+    "RECEIVED",
+    "INSPECTED_ACCEPTED",
+    "REFUND_QUOTA",
+    "REFUND_SUCCESS",
+    "STOCK_DISPOSITION"
+  ]
+}
