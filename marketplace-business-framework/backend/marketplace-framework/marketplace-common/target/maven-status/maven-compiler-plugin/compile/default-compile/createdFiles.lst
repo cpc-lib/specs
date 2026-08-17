@@ -1,0 +1,10 @@
+com\company\marketplace\framework\common\domain\BaseAggregate.class
+com\company\marketplace\framework\common\page\PageResult.class
+com\company\marketplace\framework\common\error\ErrorCode.class
+com\company\marketplace\framework\common\money\Money.class
+com\company\marketplace\framework\common\api\ApiResponse.class
+com\company\marketplace\framework\common\error\BusinessException.class
+com\company\marketplace\framework\common\id\BusinessNo.class
+com\company\marketplace\framework\common\id\IdGenerator.class
+com\company\marketplace\framework\common\page\PageQuery.class
+com\company\marketplace\framework\common\event\DomainEvent.class

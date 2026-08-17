@@ -38,11 +38,11 @@ else:
     notes.append('PyYAML unavailable: YAML parse skipped')
 
 # Maven modules must physically exist.
-root_pom = ET.parse(root / 'pom.xml').getroot()
+root_pom = ET.parse(root / 'backend' / 'pom.xml').getroot()
 ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
 for node in root_pom.findall('./m:modules/m:module', ns):
     rel = node.text.strip()
-    if not (root / rel / 'pom.xml').exists():
+    if not (root / 'backend' / rel / 'pom.xml').exists():
         errors.append(f'Maven module missing pom: {rel}')
 
 # Old Testcontainers 1.x package is invalid for the pinned 2.x MySQL module.
@@ -276,7 +276,7 @@ if 'ApiResponse<T> ok(' not in api_response:
     errors.append('Shared ApiResponse backward-compatible ok(...) alias missing')
 
 
-if sys.platform != 'win32' and not ((root/'mvnw').stat().st_mode & 0o111):
+if sys.platform != 'win32' and not ((root/'backend'/'mvnw').stat().st_mode & 0o111):
     errors.append('mvnw is not executable')
 
 
@@ -507,8 +507,8 @@ required_82=[
 for rel in required_82:
     if not (root/rel).exists(): errors.append(f'SPEC 8.2 required file missing: {rel}')
 
-root_pom82=(root/'pom.xml').read_text(encoding='utf-8')
-if '<module>backend/charging-open</module>' not in root_pom82:
+root_pom82=(root/'backend'/'pom.xml').read_text(encoding='utf-8')
+if '<module>charging-open</module>' not in root_pom82:
     errors.append('SPEC 8.2 charging-open module missing from root reactor')
 
 gateway82=(root/'backend/charging-gateway/src/main/resources/application.yml').read_text(encoding='utf-8')

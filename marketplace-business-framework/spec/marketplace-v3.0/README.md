@@ -1,8 +1,8 @@
-# Enterprise Multi-Merchant Marketplace SPEC V2.2
+# Enterprise Multi-Merchant Marketplace SPEC V3.0
 
 Codegen-ready contract hardening baseline for platform self-operated + B2C + C2C at very large scale.
 
-Major V2.2 additions: amount allocation, payment allocation, refund quota hardening, commission snapshot, settlement eligibility, command/query catalog, Saga matrix, ShardingSphere sample and Testcontainers gates.
+V3.0 cumulative additions (V2.2–V2.6 deepening + V3.0 consistency hardening): amount allocation, payment allocation, refund quota hardening, commission snapshot, settlement eligibility, command/query catalog, Saga matrix, ShardingSphere sample, Testcontainers gates, contract consistency, migration safety, ownership/routing freeze and E2E traceability.
 
 ## V2.2
 Transaction & Finance Deepening: funding responsibility, clearing, refund reverse clearing, merchant payable/payout, accounting and reconciliation.

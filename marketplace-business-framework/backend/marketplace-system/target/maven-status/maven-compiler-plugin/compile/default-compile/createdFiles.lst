@@ -1,0 +1,8 @@
+com\company\marketplace\system\domain\access\SystemUser$Status.class
+com\company\marketplace\system\domain\package-info.class
+com\company\marketplace\system\infrastructure\package-info.class
+com\company\marketplace\system\application\package-info.class
+com\company\marketplace\system\domain\access\Role.class
+com\company\marketplace\system\MarketplaceSystemApplication.class
+com\company\marketplace\system\domain\access\SystemUser.class
+com\company\marketplace\system\interfaces\package-info.class

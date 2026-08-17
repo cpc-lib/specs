@@ -29,11 +29,8 @@ Total files: 521
 - `01-architecture/adr/ADR-014-c2c-dispute.md`
 - `01-architecture/adr/ADR-015-guaranteed-transaction-regulatory-boundary.md`
 - `01-architecture/adr/ADR-016-fulfillment-package-shipment.md`
-- `01-architecture/adr/ADR-016-funding-responsibility.md`
-- `01-architecture/adr/ADR-017-payment-clearing.md`
 - `01-architecture/adr/ADR-017-reverse-logistics.md`
 - `01-architecture/adr/ADR-018-digital-fulfillment.md`
-- `01-architecture/adr/ADR-018-refund-reverse-clearing.md`
 - `01-architecture/adr/ADR-019-return-stock-disposition.md`
 - `01-architecture/adr/ADR-020-category-attribute-schema.md`
 - `01-architecture/adr/ADR-021-product-versioning.md`
@@ -54,6 +51,9 @@ Total files: 521
 - `01-architecture/adr/ADR-036-im-domain-boundary.md`
 - `01-architecture/adr/ADR-037-outbox-per-service-template.md`
 - `01-architecture/adr/ADR-038-binding-table-routing-keys.md`
+- `01-architecture/adr/ADR-039-funding-responsibility.md`
+- `01-architecture/adr/ADR-040-payment-clearing.md`
+- `01-architecture/adr/ADR-041-refund-reverse-clearing.md`
 - `02-domain/STATE-MACHINE-CATALOG.md`
 - `02-domain/aftersale/AFTERSALE-DEEPENING-SPEC.md`
 - `02-domain/aftersale/DOMAIN-SPEC.md`

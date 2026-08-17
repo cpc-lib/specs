@@ -2,7 +2,7 @@
 
 只有以下全部完成，SPEC 7.1 才能从 `foundation-preview` 升为 `foundation-verified`：
 
-- [ ] `mvn clean verify` PASS
+- [ ] `cd backend && mvn clean verify` PASS
 - [ ] Testcontainers MySQL integration test PASS
 - [ ] `docker compose config` PASS
 - [ ] Core infrastructure containers healthy

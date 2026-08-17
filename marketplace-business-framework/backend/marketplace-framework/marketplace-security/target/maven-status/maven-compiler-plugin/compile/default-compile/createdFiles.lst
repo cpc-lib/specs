@@ -1,0 +1,7 @@
+com\company\marketplace\framework\security\PrincipalResolver.class
+com\company\marketplace\framework\security\MarketplaceSecurityContext.class
+com\company\marketplace\framework\security\PrincipalType.class
+com\company\marketplace\framework\security\ScopeGuard.class
+com\company\marketplace\framework\security\DataScope.class
+com\company\marketplace\framework\security\SecurityContextFilter.class
+com\company\marketplace\framework\security\MarketplacePrincipal.class

@@ -1,8 +1,8 @@
-# Marketplace SPEC V2.2 — START HERE
+# Marketplace SPEC V3.0 — START HERE
 
 定位：自营 + B2C + C2C、超大规模 Spring Cloud Marketplace。
 
-V2.2 是 Contract Hardening 版本，不扩新业务领域。
+V3.0 是 Frozen Codegen Baseline，累积 V2.2–V2.6 全部业务纵深，不再扩新业务领域，聚焦契约一致性、迁移安全与可追溯性。
 
 阅读顺序：
 1. `00-master/MASTER-SPEC-V3.0.md`

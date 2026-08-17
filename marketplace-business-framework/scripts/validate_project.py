@@ -51,9 +51,9 @@ for m in mods:
     if m.name not in mapping['modules']: errors.append(f'Missing spec mapping {m.name}')
 
 # Security invariants
-sec=(root/'marketplace-framework/marketplace-security/src/main/java/com/company/marketplace/framework/security/ScopeGuard.java').read_text(encoding='utf-8')
+sec=(root/'backend/marketplace-framework/marketplace-security/src/main/java/com/company/marketplace/framework/security/ScopeGuard.java').read_text(encoding='utf-8')
 if 'requiredMerchantId' not in sec or 'requireShop' not in sec: errors.append('Security scope guard incomplete')
-gw=(root/'marketplace-gateway/src/main/java/com/company/marketplace/gateway/InternalHeaderSanitizerFilter.java').read_text(encoding='utf-8')
+gw=(root/'backend/marketplace-gateway/src/main/java/com/company/marketplace/gateway/InternalHeaderSanitizerFilter.java').read_text(encoding='utf-8')
 if 'X-Internal-Merchant-Id' not in gw: errors.append('Gateway internal merchant header sanitizer missing')
 
 if errors:

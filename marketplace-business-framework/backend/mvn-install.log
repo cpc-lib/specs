@@ -1,0 +1,1171 @@
+﻿[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Marketplace Dependencies BOM                                       [pom]
+[INFO] Marketplace Business Framework                                     [pom]
+[INFO] marketplace-framework                                              [pom]
+[INFO] marketplace-common                                                 [jar]
+[INFO] marketplace-web                                                    [jar]
+[INFO] marketplace-security                                               [jar]
+[INFO] marketplace-mybatis                                                [jar]
+[INFO] marketplace-redis                                                  [jar]
+[INFO] marketplace-file                                                   [jar]
+[INFO] marketplace-gateway                                                [jar]
+[INFO] marketplace-system                                                 [jar]
+[INFO] marketplace-user                                                   [jar]
+[INFO] marketplace-merchant                                               [jar]
+[INFO] marketplace-shop                                                   [jar]
+[INFO] marketplace-product                                                [jar]
+[INFO] marketplace-pricing                                                [jar]
+[INFO] marketplace-inventory                                              [jar]
+[INFO] marketplace-promotion                                              [jar]
+[INFO] marketplace-cart                                                   [jar]
+[INFO] marketplace-checkout                                               [jar]
+[INFO] marketplace-trade                                                  [jar]
+[INFO] marketplace-payment                                                [jar]
+[INFO] marketplace-fulfillment                                            [jar]
+[INFO] marketplace-aftersale                                              [jar]
+[INFO] marketplace-dispute                                                [jar]
+[INFO] marketplace-settlement                                             [jar]
+[INFO] marketplace-finance                                                [jar]
+[INFO] marketplace-reconciliation                                         [jar]
+[INFO] marketplace-invoice                                                [jar]
+[INFO] marketplace-review                                                 [jar]
+[INFO] marketplace-risk                                                   [jar]
+[INFO] marketplace-governance                                             [jar]
+[INFO] marketplace-search                                                 [jar]
+[INFO] marketplace-recommendation                                         [jar]
+[INFO] marketplace-notification                                           [jar]
+[INFO] marketplace-customer-service                                       [jar]
+[INFO] marketplace-cqrs                                                   [jar]
+[INFO] 
+[INFO] ----------< com.company.marketplace:marketplace-dependencies >----------
+[INFO] Building Marketplace Dependencies BOM 1.1.0-SNAPSHOT              [1/37]
+[INFO]   from marketplace-dependencies\pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-dependencies ---
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-dependencies ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-dependencies\pom.xml to D:\repository\com\company\marketplace\marketplace-dependencies\1.1.0-SNAPSHOT\marketplace-dependencies-1.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] -------< com.company.marketplace:marketplace-business-framework >-------
+[INFO] Building Marketplace Business Framework 1.1.0-SNAPSHOT            [2/37]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-business-framework ---
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-business-framework ---
+[INFO] Installing d:\code\specs\marketplace-business-framework\backend\pom.xml to D:\repository\com\company\marketplace\marketplace-business-framework\1.1.0-SNAPSHOT\marketplace-business-framework-1.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] -----------< com.company.marketplace:marketplace-framework >------------
+[INFO] Building marketplace-framework 1.1.0-SNAPSHOT                     [3/37]
+[INFO]   from marketplace-framework\pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-framework ---
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-framework ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\pom.xml to D:\repository\com\company\marketplace\marketplace-framework\1.1.0-SNAPSHOT\marketplace-framework-1.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] -------------< com.company.marketplace:marketplace-common >-------------
+[INFO] Building marketplace-common 1.1.0-SNAPSHOT                        [4/37]
+[INFO]   from marketplace-framework\marketplace-common\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-common ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-common ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-common ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-common ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-common ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-common ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-common ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\target\marketplace-common-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-common ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\pom.xml to D:\repository\com\company\marketplace\marketplace-common\1.1.0-SNAPSHOT\marketplace-common-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\target\marketplace-common-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-common\1.1.0-SNAPSHOT\marketplace-common-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-web >---------------
+[INFO] Building marketplace-web 1.1.0-SNAPSHOT                           [5/37]
+[INFO]   from marketplace-framework\marketplace-web\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-web ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-web\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-web ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-web\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-web ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-web ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-web\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-web ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-web ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-web ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-web\target\marketplace-web-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-web ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-web\pom.xml to D:\repository\com\company\marketplace\marketplace-web\1.1.0-SNAPSHOT\marketplace-web-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-web\target\marketplace-web-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-web\1.1.0-SNAPSHOT\marketplace-web-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-security >------------
+[INFO] Building marketplace-security 1.1.0-SNAPSHOT                      [6/37]
+[INFO]   from marketplace-framework\marketplace-security\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-security ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-security ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-security ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-security ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-security ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-security ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-security ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\target\marketplace-security-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-security ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\pom.xml to D:\repository\com\company\marketplace\marketplace-security\1.1.0-SNAPSHOT\marketplace-security-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\target\marketplace-security-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-security\1.1.0-SNAPSHOT\marketplace-security-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-mybatis >-------------
+[INFO] Building marketplace-mybatis 1.1.0-SNAPSHOT                       [7/37]
+[INFO]   from marketplace-framework\marketplace-mybatis\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-mybatis ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-mybatis\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-mybatis ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-mybatis\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-mybatis ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-mybatis ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-mybatis\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-mybatis ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-mybatis ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-mybatis ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-mybatis\target\marketplace-mybatis-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-mybatis ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-mybatis\pom.xml to D:\repository\com\company\marketplace\marketplace-mybatis\1.1.0-SNAPSHOT\marketplace-mybatis-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-mybatis\target\marketplace-mybatis-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-mybatis\1.1.0-SNAPSHOT\marketplace-mybatis-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.company.marketplace:marketplace-redis >--------------
+[INFO] Building marketplace-redis 1.1.0-SNAPSHOT                         [8/37]
+[INFO]   from marketplace-framework\marketplace-redis\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-redis ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-redis\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-redis ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-redis\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-redis ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-redis ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-redis\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-redis ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-redis ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-redis ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-redis\target\marketplace-redis-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-redis ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-redis\pom.xml to D:\repository\com\company\marketplace\marketplace-redis\1.1.0-SNAPSHOT\marketplace-redis-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-redis\target\marketplace-redis-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-redis\1.1.0-SNAPSHOT\marketplace-redis-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-file >--------------
+[INFO] Building marketplace-file 1.1.0-SNAPSHOT                          [9/37]
+[INFO]   from marketplace-framework\marketplace-file\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-file ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-file\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-file ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-file\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-file ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-file ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-file\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-file ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-file ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-file ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-file\target\marketplace-file-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-file ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-file\pom.xml to D:\repository\com\company\marketplace\marketplace-file\1.1.0-SNAPSHOT\marketplace-file-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-file\target\marketplace-file-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-file\1.1.0-SNAPSHOT\marketplace-file-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-gateway >-------------
+[INFO] Building marketplace-gateway 1.1.0-SNAPSHOT                      [10/37]
+[INFO]   from marketplace-gateway\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-gateway ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-gateway\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-gateway ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-gateway ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-gateway ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-gateway\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-gateway ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-gateway ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-gateway ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-gateway\target\marketplace-gateway-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-gateway ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-gateway\pom.xml to D:\repository\com\company\marketplace\marketplace-gateway\1.1.0-SNAPSHOT\marketplace-gateway-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-gateway\target\marketplace-gateway-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-gateway\1.1.0-SNAPSHOT\marketplace-gateway-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.company.marketplace:marketplace-system >-------------
+[INFO] Building marketplace-system 1.1.0-SNAPSHOT                       [11/37]
+[INFO]   from marketplace-system\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-system ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-system\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-system ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-system ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-system ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-system\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-system ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-system ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-system ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-system\target\marketplace-system-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-system ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-system\pom.xml to D:\repository\com\company\marketplace\marketplace-system\1.1.0-SNAPSHOT\marketplace-system-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-system\target\marketplace-system-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-system\1.1.0-SNAPSHOT\marketplace-system-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-user >--------------
+[INFO] Building marketplace-user 1.1.0-SNAPSHOT                         [12/37]
+[INFO]   from marketplace-user\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-user ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-user\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-user ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-user ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-user ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-user\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-user ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-user ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-user ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-user\target\marketplace-user-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-user ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-user\pom.xml to D:\repository\com\company\marketplace\marketplace-user\1.1.0-SNAPSHOT\marketplace-user-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-user\target\marketplace-user-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-user\1.1.0-SNAPSHOT\marketplace-user-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-merchant >------------
+[INFO] Building marketplace-merchant 1.1.0-SNAPSHOT                     [13/37]
+[INFO]   from marketplace-merchant\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-merchant ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-merchant\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-merchant ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-merchant ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 26 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-merchant ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-merchant\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-merchant ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-merchant ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-merchant ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-merchant\target\marketplace-merchant-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-merchant ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-merchant\pom.xml to D:\repository\com\company\marketplace\marketplace-merchant\1.1.0-SNAPSHOT\marketplace-merchant-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-merchant\target\marketplace-merchant-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-merchant\1.1.0-SNAPSHOT\marketplace-merchant-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-shop >--------------
+[INFO] Building marketplace-shop 1.1.0-SNAPSHOT                         [14/37]
+[INFO]   from marketplace-shop\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-shop ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-shop\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-shop ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-shop ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-shop ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-shop\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-shop ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-shop ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-shop ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-shop\target\marketplace-shop-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-shop ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-shop\pom.xml to D:\repository\com\company\marketplace\marketplace-shop\1.1.0-SNAPSHOT\marketplace-shop-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-shop\target\marketplace-shop-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-shop\1.1.0-SNAPSHOT\marketplace-shop-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-product >-------------
+[INFO] Building marketplace-product 1.1.0-SNAPSHOT                      [15/37]
+[INFO]   from marketplace-product\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-product ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-product\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-product ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-product ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 26 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-product ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-product\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-product ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-product ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-product ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-product\target\marketplace-product-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-product ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-product\pom.xml to D:\repository\com\company\marketplace\marketplace-product\1.1.0-SNAPSHOT\marketplace-product-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-product\target\marketplace-product-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-product\1.1.0-SNAPSHOT\marketplace-product-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-pricing >-------------
+[INFO] Building marketplace-pricing 1.1.0-SNAPSHOT                      [16/37]
+[INFO]   from marketplace-pricing\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-pricing ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-pricing\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-pricing ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-pricing ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-pricing ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-pricing\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-pricing ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-pricing ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-pricing ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-pricing\target\marketplace-pricing-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-pricing ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-pricing\pom.xml to D:\repository\com\company\marketplace\marketplace-pricing\1.1.0-SNAPSHOT\marketplace-pricing-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-pricing\target\marketplace-pricing-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-pricing\1.1.0-SNAPSHOT\marketplace-pricing-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< com.company.marketplace:marketplace-inventory >------------
+[INFO] Building marketplace-inventory 1.1.0-SNAPSHOT                    [17/37]
+[INFO]   from marketplace-inventory\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-inventory ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-inventory\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-inventory ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-inventory ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-inventory ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-inventory\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-inventory ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-inventory ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-inventory ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-inventory\target\marketplace-inventory-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-inventory ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-inventory\pom.xml to D:\repository\com\company\marketplace\marketplace-inventory\1.1.0-SNAPSHOT\marketplace-inventory-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-inventory\target\marketplace-inventory-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-inventory\1.1.0-SNAPSHOT\marketplace-inventory-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< com.company.marketplace:marketplace-promotion >------------
+[INFO] Building marketplace-promotion 1.1.0-SNAPSHOT                    [18/37]
+[INFO]   from marketplace-promotion\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-promotion ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-promotion\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-promotion ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-promotion ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 27 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-promotion ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-promotion\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-promotion ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-promotion ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-promotion ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-promotion\target\marketplace-promotion-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-promotion ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-promotion\pom.xml to D:\repository\com\company\marketplace\marketplace-promotion\1.1.0-SNAPSHOT\marketplace-promotion-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-promotion\target\marketplace-promotion-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-promotion\1.1.0-SNAPSHOT\marketplace-promotion-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-cart >--------------
+[INFO] Building marketplace-cart 1.1.0-SNAPSHOT                         [19/37]
+[INFO]   from marketplace-cart\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-cart ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-cart\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-cart ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-cart ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 20 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-cart ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-cart\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-cart ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-cart ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-cart ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-cart\target\marketplace-cart-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-cart ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-cart\pom.xml to D:\repository\com\company\marketplace\marketplace-cart\1.1.0-SNAPSHOT\marketplace-cart-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-cart\target\marketplace-cart-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-cart\1.1.0-SNAPSHOT\marketplace-cart-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-checkout >------------
+[INFO] Building marketplace-checkout 1.1.0-SNAPSHOT                     [20/37]
+[INFO]   from marketplace-checkout\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-checkout ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-checkout\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-checkout ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-checkout ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 21 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-checkout ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-checkout\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-checkout ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-checkout ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-checkout ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-checkout\target\marketplace-checkout-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-checkout ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-checkout\pom.xml to D:\repository\com\company\marketplace\marketplace-checkout\1.1.0-SNAPSHOT\marketplace-checkout-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-checkout\target\marketplace-checkout-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-checkout\1.1.0-SNAPSHOT\marketplace-checkout-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.company.marketplace:marketplace-trade >--------------
+[INFO] Building marketplace-trade 1.1.0-SNAPSHOT                        [21/37]
+[INFO]   from marketplace-trade\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-trade ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-trade\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-trade ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-trade ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 25 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-trade ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-trade\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-trade ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-trade ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-trade ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-trade\target\marketplace-trade-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-trade ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-trade\pom.xml to D:\repository\com\company\marketplace\marketplace-trade\1.1.0-SNAPSHOT\marketplace-trade-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-trade\target\marketplace-trade-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-trade\1.1.0-SNAPSHOT\marketplace-trade-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-payment >-------------
+[INFO] Building marketplace-payment 1.1.0-SNAPSHOT                      [22/37]
+[INFO]   from marketplace-payment\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-payment ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-payment\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-payment ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-payment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 24 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-payment ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-payment\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-payment ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-payment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-payment ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-payment\target\marketplace-payment-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-payment ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-payment\pom.xml to D:\repository\com\company\marketplace\marketplace-payment\1.1.0-SNAPSHOT\marketplace-payment-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-payment\target\marketplace-payment-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-payment\1.1.0-SNAPSHOT\marketplace-payment-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------< com.company.marketplace:marketplace-fulfillment >-----------
+[INFO] Building marketplace-fulfillment 1.1.0-SNAPSHOT                  [23/37]
+[INFO]   from marketplace-fulfillment\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-fulfillment ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-fulfillment\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-fulfillment ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-fulfillment ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 24 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-fulfillment ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-fulfillment\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-fulfillment ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-fulfillment ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-fulfillment ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-fulfillment\target\marketplace-fulfillment-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-fulfillment ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-fulfillment\pom.xml to D:\repository\com\company\marketplace\marketplace-fulfillment\1.1.0-SNAPSHOT\marketplace-fulfillment-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-fulfillment\target\marketplace-fulfillment-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-fulfillment\1.1.0-SNAPSHOT\marketplace-fulfillment-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< com.company.marketplace:marketplace-aftersale >------------
+[INFO] Building marketplace-aftersale 1.1.0-SNAPSHOT                    [24/37]
+[INFO]   from marketplace-aftersale\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-aftersale ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-aftersale\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-aftersale ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-aftersale ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 25 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-aftersale ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-aftersale\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-aftersale ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-aftersale ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-aftersale ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-aftersale\target\marketplace-aftersale-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-aftersale ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-aftersale\pom.xml to D:\repository\com\company\marketplace\marketplace-aftersale\1.1.0-SNAPSHOT\marketplace-aftersale-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-aftersale\target\marketplace-aftersale-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-aftersale\1.1.0-SNAPSHOT\marketplace-aftersale-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-dispute >-------------
+[INFO] Building marketplace-dispute 1.1.0-SNAPSHOT                      [25/37]
+[INFO]   from marketplace-dispute\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-dispute ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-dispute\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-dispute ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-dispute ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-dispute ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-dispute\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-dispute ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-dispute ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-dispute ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-dispute\target\marketplace-dispute-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-dispute ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-dispute\pom.xml to D:\repository\com\company\marketplace\marketplace-dispute\1.1.0-SNAPSHOT\marketplace-dispute-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-dispute\target\marketplace-dispute-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-dispute\1.1.0-SNAPSHOT\marketplace-dispute-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< com.company.marketplace:marketplace-settlement >-----------
+[INFO] Building marketplace-settlement 1.1.0-SNAPSHOT                   [26/37]
+[INFO]   from marketplace-settlement\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-settlement ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-settlement\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-settlement ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-settlement ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 26 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-settlement ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-settlement\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-settlement ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-settlement ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-settlement ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-settlement\target\marketplace-settlement-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-settlement ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-settlement\pom.xml to D:\repository\com\company\marketplace\marketplace-settlement\1.1.0-SNAPSHOT\marketplace-settlement-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-settlement\target\marketplace-settlement-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-settlement\1.1.0-SNAPSHOT\marketplace-settlement-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-finance >-------------
+[INFO] Building marketplace-finance 1.1.0-SNAPSHOT                      [27/37]
+[INFO]   from marketplace-finance\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-finance ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-finance\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-finance ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-finance ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-finance ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-finance\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-finance ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-finance ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-finance ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-finance\target\marketplace-finance-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-finance ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-finance\pom.xml to D:\repository\com\company\marketplace\marketplace-finance\1.1.0-SNAPSHOT\marketplace-finance-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-finance\target\marketplace-finance-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-finance\1.1.0-SNAPSHOT\marketplace-finance-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ---------< com.company.marketplace:marketplace-reconciliation >---------
+[INFO] Building marketplace-reconciliation 1.1.0-SNAPSHOT               [28/37]
+[INFO]   from marketplace-reconciliation\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-reconciliation ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-reconciliation\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-reconciliation ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-reconciliation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-reconciliation ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-reconciliation\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-reconciliation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-reconciliation ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-reconciliation ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-reconciliation\target\marketplace-reconciliation-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-reconciliation ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-reconciliation\pom.xml to D:\repository\com\company\marketplace\marketplace-reconciliation\1.1.0-SNAPSHOT\marketplace-reconciliation-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-reconciliation\target\marketplace-reconciliation-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-reconciliation\1.1.0-SNAPSHOT\marketplace-reconciliation-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ------------< com.company.marketplace:marketplace-invoice >-------------
+[INFO] Building marketplace-invoice 1.1.0-SNAPSHOT                      [29/37]
+[INFO]   from marketplace-invoice\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-invoice ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-invoice\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-invoice ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-invoice ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-invoice ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-invoice\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-invoice ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-invoice ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-invoice ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-invoice\target\marketplace-invoice-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-invoice ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-invoice\pom.xml to D:\repository\com\company\marketplace\marketplace-invoice\1.1.0-SNAPSHOT\marketplace-invoice-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-invoice\target\marketplace-invoice-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-invoice\1.1.0-SNAPSHOT\marketplace-invoice-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.company.marketplace:marketplace-review >-------------
+[INFO] Building marketplace-review 1.1.0-SNAPSHOT                       [30/37]
+[INFO]   from marketplace-review\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-review ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-review\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-review ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-review ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-review ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-review\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-review ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-review ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-review ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-review\target\marketplace-review-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-review ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-review\pom.xml to D:\repository\com\company\marketplace\marketplace-review\1.1.0-SNAPSHOT\marketplace-review-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-review\target\marketplace-review-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-review\1.1.0-SNAPSHOT\marketplace-review-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-risk >--------------
+[INFO] Building marketplace-risk 1.1.0-SNAPSHOT                         [31/37]
+[INFO]   from marketplace-risk\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-risk ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-risk\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-risk ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-risk ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 24 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-risk ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-risk\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-risk ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-risk ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-risk ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-risk\target\marketplace-risk-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-risk ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-risk\pom.xml to D:\repository\com\company\marketplace\marketplace-risk\1.1.0-SNAPSHOT\marketplace-risk-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-risk\target\marketplace-risk-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-risk\1.1.0-SNAPSHOT\marketplace-risk-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< com.company.marketplace:marketplace-governance >-----------
+[INFO] Building marketplace-governance 1.1.0-SNAPSHOT                   [32/37]
+[INFO]   from marketplace-governance\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-governance ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-governance\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-governance ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-governance ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-governance ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-governance\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-governance ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-governance ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-governance ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-governance\target\marketplace-governance-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-governance ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-governance\pom.xml to D:\repository\com\company\marketplace\marketplace-governance\1.1.0-SNAPSHOT\marketplace-governance-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-governance\target\marketplace-governance-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-governance\1.1.0-SNAPSHOT\marketplace-governance-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.company.marketplace:marketplace-search >-------------
+[INFO] Building marketplace-search 1.1.0-SNAPSHOT                       [33/37]
+[INFO]   from marketplace-search\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-search ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-search\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-search ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-search ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-search ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-search\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-search ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-search ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-search ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-search\target\marketplace-search-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-search ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-search\pom.xml to D:\repository\com\company\marketplace\marketplace-search\1.1.0-SNAPSHOT\marketplace-search-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-search\target\marketplace-search-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-search\1.1.0-SNAPSHOT\marketplace-search-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ---------< com.company.marketplace:marketplace-recommendation >---------
+[INFO] Building marketplace-recommendation 1.1.0-SNAPSHOT               [34/37]
+[INFO]   from marketplace-recommendation\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-recommendation ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-recommendation\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-recommendation ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-recommendation ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 21 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-recommendation ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-recommendation\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-recommendation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-recommendation ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-recommendation ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-recommendation\target\marketplace-recommendation-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-recommendation ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-recommendation\pom.xml to D:\repository\com\company\marketplace\marketplace-recommendation\1.1.0-SNAPSHOT\marketplace-recommendation-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-recommendation\target\marketplace-recommendation-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-recommendation\1.1.0-SNAPSHOT\marketplace-recommendation-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------< com.company.marketplace:marketplace-notification >----------
+[INFO] Building marketplace-notification 1.1.0-SNAPSHOT                 [35/37]
+[INFO]   from marketplace-notification\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-notification ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-notification\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-notification ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-notification ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-notification ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-notification\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-notification ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-notification ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-notification ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-notification\target\marketplace-notification-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-notification ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-notification\pom.xml to D:\repository\com\company\marketplace\marketplace-notification\1.1.0-SNAPSHOT\marketplace-notification-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-notification\target\marketplace-notification-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-notification\1.1.0-SNAPSHOT\marketplace-notification-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------< com.company.marketplace:marketplace-customer-service >--------
+[INFO] Building marketplace-customer-service 1.1.0-SNAPSHOT             [36/37]
+[INFO]   from marketplace-customer-service\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-customer-service ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-customer-service\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-customer-service ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-customer-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 22 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-customer-service ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-customer-service\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-customer-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-customer-service ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-customer-service ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-customer-service\target\marketplace-customer-service-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-customer-service ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-customer-service\pom.xml to D:\repository\com\company\marketplace\marketplace-customer-service\1.1.0-SNAPSHOT\marketplace-customer-service-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-customer-service\target\marketplace-customer-service-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-customer-service\1.1.0-SNAPSHOT\marketplace-customer-service-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.company.marketplace:marketplace-cqrs >--------------
+[INFO] Building marketplace-cqrs 1.1.0-SNAPSHOT                         [37/37]
+[INFO]   from marketplace-cqrs\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ marketplace-cqrs ---
+[INFO] Deleting D:\code\specs\marketplace-business-framework\backend\marketplace-cqrs\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ marketplace-cqrs ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ marketplace-cqrs ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug release 21] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ marketplace-cqrs ---
+[INFO] skip non existing resourceDirectory D:\code\specs\marketplace-business-framework\backend\marketplace-cqrs\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ marketplace-cqrs ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ marketplace-cqrs ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ marketplace-cqrs ---
+[INFO] Building jar: D:\code\specs\marketplace-business-framework\backend\marketplace-cqrs\target\marketplace-cqrs-1.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ marketplace-cqrs ---
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-cqrs\pom.xml to D:\repository\com\company\marketplace\marketplace-cqrs\1.1.0-SNAPSHOT\marketplace-cqrs-1.1.0-SNAPSHOT.pom
+[INFO] Installing D:\code\specs\marketplace-business-framework\backend\marketplace-cqrs\target\marketplace-cqrs-1.1.0-SNAPSHOT.jar to D:\repository\com\company\marketplace\marketplace-cqrs\1.1.0-SNAPSHOT\marketplace-cqrs-1.1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Marketplace Business Framework 1.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Marketplace Dependencies BOM ....................... SUCCESS [  0.174 s]
+[INFO] Marketplace Business Framework ..................... SUCCESS [  0.009 s]
+[INFO] marketplace-framework .............................. SUCCESS [  0.007 s]
+[INFO] marketplace-common ................................. SUCCESS [  1.286 s]
+[INFO] marketplace-web .................................... SUCCESS [  0.396 s]
+[INFO] marketplace-security ............................... SUCCESS [  0.310 s]
+[INFO] marketplace-mybatis ................................ SUCCESS [  0.297 s]
+[INFO] marketplace-redis .................................. SUCCESS [  0.304 s]
+[INFO] marketplace-file ................................... SUCCESS [  0.224 s]
+[INFO] marketplace-gateway ................................ SUCCESS [  0.470 s]
+[INFO] marketplace-system ................................. SUCCESS [  0.263 s]
+[INFO] marketplace-user ................................... SUCCESS [  0.309 s]
+[INFO] marketplace-merchant ............................... SUCCESS [  0.342 s]
+[INFO] marketplace-shop ................................... SUCCESS [  0.311 s]
+[INFO] marketplace-product ................................ SUCCESS [  0.386 s]
+[INFO] marketplace-pricing ................................ SUCCESS [  0.279 s]
+[INFO] marketplace-inventory .............................. SUCCESS [  0.270 s]
+[INFO] marketplace-promotion .............................. SUCCESS [  0.302 s]
+[INFO] marketplace-cart ................................... SUCCESS [  0.284 s]
+[INFO] marketplace-checkout ............................... SUCCESS [  0.291 s]
+[INFO] marketplace-trade .................................. SUCCESS [  0.305 s]
+[INFO] marketplace-payment ................................ SUCCESS [  0.288 s]
+[INFO] marketplace-fulfillment ............................ SUCCESS [  0.281 s]
+[INFO] marketplace-aftersale .............................. SUCCESS [  0.322 s]
+[INFO] marketplace-dispute ................................ SUCCESS [  0.305 s]
+[INFO] marketplace-settlement ............................. SUCCESS [  0.278 s]
+[INFO] marketplace-finance ................................ SUCCESS [  0.281 s]
+[INFO] marketplace-reconciliation ......................... SUCCESS [  0.288 s]
+[INFO] marketplace-invoice ................................ SUCCESS [  0.276 s]
+[INFO] marketplace-review ................................. SUCCESS [  0.294 s]
+[INFO] marketplace-risk ................................... SUCCESS [  0.276 s]
+[INFO] marketplace-governance ............................. SUCCESS [  0.259 s]
+[INFO] marketplace-search ................................. SUCCESS [  0.269 s]
+[INFO] marketplace-recommendation ......................... SUCCESS [  0.249 s]
+[INFO] marketplace-notification ........................... SUCCESS [  0.274 s]
+[INFO] marketplace-customer-service ....................... SUCCESS [  0.275 s]
+[INFO] marketplace-cqrs ................................... SUCCESS [  0.267 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.698 s
+[INFO] Finished at: 2026-08-17T09:38:59+08:00
+[INFO] ------------------------------------------------------------------------

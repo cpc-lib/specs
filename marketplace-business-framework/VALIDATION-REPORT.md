@@ -1,4 +1,4 @@
-# Marketplace Framework v1.4 Frontend Integrated Validation
+# Marketplace Framework V3.0 Frontend Integrated Validation
 
 ## Result
 

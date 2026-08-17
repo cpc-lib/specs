@@ -28,41 +28,45 @@ There is **no `spec-contract/` directory** in v1.2.
 
 ```text
 marketplace-business-framework-v1.2-spec-integrated/
-├── pom.xml
 ├── spec/
 │   ├── VERSION
 │   ├── README.md
 │   └── marketplace-v3.0/
-├── marketplace-dependencies/
-├── marketplace-framework/
-├── marketplace-gateway/
-├── marketplace-system/
-├── marketplace-user/
-├── marketplace-merchant/
-├── marketplace-shop/
-├── marketplace-product/
-├── marketplace-pricing/
-├── marketplace-inventory/
-├── marketplace-promotion/
-├── marketplace-cart/
-├── marketplace-checkout/
-├── marketplace-trade/
-├── marketplace-payment/
-├── marketplace-fulfillment/
-├── marketplace-aftersale/
-├── marketplace-dispute/
-├── marketplace-settlement/
-├── marketplace-finance/
-├── marketplace-reconciliation/
-├── marketplace-invoice/
-├── marketplace-review/
-├── marketplace-risk/
-├── marketplace-governance/
-├── marketplace-search/
-├── marketplace-recommendation/
-├── marketplace-notification/
-├── marketplace-customer-service/
-└── marketplace-cqrs/
+├── backend/
+│   ├── pom.xml
+│   ├── marketplace-dependencies/
+│   ├── marketplace-framework/
+│   ├── marketplace-gateway/
+│   ├── marketplace-system/
+│   ├── marketplace-user/
+│   ├── marketplace-merchant/
+│   ├── marketplace-shop/
+│   ├── marketplace-product/
+│   ├── marketplace-pricing/
+│   ├── marketplace-inventory/
+│   ├── marketplace-promotion/
+│   ├── marketplace-cart/
+│   ├── marketplace-checkout/
+│   ├── marketplace-trade/
+│   ├── marketplace-payment/
+│   ├── marketplace-fulfillment/
+│   ├── marketplace-aftersale/
+│   ├── marketplace-dispute/
+│   ├── marketplace-settlement/
+│   ├── marketplace-finance/
+│   ├── marketplace-reconciliation/
+│   ├── marketplace-invoice/
+│   ├── marketplace-review/
+│   ├── marketplace-risk/
+│   ├── marketplace-governance/
+│   ├── marketplace-search/
+│   ├── marketplace-recommendation/
+│   ├── marketplace-notification/
+│   ├── marketplace-customer-service/
+│   └── marketplace-cqrs/
+├── marketplace-platform-web/
+├── marketplace-seller-web/
+└── marketplace-buyer-app/
 ```
 
 ## SPEC rule

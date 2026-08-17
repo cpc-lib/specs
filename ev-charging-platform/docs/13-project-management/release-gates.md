@@ -2,7 +2,7 @@
 
 每一个 Sprint 结束必须满足：
 
-1. `mvn clean verify` 通过。
+1. `cd backend && mvn clean verify` 通过。
 2. Flyway 在干净 MySQL 实例可从 0 迁移。
 3. 关键写接口具备幂等测试。
 4. MQ Consumer 有 Inbox 或等价幂等机制。
@@ -87,7 +87,7 @@ Payment Sprint 额外要求：重复成功回调不会重复更新订单、不�
 
 ### Runtime
 
-- `mvn clean verify`
+- `cd backend && mvn clean verify`
 - Admin `npm install && npm run build`
 - Merchant `npm install && npm run build`
 - Driver UniApp build

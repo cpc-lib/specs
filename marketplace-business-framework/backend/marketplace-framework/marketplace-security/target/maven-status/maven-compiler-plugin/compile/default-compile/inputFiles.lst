@@ -1,0 +1,7 @@
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\DataScope.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\MarketplacePrincipal.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\MarketplaceSecurityContext.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\PrincipalResolver.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\PrincipalType.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\ScopeGuard.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-security\src\main\java\com\company\marketplace\framework\security\SecurityContextFilter.java

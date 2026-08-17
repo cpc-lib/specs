@@ -30,7 +30,7 @@ Harden the first charging vertical slice before Payment development.
 
 Still mandatory before `foundation-verified`:
 
-- [ ] `./mvnw clean verify`
+- [ ] `cd backend && ./mvnw clean verify`
 - [ ] Live MySQL + Flyway + Testcontainers
 - [ ] Nacos registration/discovery
 - [ ] RabbitMQ route-aware command E2E

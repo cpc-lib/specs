@@ -7,7 +7,7 @@
 - static host-port collision check
 
 ## Developer/CI
-- `mvn clean verify`
+- `cd backend && mvn clean verify`
 - Testcontainers MySQL integration test
 - `docker compose config`
 - `docker compose up -d` health

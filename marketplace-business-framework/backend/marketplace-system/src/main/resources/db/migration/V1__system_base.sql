@@ -1,0 +1,9 @@
+CREATE TABLE sys_user (id BIGINT PRIMARY KEY, username VARCHAR(64) NOT NULL, password_hash VARCHAR(255) NOT NULL, status VARCHAR(32) NOT NULL, created_at DATETIME(3) NOT NULL, updated_at DATETIME(3) NOT NULL, UNIQUE KEY uk_sys_user_username(username));
+CREATE TABLE sys_role (id BIGINT PRIMARY KEY, role_code VARCHAR(64) NOT NULL, role_name VARCHAR(128) NOT NULL, status VARCHAR(32) NOT NULL, UNIQUE KEY uk_sys_role_code(role_code));
+CREATE TABLE sys_permission (id BIGINT PRIMARY KEY, permission_code VARCHAR(128) NOT NULL, permission_name VARCHAR(128) NOT NULL, UNIQUE KEY uk_sys_permission_code(permission_code));
+CREATE TABLE sys_user_role (id BIGINT PRIMARY KEY, user_id BIGINT NOT NULL, role_id BIGINT NOT NULL, UNIQUE KEY uk_sys_user_role(user_id,role_id));
+CREATE TABLE sys_role_permission (id BIGINT PRIMARY KEY, role_id BIGINT NOT NULL, permission_id BIGINT NOT NULL, UNIQUE KEY uk_sys_role_permission(role_id,permission_id));
+CREATE TABLE sys_dict_type (id BIGINT PRIMARY KEY, dict_type VARCHAR(64) NOT NULL, dict_name VARCHAR(128) NOT NULL, status VARCHAR(32) NOT NULL, UNIQUE KEY uk_sys_dict_type(dict_type));
+CREATE TABLE sys_dict_data (id BIGINT PRIMARY KEY, dict_type VARCHAR(64) NOT NULL, dict_value VARCHAR(128) NOT NULL, dict_label VARCHAR(128) NOT NULL, sort_no INT NOT NULL DEFAULT 0, status VARCHAR(32) NOT NULL, UNIQUE KEY uk_sys_dict_data(dict_type,dict_value));
+CREATE TABLE sys_config (id BIGINT PRIMARY KEY, config_key VARCHAR(128) NOT NULL, config_value TEXT NULL, config_type VARCHAR(32) NOT NULL, UNIQUE KEY uk_sys_config_key(config_key));
+CREATE TABLE sys_audit_log (id BIGINT PRIMARY KEY, operator_id BIGINT NULL, operator_type VARCHAR(32) NOT NULL, action VARCHAR(128) NOT NULL, business_type VARCHAR(64) NULL, business_id VARCHAR(128) NULL, trace_id VARCHAR(64) NULL, detail_json JSON NULL, created_at DATETIME(3) NOT NULL, KEY idx_sys_audit_business(business_type,business_id,created_at));

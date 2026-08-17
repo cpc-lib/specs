@@ -1,0 +1,10 @@
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\api\ApiResponse.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\domain\BaseAggregate.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\error\BusinessException.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\error\ErrorCode.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\event\DomainEvent.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\id\BusinessNo.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\id\IdGenerator.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\money\Money.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\page\PageQuery.java
+D:\code\specs\marketplace-business-framework\backend\marketplace-framework\marketplace-common\src\main\java\com\company\marketplace\framework\common\page\PageResult.java

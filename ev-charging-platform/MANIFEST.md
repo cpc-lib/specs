@@ -379,6 +379,9 @@ Total files: **529**
 - `backend/charging-system/src/main/resources/application.yml`
 - `backend/charging-system/src/main/resources/db/migration/V1.0.0__product_iam.sql`
 - `backend/charging-system/src/main/resources/db/migration/V1.1.0__auth_rbac_hardening.sql`
+- `backend/mvnw`
+- `backend/mvnw.cmd`
+- `backend/pom.xml`
 - `contracts/events/event-envelope.v1.json`
 - `deploy/docker/docker-compose.yml`
 - `deploy/docker/mysql/init/01_app.sql`
@@ -480,9 +483,6 @@ Total files: **529**
 - `merchant-web/src/store/auth.ts`
 - `merchant-web/tsconfig.json`
 - `merchant-web/vite.config.ts`
-- `mvnw`
-- `mvnw.cmd`
-- `pom.xml`
 - `scripts/bootstrap-maven.ps1`
 - `scripts/capacity_model.py`
 - `scripts/chaos/chaos.ps1`

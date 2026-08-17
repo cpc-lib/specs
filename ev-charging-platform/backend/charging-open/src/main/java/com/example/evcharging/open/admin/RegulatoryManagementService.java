@@ -75,7 +75,13 @@ public class RegulatoryManagementService {
     @Transactional
     public void retry(long taskId){
         long tenant=RequestContext.requireTenantId();
-        outbound.requireAllowed(c.endpointUrl());
+        List<String> endpoints=jdbc.queryForList("""
+            SELECT p.endpoint_url
+            FROM open_regulatory_report_task t JOIN open_regulatory_platform p ON p.id=t.platform_id
+            WHERE t.tenant_id=? AND t.id=? AND t.status='DEAD'
+            """,String.class,tenant,taskId);
+        if(endpoints.isEmpty())throw new IllegalStateException("only DEAD regulatory task can be manually retried");
+        outbound.requireAllowed(endpoints.get(0));
         int n=jdbc.update("""
             UPDATE open_regulatory_report_task
             SET status='RETRY',next_retry_time=?,claim_token=NULL,claim_time=NULL,last_error=NULL,update_time=?

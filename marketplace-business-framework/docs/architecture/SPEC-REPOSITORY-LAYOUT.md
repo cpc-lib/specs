@@ -27,9 +27,9 @@ tests
 Do not create:
 
 ```text
-marketplace-trade/spec/
-marketplace-payment/spec/
-marketplace-product/spec/
+backend/marketplace-trade/spec/
+backend/marketplace-payment/spec/
+backend/marketplace-product/spec/
 ```
 
 with duplicated copies of the global specification.

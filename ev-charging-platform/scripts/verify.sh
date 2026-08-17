@@ -10,7 +10,7 @@ python3 scripts/capacity_model.py
 ./scripts/operation_harness.sh
 ./scripts/product_harness.sh
 ./scripts/openapi_harness.sh
-./mvnw -B -ntp clean verify
+( cd backend && ./mvnw -B -ntp clean verify )
 (
   cd admin-web
   npm install

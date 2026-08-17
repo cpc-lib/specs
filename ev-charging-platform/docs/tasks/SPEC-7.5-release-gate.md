@@ -11,7 +11,7 @@
 
 ## Runtime Gate
 
-- [ ] `mvn clean verify`
+- [ ] `cd backend && mvn clean verify`
 - [ ] Flyway clean MySQL migration
 - [ ] Nacos service discovery
 - [ ] Kafka Payment Outbox → Core / Finance consumers

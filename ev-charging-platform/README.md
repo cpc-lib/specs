@@ -73,7 +73,7 @@ JDBC placeholder checks and structured-file parsing can be run in the current en
 
 It must **not** be labelled `foundation-verified` until the runtime release gate passes:
 
-- `mvn clean verify`
+- `cd backend && mvn clean verify`
 - MySQL + all Flyway migrations
 - Testcontainers
 - Kafka payment → finance consumers

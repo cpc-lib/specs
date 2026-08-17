@@ -97,7 +97,7 @@ These are arithmetic sizing inputs, not a live throughput benchmark.
 Actual command:
 
 ```bash
-./mvnw -v
+cd backend && ./mvnw -v
 ```
 
 Actual result:
@@ -106,7 +106,7 @@ Actual result:
 curl: (6) Could not resolve host: downloads.apache.org
 ```
 
-Therefore Maven dependency bootstrap and `mvn clean verify` cannot be marked PASS.
+Therefore Maven dependency bootstrap and `cd backend && mvn clean verify` cannot be marked PASS.
 
 ### Docker
 

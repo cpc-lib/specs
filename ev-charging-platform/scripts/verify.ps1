@@ -13,8 +13,11 @@ if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 & .\scripts\product_harness.ps1
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+Push-Location backend
 & .\mvnw.cmd -B -ntp clean verify
-if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+$mvnExit = $LASTEXITCODE
+Pop-Location
+if ($mvnExit -ne 0) { exit $mvnExit }
 Push-Location admin-web
 npm install
 npm run build

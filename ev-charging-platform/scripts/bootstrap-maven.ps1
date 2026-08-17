@@ -17,4 +17,4 @@ $env:MAVEN_HOME = $MavenHome
 $env:Path = "$MavenHome\bin;$env:Path"
 Write-Host "Maven installed for this shell:"
 mvn -version
-Write-Host "Run: mvn clean verify"
+Write-Host "Run: cd backend; mvn clean verify"

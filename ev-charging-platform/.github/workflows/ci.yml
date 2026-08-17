@@ -26,6 +26,7 @@ jobs:
           java-version: '21'
           cache: maven
       - name: Maven verify
+        working-directory: backend
         run: ./mvnw -B -ntp clean verify
 
   frontend:

@@ -9,7 +9,7 @@ Status can change from `foundation-rc` to `foundation-verified` only when every 
 
 ## Backend
 
-- [ ] `./mvnw -B -ntp clean verify`
+- [ ] `cd backend && ./mvnw -B -ntp clean verify`
 - [ ] Asset Testcontainers MySQL tests pass
 - [ ] Core Inbox/projection Testcontainers tests pass
 - [ ] Spring Boot context tests pass
